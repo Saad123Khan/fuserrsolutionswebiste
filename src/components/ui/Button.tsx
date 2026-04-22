@@ -28,17 +28,17 @@ export default function Button({
   type = 'button',
 }: ButtonProps) {
   const base =
-    'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-900 disabled:opacity-50 disabled:pointer-events-none select-none';
+    'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-200 rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none select-none';
 
   const variants = {
     primary:
-      'bg-blue-600 text-white hover:bg-blue-500 shadow-blue-sm hover:shadow-blue-md active:scale-[0.98]',
+      'btn-gradient text-white shadow-[0_4px_20px_rgba(37,99,235,0.35)] hover:shadow-[0_4px_30px_rgba(37,99,235,0.5)]',
     secondary:
-      'bg-navy-700 text-[#E8E8E8] hover:bg-navy-600 border border-navy-500 active:scale-[0.98]',
+      'bg-slate-100 dark:bg-navy-700 text-slate-800 dark:text-[#E8E8E8] hover:bg-slate-200 dark:hover:bg-navy-600 border border-slate-200 dark:border-navy-500 active:scale-[0.98]',
     ghost:
-      'text-[#94A3B8] hover:text-[#E8E8E8] hover:bg-navy-800 active:scale-[0.98]',
+      'text-slate-500 dark:text-[#94A3B8] hover:text-slate-800 dark:hover:text-[#E8E8E8] hover:bg-slate-100 dark:hover:bg-navy-800 active:scale-[0.98]',
     outline:
-      'border border-blue-600 text-blue-400 hover:bg-blue-600/10 active:scale-[0.98]',
+      'border-2 border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-600/10 active:scale-[0.98]',
   };
 
   const sizes = {
