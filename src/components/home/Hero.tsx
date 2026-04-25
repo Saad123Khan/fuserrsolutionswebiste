@@ -190,7 +190,7 @@ export default function Hero() {
                 <span className="text-xs font-medium text-[#94A3B8]">{text}</span>
               </motion.div>
             ))}
-          </div>
+          </div> 
         </div>
       </div>
 
