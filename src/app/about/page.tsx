@@ -15,19 +15,19 @@ const values = [
   {
     icon: Target,
     title: 'Outcome-Driven',
-    description: 'We measure success by what your product achieves, not by hours billed or features shipped.',
+    description: "We measure success by what your product achieves, not by hours billed or features shipped.",
     accent: '#3B82F6',
   },
   {
     icon: Shield,
     title: 'Relentless Quality',
-    description: 'Every codebase we touch is treated as if we\'ll be the ones maintaining it forever.',
+    description: "Every codebase we touch is treated as if we'll be the ones maintaining it forever.",
     accent: '#10B981',
   },
   {
     icon: Users,
     title: 'True Partnership',
-    description: 'We don\'t disappear after requirements are gathered. We co-invest in your outcomes.',
+    description: "We don't disappear after requirements are gathered. We co-invest in your outcomes.",
     accent: '#8B5CF6',
   },
   {
@@ -45,42 +45,18 @@ const values = [
   {
     icon: Heart,
     title: 'Craft with Care',
-    description: 'Software that looks good, works great, and holds up under load — because we take pride in our work.',
+    description: "Software that looks good, works great, and holds up under load — because we take pride in our work.",
     accent: '#EC4899',
   },
 ];
 
 const timeline = [
-  {
-    year: '2016',
-    title: 'Founded',
-    description: 'Two engineers left Big Tech to build software for founders who deserved better.',
-  },
-  {
-    year: '2018',
-    title: 'First AI Project',
-    description: 'Built our first ML system — a fraud detection model for a fintech startup.',
-  },
-  {
-    year: '2020',
-    title: 'Team of 15',
-    description: 'Expanded into mobile and design. Launched 30+ projects across 4 continents.',
-  },
-  {
-    year: '2022',
-    title: 'Dubai Office',
-    description: 'Opened MENA operations to serve rapidly growing Gulf markets.',
-  },
-  {
-    year: '2023',
-    title: 'AI-First Pivot',
-    description: 'Dedicated AI practice launched. Shipped 12 LLM and ML products in one year.',
-  },
-  {
-    year: '2025',
-    title: 'Today',
-    description: '40+ team members, 120+ shipped projects, $50M+ in value delivered for clients.',
-  },
+  { year: '2016', title: 'Founded', description: 'Two engineers left Big Tech to build software for founders who deserved better.' },
+  { year: '2018', title: 'First AI Project', description: 'Built our first ML system — a fraud detection model for a fintech startup.' },
+  { year: '2020', title: 'Team of 15', description: 'Expanded into mobile and design. Launched 30+ projects across 4 continents.' },
+  { year: '2022', title: 'Dubai Office', description: 'Opened MENA operations to serve rapidly growing Gulf markets.' },
+  { year: '2023', title: 'AI-First Pivot', description: 'Dedicated AI practice launched. Shipped 12 LLM and ML products in one year.' },
+  { year: '2025', title: 'Today', description: '40+ team members, 120+ shipped projects, $50M+ in value delivered for clients.' },
 ];
 
 const stats = [
@@ -93,69 +69,64 @@ const stats = [
 export default function AboutPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-navy-950 dot-grid opacity-30" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-blue-600/8 blur-[120px] rounded-full pointer-events-none" />
+      {/* ── Hero ── */}
+      <section className="pt-36 pb-20 relative overflow-hidden bg-[var(--c-bg)]">
+        <div className="absolute inset-0 dot-grid opacity-35" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-blue-600/6 blur-[120px] rounded-full pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <AnimatedSection>
-            <div className="flex items-center gap-2 mb-6">
+            <div className="flex items-center justify-center gap-2 mb-6">
               <span className="w-6 h-px bg-blue-500" />
-              <span className="text-blue-400 text-sm font-mono tracking-widest uppercase">About</span>
+              <span className="text-blue-600 dark:text-blue-400 text-sm font-mono tracking-widest uppercase">About</span>
+              <span className="w-6 h-px bg-blue-500" />
             </div>
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <h1 className="text-5xl sm:text-6xl font-bold leading-tight mb-6">
-                  <span className="text-[#E8E8E8]">We exist to</span>
-                  <br />
-                  <span className="text-gradient">close the gap</span>
-                  <br />
-                  <span className="text-[#E8E8E8]">between vision</span>
-                  <br />
-                  <span className="text-[#E8E8E8]">and reality.</span>
-                </h1>
-                <p className="text-lg text-[#94A3B8] leading-relaxed">
-                  Founded by engineers who got tired of watching great ideas fail at execution,
-                  Fuserr Solutions was built on a simple belief: world-class software should be
-                  accessible to any ambitious team, not just those with a Big Tech budget.
-                </p>
-              </div>
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl font-black leading-[1.06] tracking-tight mb-6">
+              <span className="text-slate-900 dark:text-[#E8E8E8]">We exist to close</span>
+              <br />
+              <span className="text-gradient">the gap between</span>
+              <br />
+              <span className="text-slate-900 dark:text-[#E8E8E8]">vision and reality.</span>
+            </h1>
+            <p className="text-lg text-slate-500 dark:text-[#94A3B8] max-w-2xl mx-auto">
+              Founded by engineers who got tired of watching great ideas fail at execution, Fuserr Solutions
+              was built on a simple belief: world-class software should be accessible to any ambitious team.
+            </p>
+          </AnimatedSection>
 
-              {/* Stats */}
-              <div className="grid grid-cols-2 gap-4">
-                {stats.map(({ value, label, sub }) => (
-                  <div key={label} className="glass rounded-2xl border border-navy-500/40 p-6">
-                    <div className="text-3xl font-bold text-gradient mb-1">{value}</div>
-                    <div className="text-sm font-medium text-[#E8E8E8] mb-1">{label}</div>
-                    <div className="text-xs text-[#64748B]">{sub}</div>
-                  </div>
-                ))}
-              </div>
+          {/* Stats row */}
+          <AnimatedSection delay={0.15}>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-14 max-w-3xl mx-auto">
+              {stats.map(({ value, label, sub }) => (
+                <div key={label} className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-5">
+                  <div className="text-2xl font-bold text-gradient mb-1">{value}</div>
+                  <div className="text-sm font-medium text-slate-800 dark:text-[#E8E8E8] mb-0.5">{label}</div>
+                  <div className="text-xs text-slate-400 dark:text-[#64748B]">{sub}</div>
+                </div>
+              ))}
             </div>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Mission */}
-      <section className="py-24 bg-navy-900 border-t border-navy-500/30">
+      {/* ── Mission ── */}
+      <section className="py-24 bg-[var(--c-bg-alt)] dark:bg-navy-900 border-t border-slate-200 dark:border-navy-500/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16">
             <AnimatedSection direction="left">
               <div className="flex items-center gap-2 mb-6">
                 <span className="w-6 h-px bg-blue-500" />
-                <span className="text-blue-400 text-sm font-mono tracking-widest uppercase">Mission</span>
+                <span className="text-blue-600 dark:text-blue-400 text-sm font-mono tracking-widest uppercase">Mission</span>
               </div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#E8E8E8] mb-6 leading-tight">
+              <h2 className="text-2xl lg:text-3xl font-bold text-slate-900 dark:text-[#E8E8E8] mb-6 leading-tight">
                 Build software that{' '}
                 <span className="text-gradient">shapes industries</span> — one product at a time.
               </h2>
-              <p className="text-[#94A3B8] leading-relaxed mb-6">
-                We believe that software, when built well, doesn&apos;t just solve a problem —
-                it creates a competitive moat, enables new business models, and transforms how
-                entire industries operate.
+              <p className="text-slate-500 dark:text-[#94A3B8] leading-relaxed mb-6">
+                We believe that software, when built well, doesn&apos;t just solve a problem — it creates a
+                competitive moat, enables new business models, and transforms how entire industries operate.
               </p>
-              <p className="text-[#94A3B8] leading-relaxed">
+              <p className="text-slate-500 dark:text-[#94A3B8] leading-relaxed">
                 That&apos;s the standard we hold ourselves to. Not features. Not deliverables. Outcomes.
               </p>
             </AnimatedSection>
@@ -163,17 +134,17 @@ export default function AboutPage() {
             <AnimatedSection direction="right">
               <div className="flex items-center gap-2 mb-6">
                 <span className="w-6 h-px bg-blue-500" />
-                <span className="text-blue-400 text-sm font-mono tracking-widest uppercase">Vision</span>
+                <span className="text-blue-600 dark:text-blue-400 text-sm font-mono tracking-widest uppercase">Vision</span>
               </div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-[#E8E8E8] mb-6 leading-tight">
+              <h2 className="text-2xl lg:text-3xl font-bold text-slate-900 dark:text-[#E8E8E8] mb-6 leading-tight">
                 The most{' '}
                 <span className="text-gradient">trusted engineering partner</span> for ambitious teams globally.
               </h2>
-              <p className="text-[#94A3B8] leading-relaxed mb-6">
-                Not the largest agency. Not the cheapest. The most trusted. The team that founders and
-                CTOs call when they can&apos;t afford to get it wrong.
+              <p className="text-slate-500 dark:text-[#94A3B8] leading-relaxed mb-6">
+                Not the largest agency. Not the cheapest. The most trusted. The team that founders and CTOs
+                call when they can&apos;t afford to get it wrong.
               </p>
-              <p className="text-[#94A3B8] leading-relaxed">
+              <p className="text-slate-500 dark:text-[#94A3B8] leading-relaxed">
                 We want to be the reason a hundred companies reach their first million users.
               </p>
             </AnimatedSection>
@@ -181,8 +152,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-24 bg-navy-950 border-t border-navy-500/30">
+      {/* ── Values ── */}
+      <section className="py-24 bg-[var(--c-bg)] dark:bg-navy-950 border-t border-slate-200 dark:border-navy-500/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="mb-14">
             <SectionTitle
@@ -198,15 +169,15 @@ export default function AboutPage() {
               const Icon = v.icon;
               return (
                 <StaggerItem key={v.title}>
-                  <div className="glass rounded-2xl border border-navy-500/40 p-7 h-full hover:border-opacity-70 transition-colors duration-300">
+                  <div className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-7 h-full hover:border-blue-200 dark:hover:border-blue-500/40 transition-colors duration-300">
                     <div
                       className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
                       style={{ background: `${v.accent}15`, border: `1px solid ${v.accent}30` }}
                     >
                       <Icon size={19} style={{ color: v.accent }} />
                     </div>
-                    <h3 className="text-[#E8E8E8] font-semibold text-lg mb-3">{v.title}</h3>
-                    <p className="text-sm text-[#94A3B8] leading-relaxed">{v.description}</p>
+                    <h3 className="text-slate-900 dark:text-[#E8E8E8] font-semibold text-lg mb-3">{v.title}</h3>
+                    <p className="text-sm text-slate-500 dark:text-[#94A3B8] leading-relaxed">{v.description}</p>
                   </div>
                 </StaggerItem>
               );
@@ -215,8 +186,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-24 bg-navy-900 border-t border-navy-500/30">
+      {/* ── Timeline ── */}
+      <section className="py-24 bg-[var(--c-bg-alt)] dark:bg-navy-900 border-t border-slate-200 dark:border-navy-500/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="mb-14">
             <SectionTitle
@@ -229,35 +200,29 @@ export default function AboutPage() {
 
           <div className="relative">
             {/* Vertical line */}
-            <div className="absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-600/60 via-navy-500 to-transparent" />
+            <div className="absolute left-4 lg:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/60 via-blue-500/20 to-transparent" />
 
             <div className="space-y-10">
               {timeline.map((item, i) => (
                 <AnimatedSection key={item.year} delay={i * 0.08}>
-                  <div
-                    className={`relative flex items-start gap-8 ${
-                      i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
-                    }`}
-                  >
-                    {/* Year bubble */}
-                    <div className="absolute left-4 lg:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-navy-800 border-2 border-blue-600 flex items-center justify-center z-10">
+                  <div className={`relative flex items-start gap-8 ${i % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'}`}>
+                    {/* Dot */}
+                    <div className="absolute left-4 lg:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white dark:bg-navy-800 border-2 border-blue-500 dark:border-blue-600 flex items-center justify-center z-10">
                       <div className="w-2 h-2 rounded-full bg-blue-500" />
                     </div>
 
                     {/* Content */}
-                    <div
-                      className={`ml-16 lg:ml-0 lg:w-[calc(50%-2.5rem)] ${
-                        i % 2 === 0 ? 'lg:text-right' : 'lg:text-left lg:ml-[calc(50%+2.5rem)]'
-                      }`}
-                    >
+                    <div className={`ml-16 lg:ml-0 lg:w-[calc(50%-2.5rem)] ${
+                      i % 2 === 0 ? 'lg:text-right' : 'lg:text-left lg:ml-[calc(50%+2.5rem)]'
+                    }`}>
                       <div
-                        className="inline-block text-xs font-mono font-bold text-blue-400 mb-2 px-3 py-1 rounded-full"
-                        style={{ background: 'rgba(37,99,235,0.1)', border: '1px solid rgba(37,99,235,0.25)' }}
+                        className="inline-block text-xs font-mono font-bold text-blue-600 dark:text-blue-400 mb-2 px-3 py-1 rounded-full"
+                        style={{ background: 'rgba(37,99,235,0.08)', border: '1px solid rgba(37,99,235,0.2)' }}
                       >
                         {item.year}
                       </div>
-                      <h3 className="text-[#E8E8E8] font-semibold text-lg mb-2">{item.title}</h3>
-                      <p className="text-sm text-[#94A3B8]">{item.description}</p>
+                      <h3 className="text-slate-900 dark:text-[#E8E8E8] font-semibold text-lg mb-2">{item.title}</h3>
+                      <p className="text-sm text-slate-500 dark:text-[#94A3B8]">{item.description}</p>
                     </div>
                   </div>
                 </AnimatedSection>
@@ -267,14 +232,14 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-20 border-t border-navy-500/30 bg-navy-950">
+      {/* ── CTA ── */}
+      <section className="py-20 border-t border-slate-200 dark:border-navy-500/30 bg-[var(--c-bg)] dark:bg-navy-950">
         <div className="max-w-xl mx-auto px-4 text-center">
           <AnimatedSection>
-            <h2 className="text-3xl font-bold text-[#E8E8E8] mb-4">
+            <h2 className="text-2xl font-bold text-slate-900 dark:text-[#E8E8E8] mb-4">
               Ready to work with us?
             </h2>
-            <p className="text-[#94A3B8] mb-8">
+            <p className="text-slate-500 dark:text-[#94A3B8] mb-8">
               Let&apos;s discuss your next project. No obligation, no sales pressure.
             </p>
             <Button href="/contact" variant="primary" size="lg" className="group">

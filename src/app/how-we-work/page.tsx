@@ -6,13 +6,12 @@ import {
   Code2,
   Rocket,
   LifeBuoy,
+  TestTube,
+  CheckCircle2,
   Users,
   MessageSquare,
   GitBranch,
-  TestTube,
-  CheckCircle2,
 } from 'lucide-react';
-import SectionTitle from '@/components/ui/SectionTitle';
 import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection';
 import CTABanner from '@/components/home/CTABanner';
 
@@ -66,8 +65,8 @@ const phases = [
       'From information architecture to pixel-perfect screens. We prototype high-fidelity interactions, test with real users, and align design with engineering constraints before a single line of production code is written.',
     activities: [
       'Information architecture and user flows',
-      'Low-fidelity wireframes',
-      'High-fidelity UI design with design system',
+      'Low-fidelity wireframes and concepts',
+      'High-fidelity UI with a full design system',
       'Interactive prototyping in Figma',
       'Usability testing and iteration',
     ],
@@ -80,7 +79,7 @@ const phases = [
     title: 'Development',
     duration: 'Project-dependent',
     description:
-      'Two-week sprints with daily standups and weekly demos. CI/CD from day one, feature flags for progressive rollouts, and code reviews on every PR. You always know what\'s shipping.',
+      "Two-week sprints with daily standups and weekly demos. CI/CD from day one, feature flags for progressive rollouts, and code reviews on every PR. You always know what's shipping.",
     activities: [
       'Two-week agile sprints',
       'Daily async standups',
@@ -97,7 +96,7 @@ const phases = [
     title: 'Testing & QA',
     duration: 'Ongoing + dedicated sprint',
     description:
-      'QA is not a phase — it\'s woven into every sprint. A dedicated pre-launch QA sprint covers regression, load testing, security scanning, and cross-browser/device validation.',
+      "QA is not a phase — it's woven into every sprint. A dedicated pre-launch QA sprint covers regression, load testing, security scanning, and cross-browser/device validation.",
     activities: [
       'Automated unit and integration testing',
       'End-to-end test suites (Playwright/Cypress)',
@@ -131,7 +130,7 @@ const phases = [
     title: 'Maintenance & Scale',
     duration: 'Ongoing',
     description:
-      'We don\'t disappear after launch. Structured retainer agreements cover proactive monitoring, security patches, performance optimization, and continued feature development.',
+      "We don't disappear after launch. Structured retainer agreements cover proactive monitoring, security patches, performance optimization, and continued feature development.",
     activities: [
       'SLA-backed incident response',
       'Proactive dependency and security updates',
@@ -165,130 +164,130 @@ const tools = [
 export default function HowWeWorkPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-navy-950 dot-grid opacity-30" />
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/8 blur-[120px] rounded-full" />
+      {/* ── Hero ── */}
+      <section className="pt-36 pb-20 relative overflow-hidden bg-[var(--c-bg)]">
+        <div className="absolute inset-0 dot-grid opacity-35" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-blue-600/6 blur-[120px] rounded-full pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="max-w-3xl">
-            <div className="flex items-center gap-2 mb-6">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <AnimatedSection>
+            <div className="flex items-center justify-center gap-2 mb-6">
               <span className="w-6 h-px bg-blue-500" />
-              <span className="text-blue-400 text-sm font-mono tracking-widest uppercase">
-                Process
-              </span>
+              <span className="text-blue-600 dark:text-blue-400 text-sm font-mono tracking-widest uppercase">Process</span>
+              <span className="w-6 h-px bg-blue-500" />
             </div>
-            <h1 className="text-5xl sm:text-6xl font-bold leading-tight mb-6">
-              <span className="text-[#E8E8E8]">Transparency</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl font-black leading-[1.06] tracking-tight mb-6">
+              <span className="text-slate-900 dark:text-[#E8E8E8]">Transparency</span>
               <br />
               <span className="text-gradient">at every step.</span>
             </h1>
-            <p className="text-lg text-[#94A3B8] leading-relaxed">
-              A rigorous process that eliminates surprises. You know what we&apos;re building, when
-              it ships, and why every decision was made.
+            <p className="text-lg text-slate-500 dark:text-[#94A3B8] max-w-xl mx-auto">
+              A rigorous process that eliminates surprises — you know what we&apos;re building,
+              when it ships, and why every decision was made.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Process steps */}
-      <section className="pb-24 bg-navy-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-5">
-            {phases.map((phase, i) => {
-              const Icon = phase.icon;
-              return (
-                <AnimatedSection key={phase.number} delay={i * 0.05}>
-                  <div className="glass rounded-2xl border border-navy-500/40 overflow-hidden hover:border-opacity-70 transition-colors duration-300">
-                    <div className="grid lg:grid-cols-3 gap-0">
-                      {/* Left: title + description */}
-                      <div className="p-8 border-b lg:border-b-0 lg:border-r border-navy-500/30">
-                        <div className="flex items-center gap-4 mb-5">
-                          <div
-                            className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                            style={{ background: `${phase.accent}18`, border: `1px solid ${phase.accent}30` }}
-                          >
-                            <Icon size={18} style={{ color: phase.accent }} />
-                          </div>
-                          <span
-                            className="text-sm font-mono font-bold"
-                            style={{ color: phase.accent }}
-                          >
-                            {phase.number}
-                          </span>
-                        </div>
+      {/* ── Roadmap ── */}
+      <section className="pb-24 bg-[var(--c-bg-alt)] dark:bg-navy-900">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
-                        <h2 className="text-xl font-bold text-[#E8E8E8] mb-2">{phase.title}</h2>
-                        <div className="text-xs font-mono text-[#64748B] mb-4">{phase.duration}</div>
-                        <p className="text-sm text-[#94A3B8] leading-relaxed">{phase.description}</p>
-                      </div>
+          {/* Section label */}
+          <AnimatedSection className="text-center mb-14 pt-16">
+            <span className="text-xs font-mono font-semibold text-slate-400 dark:text-[#64748B] uppercase tracking-widest">
+              7-Phase Delivery Framework
+            </span>
+          </AnimatedSection>
 
-                      {/* Middle: activities */}
-                      <div className="p-8 border-b lg:border-b-0 lg:border-r border-navy-500/30">
-                        <h3 className="text-xs font-mono font-semibold text-[#64748B] uppercase tracking-widest mb-5">
-                          Activities
-                        </h3>
-                        <ul className="space-y-3">
-                          {phase.activities.map((a) => (
-                            <li key={a} className="flex items-start gap-2.5">
-                              <CheckCircle2
-                                size={13}
-                                className="mt-0.5 shrink-0"
-                                style={{ color: phase.accent }}
-                              />
-                              <span className="text-sm text-[#94A3B8]">{a}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+          {/* Zigzag roadmap */}
+          <div className="relative">
+            {/* Continuous vertical line */}
+            <div className="absolute left-5 lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/60 via-blue-500/20 to-transparent" />
 
-                      {/* Right: output */}
-                      <div className="p-8">
-                        <h3 className="text-xs font-mono font-semibold text-[#64748B] uppercase tracking-widest mb-5">
-                          Deliverable
-                        </h3>
+            <div className="space-y-10 lg:space-y-12">
+              {phases.map((phase, i) => {
+                const Icon = phase.icon;
+                const isLeft = i % 2 === 0;
+
+                return (
+                  <div key={phase.number} className="relative">
+
+                    {/* ── Desktop layout ── */}
+                    <div className="hidden lg:block">
+                      <AnimatedSection direction={isLeft ? 'left' : 'right'} delay={i * 0.05}>
+                        {/* Dot on center line */}
                         <div
-                          className="rounded-xl p-4 border"
-                          style={{
-                            background: `${phase.accent}08`,
-                            borderColor: `${phase.accent}25`,
-                          }}
+                          className="absolute left-1/2 -translate-x-1/2 top-6 z-10 w-11 h-11 rounded-full border-2 flex items-center justify-center bg-white dark:bg-navy-900 shadow-sm"
+                          style={{ borderColor: phase.accent }}
                         >
-                          <p className="text-sm font-medium" style={{ color: phase.accent }}>
-                            {phase.output}
-                          </p>
+                          <span className="text-xs font-black" style={{ color: phase.accent }}>{phase.number}</span>
                         </div>
+
+                        {/* Card */}
+                        <div
+                          className={`lg:w-[calc(50%-2.5rem)] ${
+                            isLeft ? '' : 'lg:ml-[calc(50%+2.5rem)]'
+                          }`}
+                        >
+                          <PhaseCard phase={phase} Icon={Icon} />
+                        </div>
+                      </AnimatedSection>
+                    </div>
+
+                    {/* ── Mobile layout ── */}
+                    <div className="lg:hidden flex gap-0 items-start">
+                      {/* Dot */}
+                      <div className="shrink-0 relative z-10 flex flex-col items-center">
+                        <div
+                          className="w-10 h-10 rounded-full border-2 flex items-center justify-center bg-white dark:bg-navy-900 shadow-sm"
+                          style={{ borderColor: phase.accent }}
+                        >
+                          <span className="text-[11px] font-black" style={{ color: phase.accent }}>{phase.number}</span>
+                        </div>
+                      </div>
+                      {/* Card */}
+                      <div className="flex-1 pl-5">
+                        <AnimatedSection delay={i * 0.04}>
+                          <PhaseCard phase={phase} Icon={Icon} />
+                        </AnimatedSection>
                       </div>
                     </div>
+
                   </div>
-                </AnimatedSection>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Team composition */}
-      <section className="py-24 bg-navy-950 border-t border-navy-500/30">
+      {/* ── Team Composition ── */}
+      <section className="py-24 bg-[var(--c-bg)] dark:bg-navy-950 border-t border-slate-200 dark:border-navy-500/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="mb-14">
-            <SectionTitle
-              eyebrow="Team Structure"
-              title="Who you'll work with"
-              highlight="Who you'll"
-              description="Dedicated experts, not rotating contractors. Your team stays consistent from kickoff to launch."
-            />
+          <AnimatedSection className="text-center mb-14">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <span className="w-6 h-px bg-blue-500" />
+              <span className="text-blue-600 dark:text-blue-400 text-sm font-mono tracking-widest uppercase">Team Structure</span>
+              <span className="w-6 h-px bg-blue-500" />
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-[#E8E8E8] mb-4">
+              Who you&apos;ll work with
+            </h2>
+            <p className="text-slate-500 dark:text-[#94A3B8] max-w-lg mx-auto">
+              Dedicated experts, not rotating contractors. Your team stays consistent from kickoff to launch.
+            </p>
           </AnimatedSection>
 
           <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {teamRoles.map((t) => (
               <StaggerItem key={t.role}>
-                <div className="glass rounded-xl border border-navy-500/40 p-6">
+                <div className="glass rounded-xl border border-slate-200 dark:border-navy-500/40 p-6 h-full">
                   <div className="flex items-center gap-3 mb-3">
-                    <Users size={15} className="text-blue-400" />
-                    <span className="text-sm font-semibold text-[#E8E8E8]">{t.role}</span>
+                    <Users size={15} className="text-blue-600 dark:text-blue-400" />
+                    <span className="text-sm font-semibold text-slate-900 dark:text-[#E8E8E8]">{t.role}</span>
                   </div>
-                  <p className="text-sm text-[#94A3B8]">{t.responsibility}</p>
+                  <p className="text-sm text-slate-500 dark:text-[#94A3B8]">{t.responsibility}</p>
                 </div>
               </StaggerItem>
             ))}
@@ -296,50 +295,54 @@ export default function HowWeWorkPage() {
         </div>
       </section>
 
-      {/* Communication model */}
-      <section className="py-24 bg-navy-900 border-t border-navy-500/30">
+      {/* ── Communication + Tools ── */}
+      <section className="py-24 bg-[var(--c-bg-alt)] dark:bg-navy-900 border-t border-slate-200 dark:border-navy-500/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
-            <AnimatedSection direction="left">
-              <SectionTitle
-                eyebrow="Collaboration"
-                title="How we stay"
-                highlight="in sync"
-                description="No surprises. Structured communication that keeps you informed without becoming a meeting burden."
-              />
 
-              <div className="mt-8 space-y-4">
+            <AnimatedSection direction="left">
+              <div className="flex items-center gap-2 mb-6">
+                <span className="w-6 h-px bg-blue-500" />
+                <span className="text-blue-600 dark:text-blue-400 text-sm font-mono tracking-widest uppercase">Collaboration</span>
+              </div>
+              <h2 className="text-3xl font-bold text-slate-900 dark:text-[#E8E8E8] mb-4">
+                How we stay <span className="text-gradient">in sync</span>
+              </h2>
+              <p className="text-slate-500 dark:text-[#94A3B8] mb-8">
+                No surprises. Structured communication that keeps you informed without becoming a meeting burden.
+              </p>
+
+              <div className="space-y-4">
                 {[
-                  { icon: MessageSquare, label: 'Daily', desc: 'Async update in Slack — what shipped, what\'s blocked' },
+                  { icon: MessageSquare, label: 'Daily', desc: "Async update in Slack — what shipped, what's blocked" },
                   { icon: GitBranch, label: 'Weekly', desc: 'Live demo of working software + sprint planning' },
                   { icon: CheckCircle2, label: 'Biweekly', desc: 'Milestone review and roadmap alignment' },
                 ].map(({ icon: Icon, label, desc }) => (
-                  <div key={label} className="flex items-start gap-4 glass rounded-xl border border-navy-500/40 p-4">
+                  <div key={label} className="flex items-start gap-4 glass rounded-xl border border-slate-200 dark:border-navy-500/40 p-4">
                     <div className="w-9 h-9 rounded-lg bg-blue-600/10 border border-blue-600/20 flex items-center justify-center shrink-0">
-                      <Icon size={15} className="text-blue-400" />
+                      <Icon size={15} className="text-blue-600 dark:text-blue-400" />
                     </div>
                     <div>
-                      <div className="text-xs font-mono text-blue-400 mb-0.5">{label}</div>
-                      <div className="text-sm text-[#94A3B8]">{desc}</div>
+                      <div className="text-xs font-mono text-blue-600 dark:text-blue-400 mb-0.5">{label}</div>
+                      <div className="text-sm text-slate-500 dark:text-[#94A3B8]">{desc}</div>
                     </div>
                   </div>
                 ))}
               </div>
             </AnimatedSection>
 
-            {/* Tools grid */}
             <AnimatedSection direction="right">
-              <h3 className="text-xs font-mono font-semibold text-[#64748B] uppercase tracking-widest mb-6">
-                Tools & Methodologies
+              <h3 className="text-xs font-mono font-semibold text-slate-400 dark:text-[#64748B] uppercase tracking-widest mb-6">
+                Tools &amp; Methodologies
               </h3>
               <div className="grid grid-cols-2 gap-4">
                 {tools.map((group) => (
-                  <div key={group.category} className="glass rounded-xl border border-navy-500/40 p-4">
-                    <div className="text-xs font-mono text-blue-400 mb-3">{group.category}</div>
+                  <div key={group.category} className="glass rounded-xl border border-slate-200 dark:border-navy-500/40 p-4">
+                    <div className="text-xs font-mono text-blue-600 dark:text-blue-400 mb-3">{group.category}</div>
                     <div className="space-y-1">
                       {group.items.map((item) => (
-                        <div key={item} className="text-xs text-[#94A3B8] flex items-center gap-1.5">
-                          <span className="w-1 h-1 rounded-full bg-navy-500 shrink-0" />
+                        <div key={item} className="text-xs text-slate-500 dark:text-[#94A3B8] flex items-center gap-1.5">
+                          <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-navy-500 shrink-0" />
                           {item}
                         </div>
                       ))}
@@ -354,5 +357,48 @@ export default function HowWeWorkPage() {
 
       <CTABanner />
     </>
+  );
+}
+
+function PhaseCard({ phase, Icon }: { phase: (typeof phases)[0]; Icon: React.ElementType }) {
+  return (
+    <div
+      className="bg-white dark:bg-navy-800/40 rounded-2xl border border-slate-200 dark:border-navy-500/40 p-6 hover:border-blue-200 dark:hover:border-blue-500/40 transition-colors duration-300"
+      style={{ borderLeftWidth: '3px', borderLeftColor: `${phase.accent}60` }}
+    >
+      {/* Header */}
+      <div className="flex items-center gap-3 mb-4">
+        <div
+          className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+          style={{ background: `${phase.accent}15`, border: `1px solid ${phase.accent}30` }}
+        >
+          <Icon size={18} style={{ color: phase.accent }} />
+        </div>
+        <div>
+          <div className="text-[11px] font-mono text-slate-400 dark:text-[#64748B]">{phase.duration}</div>
+          <h2 className="text-base font-bold text-slate-900 dark:text-[#E8E8E8] leading-tight">{phase.title}</h2>
+        </div>
+      </div>
+
+      <p className="text-sm text-slate-500 dark:text-[#94A3B8] leading-relaxed mb-5">{phase.description}</p>
+
+      {/* Top 3 activities */}
+      <ul className="space-y-2 mb-5">
+        {phase.activities.slice(0, 3).map((a) => (
+          <li key={a} className="flex items-start gap-2">
+            <CheckCircle2 size={12} className="mt-0.5 shrink-0" style={{ color: phase.accent }} />
+            <span className="text-xs text-slate-500 dark:text-[#94A3B8]">{a}</span>
+          </li>
+        ))}
+      </ul>
+
+      {/* Deliverable */}
+      <div
+        className="rounded-xl px-3 py-2 text-xs font-medium border"
+        style={{ background: `${phase.accent}08`, borderColor: `${phase.accent}22`, color: phase.accent }}
+      >
+        Deliverable: {phase.output}
+      </div>
+    </div>
   );
 }

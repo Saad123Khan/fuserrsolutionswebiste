@@ -44,7 +44,7 @@ export default function AboutStrip() {
                 About Us
               </span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold leading-tight mb-6">
               <span className="text-[#E8E8E8]">We&apos;re a team of</span>
               <br />
               <span className="text-gradient">builders, not a vendor.</span>
