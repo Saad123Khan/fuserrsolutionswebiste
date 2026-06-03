@@ -6,33 +6,23 @@ import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/ui/
 const steps = [
   {
     number: '01',
-    title: 'Discovery',
-    description: 'Deep-dive sessions to understand your goals, users, and constraints.',
+    title: 'Kickoff & NDA',
+    description: 'Share your project brief. We sign NDAs, map out goals, and assign a dedicated manager and dev team.',
   },
   {
     number: '02',
-    title: 'Strategy',
-    description: 'Architecture decisions, tech stack selection, and delivery roadmap.',
+    title: 'Plan & Estimate',
+    description: 'We define scope, timeline, and pricing. Once approved, our team integrates into your workflow.',
   },
   {
     number: '03',
-    title: 'Design',
-    description: 'Wireframes to high-fidelity prototypes, validated with real users.',
+    title: 'Build & Test',
+    description: 'Your work ships in sprints. We code, test, and refine — you see demos, your clients see results.',
   },
   {
     number: '04',
-    title: 'Build',
-    description: 'Agile sprints with weekly demos and continuous deployment.',
-  },
-  {
-    number: '05',
-    title: 'Launch',
-    description: 'Staged rollouts, monitoring, and zero-downtime deployments.',
-  },
-  {
-    number: '06',
-    title: 'Scale',
-    description: 'Ongoing support, feature iteration, and performance optimization.',
+    title: 'Launch & Handoff',
+    description: 'Final delivery under your brand. All code, assets, and docs handed over — we stay invisible.',
   },
 ];
 
@@ -45,10 +35,10 @@ export default function ProcessPreview() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-16">
           <SectionTitle
-            eyebrow="How We Work"
-            title="From idea to"
-            highlight="production"
-            description="A transparent, collaborative process built to eliminate surprises and ship on time."
+            eyebrow="How It Works"
+            title="Simple for agencies,"
+            highlight="seamless for clients"
+            description="A 4-step process that keeps your client relationship front-centre while we handle every line of code."
           />
           <Link
             href="/how-we-work"
@@ -64,7 +54,7 @@ export default function ProcessPreview() {
           {/* Connecting line */}
           <div className="hidden lg:block absolute top-8 left-[3.5rem] right-[3.5rem] h-px bg-gradient-to-r from-transparent via-navy-500 to-transparent" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {steps.map((step, i) => (
               <StaggerItem key={step.number}>
                 <div className="relative group">

@@ -6,22 +6,21 @@ const cols = [
   {
     heading: 'Services',
     links: [
-      { label: 'AI Development', href: '/services#ai' },
+      { label: 'Web Development', href: '/services#web' },
+      { label: 'Backend & APIs', href: '/services#backend' },
       { label: 'Mobile Apps', href: '/services#mobile' },
-      { label: 'Web Applications', href: '/services#web' },
-      { label: 'Ecommerce', href: '/services#ecommerce' },
-      { label: 'UI/UX Design', href: '/services#design' },
-      { label: 'Maintenance', href: '/services#maintenance' },
+      { label: 'SaaS Development', href: '/services#saas' },
+      { label: 'Integrations', href: '/services#integrations' },
+      { label: 'UI/UX Implementation', href: '/services#ui' },
     ],
   },
   {
-    heading: 'Company',
+    heading: 'Agency Partners',
     links: [
-      { label: 'About Us', href: '/about' },
-      { label: 'Portfolio', href: '/portfolio' },
-      { label: 'Industries', href: '/industries' },
-      { label: 'How We Work', href: '/how-we-work' },
-      { label: 'Contact', href: '/contact' },
+      { label: 'Why Us', href: '/about' },
+      { label: 'How It Works', href: '/how-we-work' },
+      { label: 'Case Studies', href: '/portfolio' },
+      { label: 'Start a Project', href: '/contact' },
     ],
   },
 ];
@@ -70,7 +69,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-sm text-slate-500 dark:text-[#94A3B8] leading-relaxed mb-5 max-w-xs">
-              Fusing ideas with technology to build the future — one world-class product at a time.
+              Your invisible engineering partner — we build web, mobile &amp; SaaS under your brand, NDA-backed, on time, every time.
             </p>
 
             <div className="space-y-2.5 mb-8">
@@ -131,24 +130,24 @@ export default function Footer() {
           {/* CTA card — col 10-12 */}
           <div className="lg:col-span-3 lg:col-start-10">
             <h3 className="text-[11px] font-mono font-semibold text-slate-400 dark:text-[#64748B] uppercase tracking-[0.18em] mb-5">
-              Start Building
+              Partner With Us
             </h3>
 
             <div className="glass rounded-2xl p-5 mb-4">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="text-xs font-mono text-emerald-500 dark:text-emerald-400">
-                  Available for projects
+                  Accepting agency partners
                 </span>
               </div>
               <p className="text-xs text-slate-400 dark:text-[#64748B] mb-4">
-                Currently accepting new clients for Q2 2026. Limited spots.
+                NDA signed before any discussion. Proposal within 24 hours.
               </p>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors group"
               >
-                Start a conversation
+                Start a project
                 <ArrowUpRight size={13} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </Link>
             </div>

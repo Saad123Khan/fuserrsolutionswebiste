@@ -8,35 +8,35 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 
 const testimonials = [
   {
-    quote: "Fuserr delivered a system that directly saves lives. The AI predictions have transformed how our clinical teams prioritize care. Exceptional team — in a different league.",
-    author: 'Dr. Sarah Okonkwo',
-    role: 'Chief Medical Officer',
-    company: 'MediCore Systems',
-    initial: 'S',
-    color: '#10B981',
-  },
-  {
-    quote: "The platform is flawless. Our NPS jumped from 34 to 71 within three months of launch. I've worked with a lot of agencies — Fuserr is genuinely different.",
-    author: 'James Thorpe',
-    role: 'CTO',
-    company: 'Arvest Financial',
-    initial: 'J',
+    quote: "Their team delivered a complete SaaS platform in 10 weeks — fully under our brand. Our client never knew a third party was involved. The code quality was exceptional.",
+    author: 'Marcus Webb',
+    role: 'Director',
+    company: 'Luminary Digital Agency',
+    initial: 'M',
     color: '#3B82F6',
   },
   {
-    quote: "They didn't just build what we asked for — they challenged our assumptions and delivered something better. The contract AI saves us 70% of review time.",
-    author: 'Maya Patel',
+    quote: "We went from turning down projects to confidently pitching mobile app work. Fuserr handles everything behind the scenes and we take 100% of the credit. Game-changing.",
+    author: 'Priya Nair',
+    role: 'Founder',
+    company: 'Nexus Growth Studio',
+    initial: 'P',
+    color: '#10B981',
+  },
+  {
+    quote: "The NDA was signed within the hour, kickoff was the next day. They integrated into our Slack, matched our client's brand guide exactly, and shipped every sprint on time.",
+    author: 'Tom Hartley',
     role: 'Managing Partner',
-    company: 'Thornton & Associates',
-    initial: 'M',
+    company: 'Hartley & Co Consulting',
+    initial: 'T',
     color: '#06B6D4',
   },
   {
-    quote: "Zero scope creep, no surprises, every sprint showed real progress. Our new commerce platform has a 22% higher conversion rate than what we had before.",
-    author: 'Lucas Vandenberg',
-    role: 'Head of Digital',
-    company: 'Meridian Brands',
-    initial: 'L',
+    quote: "I was worried about losing control of my client relationships. Instead, Fuserr made me look like a rockstar. Our client renewed immediately and bumped the retainer.",
+    author: 'Sarah Osei',
+    role: 'CEO',
+    company: 'Osei Creative Group',
+    initial: 'S',
     color: '#F59E0B',
   },
 ];
@@ -75,9 +75,9 @@ export default function Testimonials() {
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="mb-14 text-center">
           <SectionTitle
-            eyebrow="Client Stories"
-            title="Words from the teams"
-            highlight="we've built for"
+            eyebrow="Agency Partners"
+            title="Words from agencies"
+            highlight="we power invisibly"
             align="center"
           />
         </AnimatedSection>

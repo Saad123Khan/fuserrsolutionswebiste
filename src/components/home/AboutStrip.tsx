@@ -1,31 +1,31 @@
 import Link from 'next/link';
-import { ArrowUpRight, Users, Award, Clock, Layers } from 'lucide-react';
+import { ArrowUpRight, Shield, EyeOff, Users, Clock } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 
 const pillars = [
   {
-    icon: Layers,
-    title: 'Full-Stack Expertise',
+    icon: EyeOff,
+    title: '100% White-Label',
     description:
-      'One team owns everything — from pixel-perfect UI to infrastructure that never sleeps.',
+      'We leave no trace. All deliverables carry your brand — zero external credits, zero client-side visibility.',
   },
   {
     icon: Clock,
-    title: 'On-Time Delivery',
+    title: 'On-Time, Every Time',
     description:
-      'We\'ve shipped 120+ projects without a single blown deadline. Our planning is that rigorous.',
+      '99.8% on-time delivery across 120+ projects. Our planning is rigorous so your promises to clients never slip.',
   },
   {
     icon: Users,
-    title: 'Embedded Partnership',
+    title: 'Dedicated Dev Team',
     description:
-      'You get a dedicated team that acts like co-founders, not contractors.',
+      'Senior engineers matched to your stack, assigned exclusively to your projects with a dedicated PM.',
   },
   {
-    icon: Award,
-    title: 'Quality Without Compromise',
+    icon: Shield,
+    title: 'NDA-Backed & Secure',
     description:
-      'Code reviews, automated testing, and CI/CD on every engagement by default.',
+      'We sign NDAs before any discussion. Your client relationships and IP are legally protected, always.',
   },
 ];
 
@@ -41,36 +41,37 @@ export default function AboutStrip() {
             <div className="flex items-center gap-2 mb-6">
               <span className="w-6 h-px bg-blue-500" />
               <span className="text-blue-400 text-sm font-mono font-medium tracking-widest uppercase">
-                About Us
+                The Partnership Model
               </span>
             </div>
             <h2 className="text-4xl lg:text-5xl font-bold leading-tight mb-6">
-              <span className="text-[#E8E8E8]">We&apos;re a team of</span>
+              <span className="text-[#E8E8E8]">We&apos;re your invisible</span>
               <br />
-              <span className="text-gradient">builders, not a vendor.</span>
+              <span className="text-gradient">engineering team.</span>
             </h2>
             <p className="text-[#94A3B8] text-lg leading-relaxed mb-8">
-              Founded by engineers who got tired of seeing great ideas fail due to poor execution,
-              Fuserr Solutions exists to bridge the gap between ambition and engineering reality.
+              You maintain the client relationship, set the pricing, and take 100% of the credit.
+              We handle architecture, coding, QA, and deployment behind the scenes — so your agency
+              scales without hiring.
             </p>
             <Link
               href="/about"
               className="inline-flex items-center gap-2 text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors group"
             >
-              Our story
+              Why agencies choose us
               <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
             </Link>
           </div>
 
-          {/* Right — accent visual */}
+          {/* Right — stats visual */}
           <div className="relative">
             <div className="glass rounded-2xl border border-navy-500/40 p-8">
               <div className="grid grid-cols-2 gap-4">
                 {[
+                  { n: '60+',  l: 'Agency Partners' },
+                  { n: '10+',  l: 'Years Experience' },
                   { n: '120+', l: 'Projects Delivered' },
-                  { n: '8+', l: 'Years Experience' },
-                  { n: '40+', l: 'Global Clients' },
-                  { n: '98%', l: 'Client Retention' },
+                  { n: '98%',  l: 'Partner Retention' },
                 ].map(({ n, l }) => (
                   <div key={l} className="bg-navy-800/60 rounded-xl p-5">
                     <div className="text-3xl font-bold text-gradient mb-1">{n}</div>

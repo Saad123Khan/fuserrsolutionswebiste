@@ -1,20 +1,20 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Zap, Globe } from 'lucide-react';
+import { ArrowRight, Shield, Eye, Zap } from 'lucide-react';
 import Button from '@/components/ui/Button';
 
 const stats = [
-  { value: '120+', label: 'Projects Shipped' },
-  { value: '98%',  label: 'Client Retention' },
-  { value: '40+',  label: 'Countries Served' },
-  { value: '$50M+', label: 'Value Delivered' },
+  { value: '60+', label: 'Agency Partners' },
+  { value: '100%', label: 'White-Label' },
+  { value: 'NDA', label: 'Every Project' },
+  { value: '99.8%', label: 'On-Time Rate' },
 ];
 
 const floatingBadges = [
-  { icon: Sparkles, text: 'AI-Powered',   delay: 0,   pos: 'top-[12%] right-[8%]'   },
-  { icon: Zap,      text: 'Fast Delivery', delay: 0.4, pos: 'top-[55%] right-[4%]'   },
-  { icon: Globe,    text: 'Global Reach',  delay: 0.8, pos: 'bottom-[18%] right-[14%]' },
+  { icon: Shield, text: 'NDA-Backed',      delay: 0,   pos: 'top-[12%] right-[8%]'    },
+  { icon: Eye,    text: 'Invisible to Clients', delay: 0.4, pos: 'top-[55%] right-[4%]' },
+  { icon: Zap,    text: 'Scale on Demand', delay: 0.8, pos: 'bottom-[18%] right-[14%]' },
 ];
 
 export default function Hero() {
@@ -43,7 +43,7 @@ export default function Hero() {
             >
               <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
               <span className="text-xs font-mono text-blue-600 dark:text-blue-400 tracking-wider">
-                Fusing Ideas with Technology to Build the Future
+                Your White-Label Development Partner
               </span>
             </motion.div>
 
@@ -54,11 +54,9 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight"
             >
-              <span className="text-slate-900 dark:text-[#E8E8E8]">We Build</span>
+              <span className="text-slate-900 dark:text-[#E8E8E8]">We Build.</span>
               <br />
-              <span className="text-gradient">Software</span>
-              <br />
-              <span className="text-slate-900 dark:text-[#E8E8E8]">That Matters</span>
+              <span className="text-gradient">You Deliver.</span>
             </motion.h1>
 
             {/* Subheadline */}
@@ -68,8 +66,9 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="mt-7 text-lg text-slate-500 dark:text-[#94A3B8] leading-relaxed max-w-lg"
             >
-              From AI systems that predict the future to mobile apps that delight millions —
-              Fuserr Solutions engineers products that move markets.
+              Your invisible engineering partner for web, mobile &amp; SaaS.
+              Expand your agency&apos;s capacity with dedicated developers —
+              100% under your brand, NDA-secured, zero visibility to your clients.
             </motion.p>
 
             {/* CTAs */}
@@ -83,8 +82,8 @@ export default function Hero() {
                 Start a Project
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button href="/portfolio" variant="ghost" size="lg">
-                View Our Work
+              <Button href="/contact" variant="ghost" size="lg">
+                Book a Free Call
               </Button>
             </motion.div>
 
@@ -118,23 +117,25 @@ export default function Hero() {
               <div className="absolute inset-12 rounded-full border border-slate-200/60 dark:border-navy-500/30 animate-[spin_40s_linear_infinite]" />
 
               {/* Center card */}
-              <div className="absolute inset-24 rounded-2xl glass border border-slate-200 dark:border-navy-500/60 flex flex-col items-center justify-center gap-4 overflow-hidden"
-                   style={{ boxShadow: '0 0 40px rgba(37,99,235,0.12)' }}>
+              <div
+                className="absolute inset-24 rounded-2xl glass border border-slate-200 dark:border-navy-500/60 flex flex-col items-center justify-center gap-4 overflow-hidden"
+                style={{ boxShadow: '0 0 40px rgba(37,99,235,0.12)' }}
+              >
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-transparent" />
                 <div className="relative text-center px-6">
-                  <div className="text-4xl font-bold text-gradient mb-2">Fuserr</div>
+                  <div className="text-2xl font-bold text-gradient mb-1">Invisible</div>
                   <div className="text-xs font-mono text-slate-400 dark:text-[#64748B] tracking-widest uppercase">
-                    Solutions
+                    to your clients
                   </div>
                 </div>
               </div>
 
-              {/* Orbiting nodes */}
+              {/* Orbiting nodes — brand services */}
               {[
-                { label: 'AI/ML',  angle: 45,  color: '#3B82F6' },
+                { label: 'Web',    angle: 45,  color: '#3B82F6' },
                 { label: 'Mobile', angle: 135, color: '#8B5CF6' },
-                { label: 'Web',    angle: 225, color: '#06B6D4' },
-                { label: 'Design', angle: 315, color: '#10B981' },
+                { label: 'SaaS',   angle: 225, color: '#06B6D4' },
+                { label: 'API',    angle: 315, color: '#10B981' },
               ].map(({ label, angle, color }) => {
                 const rad = (angle * Math.PI) / 180;
                 const r = 42;

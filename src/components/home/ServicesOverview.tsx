@@ -1,59 +1,59 @@
 'use client';
 
 import Link from 'next/link';
-import { Brain, Smartphone, Globe, ShoppingCart, Palette, Wrench, ArrowUpRight } from 'lucide-react';
+import { Globe, Server, Smartphone, Package, Plug, Layers, ArrowUpRight } from 'lucide-react';
 import SectionTitle from '@/components/ui/SectionTitle';
 import { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 
 const services = [
   {
-    icon: Brain,
-    title: 'AI Development',
-    description: 'LLMs, ML pipelines, and AI agents that give your business a measurable edge.',
-    href: '/services#ai',
+    icon: Globe,
+    title: 'Web Application Development',
+    description: 'Responsive, SEO-friendly web apps delivered under your brand — from React/Next.js frontends to full-stack SaaS platforms.',
+    href: '/services#web',
     accent: '#3B82F6',
-    tags: ['LLM', 'ML', 'Python'],
+    tags: ['React', 'Next.js', 'Vue', 'Angular'],
+  },
+  {
+    icon: Server,
+    title: 'Backend & API Engineering',
+    description: 'Scalable, secure backends with REST/GraphQL APIs. We handle architecture so your clients get rock-solid infrastructure.',
+    href: '/services#backend',
+    accent: '#06B6D4',
+    tags: ['Node.js', 'Laravel', 'Python', '.NET'],
   },
   {
     icon: Smartphone,
-    title: 'Mobile Apps',
-    description: 'Cross-platform and native apps built for performance, retention, and delight.',
+    title: 'Mobile App Development',
+    description: 'White-label iOS & Android apps built cross-platform or native — delivered as your agency\'s own work.',
     href: '/services#mobile',
     accent: '#8B5CF6',
-    tags: ['React Native', 'Swift', 'Flutter'],
+    tags: ['React Native', 'Flutter', 'Swift', 'Kotlin'],
   },
   {
-    icon: Globe,
-    title: 'Web Applications',
-    description: 'SaaS platforms and enterprise portals engineered for scale and conversion.',
-    href: '/services#web',
-    accent: '#06B6D4',
-    tags: ['Next.js', 'React', 'Go'],
-  },
-  {
-    icon: ShoppingCart,
-    title: 'Ecommerce',
-    description: 'Headless storefronts and commerce infrastructure that maximise GMV.',
-    href: '/services#ecommerce',
+    icon: Package,
+    title: 'SaaS Product Development',
+    description: 'End-to-end SaaS builds from MVP to enterprise scale — multi-tenancy, subscription billing, and full lifecycle support.',
+    href: '/services#saas',
     accent: '#F59E0B',
-    tags: ['Shopify', 'Next.js', 'GraphQL'],
+    tags: ['SaaS', 'Multi-tenant', 'Stripe', 'AWS'],
   },
   {
-    icon: Palette,
-    title: 'UI/UX Design',
-    description: 'Design systems and interfaces that communicate trust and convert.',
-    href: '/services#design',
-    accent: '#EC4899',
-    tags: ['Figma', 'Design Systems', 'Research'],
-  },
-  {
-    icon: Wrench,
-    title: 'Maintenance',
-    description: 'Proactive monitoring, patches, and optimisation for live products.',
-    href: '/services#maintenance',
+    icon: Plug,
+    title: 'API & Third-Party Integrations',
+    description: 'Connect systems seamlessly — CRM, payment gateways, ERP, analytics, and custom integrations your clients need.',
+    href: '/services#integrations',
     accent: '#10B981',
-    tags: ['DevOps', 'SLAs', '24/7'],
+    tags: ['REST', 'GraphQL', 'Webhooks', 'OAuth'],
+  },
+  {
+    icon: Layers,
+    title: 'UI/UX Implementation',
+    description: 'Pixel-perfect HTML/CSS from Figma or Sketch designs. We translate your clients\' vision into flawless, production-ready UI.',
+    href: '/services#ui',
+    accent: '#EC4899',
+    tags: ['Figma', 'Tailwind', 'Design Systems', 'A11y'],
   },
 ];
 
@@ -65,10 +65,10 @@ export default function ServicesOverview() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="flex flex-col lg:flex-row lg:items-end justify-between gap-10 mb-16">
           <SectionTitle
-            eyebrow="What We Build"
-            title="Fusing expertise"
+            eyebrow="What We Build For You"
+            title="Full-stack white-label"
             highlight="across every layer"
-            description="End-to-end engineering under one roof — so your product never gets lost in handoffs."
+            description="Complete development services delivered invisibly under your agency's brand — no credits, no traces."
           />
           <Link
             href="/services"

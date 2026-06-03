@@ -1,80 +1,123 @@
 import type { Metadata } from 'next';
-import { Brain, Smartphone, Globe, ShoppingCart, Palette, Wrench, CheckCircle2, ArrowUpRight, ArrowRight } from 'lucide-react';
+import { Globe, Server, Smartphone, Package, Plug, Layers, CheckCircle2, ArrowRight } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection';
 import CTABanner from '@/components/home/CTABanner';
 
 export const metadata: Metadata = {
-  title: 'Services',
-  description: 'AI development, mobile apps, web applications, ecommerce, UI/UX design, and maintenance from Fuserr Solutions.',
+  title: 'Our Services — Web, Mobile, Backend, API, SaaS & UI | Fuserr Solutions',
+  description:
+    'Full-stack white-label services for agencies: React/Next.js frontends, Node/.NET backends, React Native/Flutter apps, SaaS platforms, API integrations & UI implementation.',
 };
 
 const services = [
   {
-    id: 'ai',
-    icon: Brain,
-    title: 'AI Development',
-    tagline: 'Intelligence that creates competitive advantage',
-    description: 'We build AI systems that solve real business problems — not demos. From fine-tuned LLMs to production ML pipelines, reliable, explainable, and built to scale.',
-    deliverables: ['Custom LLM fine-tuning and RAG systems', 'Predictive analytics and forecasting', 'Computer vision and NLP pipelines', 'AI agents and autonomous workflows', 'MLOps infrastructure and model monitoring'],
-    tech: ['Python', 'PyTorch', 'OpenAI', 'LangChain', 'FastAPI', 'AWS SageMaker'],
+    id: 'web',
+    icon: Globe,
+    title: 'Web Application Development',
+    tagline: 'Responsive, SEO-friendly web apps under your brand',
+    description:
+      'We build full-stack web applications — from marketing sites to complex SaaS dashboards — delivered pixel-perfect and fully attributed to your agency.',
+    deliverables: [
+      'React, Next.js, Vue, Angular frontends',
+      'CMS-based and static site builds',
+      'Multi-tenant SaaS platforms',
+      'Real-time dashboards and analytics UIs',
+      'Progressive Web Apps (PWA)',
+    ],
+    tech: ['Next.js', 'React', 'Vue', 'TypeScript', 'Node.js', 'PostgreSQL'],
     accent: '#3B82F6',
-    result: 'HealthTrack AI reduced ICU readmissions by 31% using our ML prediction system.',
+    result: 'Agencies consistently resell our web builds at 3–5× our development cost.',
+  },
+  {
+    id: 'backend',
+    icon: Server,
+    title: 'Backend & API Engineering',
+    tagline: 'Scalable, secure backends your clients can rely on',
+    description:
+      'Robust server-side engineering — REST and GraphQL APIs, third-party integrations, authentication systems, and cloud infrastructure — all invisible to your clients.',
+    deliverables: [
+      'REST and GraphQL API design and development',
+      'Authentication and authorization systems',
+      'Database design and optimization',
+      'Microservices and serverless architecture',
+      'Third-party service integrations',
+    ],
+    tech: ['Node.js', 'Laravel', 'Python', '.NET', 'Go', 'AWS', 'Redis'],
+    accent: '#06B6D4',
+    result: 'Our backends average 99.97% uptime across all production environments.',
   },
   {
     id: 'mobile',
     icon: Smartphone,
-    title: 'Mobile Apps',
-    tagline: 'Native performance, cross-platform reach',
-    description: 'We create mobile experiences that users actually open every day. Whether fintech, marketplace, or enterprise tool — we engineer for performance and retention.',
-    deliverables: ['iOS and Android native development', 'Cross-platform React Native & Flutter', 'Offline-first architecture', 'Push notification and analytics', 'App Store submission and ASO'],
+    title: 'Mobile App Development',
+    tagline: 'White-label iOS & Android apps for your clients',
+    description:
+      'Cross-platform and native mobile apps built to perform and retain — published under your agency\'s developer account or your client\'s, as required.',
+    deliverables: [
+      'React Native and Flutter cross-platform apps',
+      'Swift (iOS) and Kotlin (Android) native builds',
+      'Offline-first architecture',
+      'Push notification and analytics integration',
+      'App Store and Play Store submission',
+    ],
     tech: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Expo', 'Firebase'],
     accent: '#8B5CF6',
-    result: 'NeoBank achieved 4.8★ App Store rating with 500K+ daily active users.',
+    result: 'Our mobile builds average 4.7★ on App Store and Play Store.',
   },
   {
-    id: 'web',
-    icon: Globe,
-    title: 'Web Applications',
-    tagline: 'SaaS platforms built to handle millions',
-    description: 'From internal dashboards to consumer SaaS serving millions, we architect web applications that are fast, secure, and maintainable. We think in systems, not pages.',
-    deliverables: ['SaaS platform development', 'Real-time dashboards and analytics UIs', 'Multi-tenant architecture', 'Authentication and authorization systems', 'Progressive Web Apps (PWA)'],
-    tech: ['Next.js', 'React', 'TypeScript', 'Node.js', 'Go', 'PostgreSQL', 'Redis'],
-    accent: '#06B6D4',
-    result: 'EduVerse saw a 67% improvement in course completion after relaunch.',
-  },
-  {
-    id: 'ecommerce',
-    icon: ShoppingCart,
-    title: 'Ecommerce',
-    tagline: 'Commerce infrastructure that converts',
-    description: 'We build ecommerce solutions engineered for conversion — from headless storefronts to custom checkout flows. Every decision is made with GMV in mind.',
-    deliverables: ['Headless Shopify and custom storefronts', 'Custom checkout and payment flows', 'Subscription and membership billing', 'Inventory and order management', 'ML-powered recommendations'],
-    tech: ['Next.js', 'Shopify Plus', 'GraphQL', 'Stripe', 'Algolia', 'Vercel'],
+    id: 'saas',
+    icon: Package,
+    title: 'SaaS Product Development',
+    tagline: 'End-to-end SaaS from MVP to enterprise scale',
+    description:
+      'We build complete SaaS products — multi-tenancy, subscription billing, onboarding flows, and admin dashboards — delivered as your agency\'s proprietary product.',
+    deliverables: [
+      'Multi-tenant architecture design',
+      'Subscription and billing integration (Stripe)',
+      'Role-based access control (RBAC)',
+      'Onboarding flows and in-app messaging',
+      'White-label admin and client portals',
+    ],
+    tech: ['Next.js', 'Stripe', 'AWS', 'PostgreSQL', 'Redis', 'Docker'],
     accent: '#F59E0B',
-    result: 'ShopFlow drove a 22% conversion rate increase for Meridian Brands.',
+    result: 'SaaS clients we\'ve built for have raised $10M+ in subsequent funding rounds.',
   },
   {
-    id: 'design',
-    icon: Palette,
-    title: 'UI/UX Design',
-    tagline: 'Design that earns trust and drives action',
-    description: 'Great design reduces friction on the path to value. We create interfaces that communicate trust, guide users, and convert visitors into customers.',
-    deliverables: ['User research and journey mapping', 'Wireframes and interactive prototypes', 'Design systems and component libraries', 'Usability testing and iteration', 'Motion design and micro-interactions'],
-    tech: ['Figma', 'Framer', 'Principle', 'Maze', 'Hotjar', 'Storybook'],
-    accent: '#EC4899',
-    result: 'Our LegalEase Pro redesign reduced average task time by 45%.',
-  },
-  {
-    id: 'maintenance',
-    icon: Wrench,
-    title: 'Maintenance & Support',
-    tagline: 'Proactive care that keeps you ahead',
-    description: 'Products degrade without attention. We offer structured maintenance that keeps your software secure, performant, and evolving with SLAs that match your needs.',
-    deliverables: ['Security patching and dependency updates', '24/7 uptime monitoring and incident response', 'Performance profiling and optimization', 'Database maintenance and migrations', 'Infrastructure scaling and cost optimisation'],
-    tech: ['Datadog', 'PagerDuty', 'Sentry', 'Terraform', 'GitHub Actions', 'AWS'],
+    id: 'integrations',
+    icon: Plug,
+    title: 'API & Third-Party Integrations',
+    tagline: 'Connect systems seamlessly for your clients',
+    description:
+      'CRM, ERP, payment gateway, analytics, and custom integrations that make your clients\' existing tools work together — no disruption, no visibility.',
+    deliverables: [
+      'CRM integrations (HubSpot, Salesforce)',
+      'Payment gateway integrations (Stripe, PayPal)',
+      'ERP and inventory system connections',
+      'Analytics and tracking integrations',
+      'Custom webhook and event-driven pipelines',
+    ],
+    tech: ['REST APIs', 'GraphQL', 'Webhooks', 'OAuth', 'Zapier', 'n8n'],
     accent: '#10B981',
-    result: 'Our managed clients average 99.97% uptime across all production systems.',
+    result: 'We\'ve completed 200+ integration projects across every major platform.',
+  },
+  {
+    id: 'ui',
+    icon: Layers,
+    title: 'UI/UX Implementation',
+    tagline: 'Pixel-perfect builds from any design file',
+    description:
+      'We translate Figma, Sketch, or Adobe XD designs into production-ready, accessible HTML/CSS components — exactly as specified, every time.',
+    deliverables: [
+      'Pixel-perfect component development from Figma',
+      'Responsive and mobile-first layouts',
+      'Design system and component library builds',
+      'Accessibility (WCAG 2.1) compliance',
+      'Motion and micro-interaction implementation',
+    ],
+    tech: ['Figma', 'Tailwind CSS', 'Framer Motion', 'Storybook', 'SCSS'],
+    accent: '#EC4899',
+    result: 'Our UI implementations pass design review on the first submission 96% of the time.',
   },
 ];
 
@@ -94,22 +137,22 @@ export default function ServicesPage() {
               <span className="w-6 h-px bg-blue-500" />
             </div>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.06] tracking-tight mb-6">
-              <span className="text-slate-900 dark:text-[#E8E8E8]">One standard</span>
+              <span className="text-slate-900 dark:text-[#E8E8E8]">Complete dev services.</span>
               <br />
-              <span className="text-gradient">of excellence.</span>
+              <span className="text-gradient">Your brand. Always.</span>
             </h1>
             <p className="text-lg text-slate-500 dark:text-[#94A3B8] max-w-xl mx-auto">
-              Six disciplines. Deep specialists. Every project built to the same uncompromising standard.
+              Six disciplines. Senior specialists. Every deliverable fully attributed to your agency — NDA-backed, no exceptions.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* ── Service Cards — Bento Grid ── */}
+      {/* ── Service Cards ── */}
       <section className="pb-8 bg-[var(--c-bg-alt)] dark:bg-navy-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Featured: AI Dev — full width */}
+          {/* Featured: Web Dev — full width */}
           <AnimatedSection className="mb-5">
             {(() => {
               const s = services[0];
@@ -138,7 +181,7 @@ export default function ServicesPage() {
 
                     {/* Right — deliverables */}
                     <div className="bg-slate-50 dark:bg-navy-800/60 p-10 lg:p-14 border-t lg:border-t-0 lg:border-l border-slate-100 dark:border-navy-500/30">
-                      <h3 className="text-xs font-mono font-semibold text-slate-400 dark:text-[#64748B] uppercase tracking-widest mb-8">What You Get</h3>
+                      <h3 className="text-xs font-mono font-semibold text-slate-400 dark:text-[#64748B] uppercase tracking-widest mb-8">What Your Agency Gets</h3>
                       <ul className="space-y-5">
                         {s.deliverables.map((d) => (
                           <li key={d} className="flex items-start gap-3">
@@ -154,7 +197,7 @@ export default function ServicesPage() {
             })()}
           </AnimatedSection>
 
-          {/* Remaining 5 in 2+3 grid */}
+          {/* Remaining 5 */}
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pb-20">
             {services.slice(1).map((s) => {
               const Icon = s.icon;
@@ -170,7 +213,6 @@ export default function ServicesPage() {
                           <Icon size={22} style={{ color: s.accent }} />
                         </div>
                       </div>
-                      <ArrowUpRight size={15} className="absolute top-5 right-5 text-slate-200 dark:text-navy-500 group-hover:text-blue-500 transition-colors" />
                     </div>
 
                     {/* Content */}
@@ -209,13 +251,13 @@ export default function ServicesPage() {
       <section className="py-20 border-t border-slate-200 dark:border-navy-500/30 bg-[var(--c-bg)] text-center">
         <AnimatedSection className="max-w-xl mx-auto px-4">
           <h2 className="text-3xl font-bold text-slate-900 dark:text-[#E8E8E8] mb-4">
-            Not sure which service fits?
+            Ready to expand your capacity?
           </h2>
           <p className="text-slate-500 dark:text-[#94A3B8] mb-8">
-            Tell us your challenge — we&apos;ll recommend the right approach. No sales pitch.
+            Tell us about your client&apos;s project — we&apos;ll recommend the right service and get you a quote within 24 hours.
           </p>
           <Button href="/contact" variant="primary" size="lg" className="group">
-            Talk to Us <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+            Get a Quote <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
           </Button>
         </AnimatedSection>
       </section>
