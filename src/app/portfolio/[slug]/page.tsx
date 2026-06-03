@@ -35,10 +35,18 @@ export default function ProjectDetailPage({ params }: Props) {
     <>
       {/* ── Full-width Project Header Image ── */}
       <section className="relative pt-20 overflow-hidden">
-        <div
-          className="w-full h-[360px] lg:h-[440px] relative flex items-end"
-          style={{ background: `linear-gradient(135deg, ${project.color}25 0%, ${project.color}08 60%, var(--c-bg) 100%)` }}
-        >
+        <div className="w-full h-[360px] lg:h-[440px] relative flex items-end overflow-hidden">
+          {/* Background image */}
+          {project.cover && (
+            <div
+              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+              style={{ backgroundImage: `url(${project.cover})` }}
+            />
+          )}
+
+          {/* Gradient overlay to preserve brand tint and readability */}
+          <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${project.color}25 0%, ${project.color}08 60%, var(--c-bg) 100%)` }} />
+
           {/* Abstract decoration */}
           <div className="absolute inset-0 dot-grid opacity-40" />
           <div className="absolute right-0 top-0 w-[500px] h-[500px] rounded-full opacity-10 blur-[80px]" style={{ background: project.color }} />

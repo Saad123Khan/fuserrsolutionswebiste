@@ -1,9 +1,11 @@
-'use client';
+"use client";
 
+import React from 'react';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { projects } from '@/data/projects';
 import Badge from '@/components/ui/Badge';
+import { isColorLight } from '@/lib/utils';
 import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection';
 
 const badgeVariants: Record<string, 'blue' | 'green' | 'amber' | 'purple' | 'cyan' | 'red'> = {
@@ -11,18 +13,45 @@ const badgeVariants: Record<string, 'blue' | 'green' | 'amber' | 'purple' | 'cya
   Ecommerce: 'amber', 'Legal Tech': 'cyan', Logistics: 'red',
 };
 
-function ProjectVisual({ color, title, industry }: { color: string; title: string; industry: string }) {
+function ProjectVisual({ color, title, industry, cover }: { color: string; title: string; industry: string; cover?: string }) {
+  const [sizeClass, setSizeClass] = React.useState('h-72');
+
+  React.useEffect(() => {
+    if (!cover) {
+      setSizeClass('h-56');
+      return;
+    }
+    let mounted = true;
+    const img = new Image();
+    img.src = cover;
+    img.onload = () => {
+      if (!mounted) return;
+      const ratio = img.width / img.height;
+      // Wider images -> shorter height; taller images -> taller container
+      if (ratio > 1.8) setSizeClass('h-56');
+      else if (ratio > 1.4) setSizeClass('h-72');
+      else if (ratio > 1.0) setSizeClass('h-80');
+      else if (ratio > 0.7) setSizeClass('h-96');
+      else setSizeClass('h-[40rem]');
+    };
+    img.onerror = () => { if (mounted) setSizeClass('h-44'); };
+    return () => { mounted = false; };
+  }, [cover]);
+
   return (
-    <div className="relative h-52 overflow-hidden" style={{ background: `linear-gradient(135deg, ${color}20 0%, ${color}07 80%, transparent 100%)` }}>
-      <div className="absolute -right-6 -top-6 w-44 h-44 rounded-full opacity-[0.12]" style={{ background: color }} />
-      <div className="absolute right-[25%] bottom-[-20px] w-28 h-28 rounded-full opacity-[0.08]" style={{ background: color }} />
-      <div className="absolute left-[8%] top-[25%] w-10 h-10 rounded-lg opacity-[0.1] rotate-12" style={{ background: color }} />
-      <div className="absolute inset-0 dot-grid opacity-30" />
-      <div className="absolute bottom-4 left-5 flex items-center gap-2.5">
+    <div className={`relative overflow-hidden rounded-t-2xl ${sizeClass}`}>
+      <div
+        className="absolute inset-0 bg-center bg-cover"
+        style={{ backgroundImage: cover ? `url(${cover})` : undefined, backgroundColor: cover ? undefined : `${color}10` }}
+      />
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+      <div className="absolute bottom-4 left-5 flex items-center gap-2.5 z-10">
         <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-base shadow" style={{ background: color }}>
           {title[0]}
         </div>
-        <span className="text-xs font-mono font-semibold" style={{ color }}>{industry}</span>
+        <span className="text-xs font-mono font-semibold text-white/95" style={{ color }}>{industry}</span>
       </div>
     </div>
   );
@@ -59,47 +88,52 @@ export default function PortfolioPage() {
       <section className="pb-24 bg-slate-50 dark:bg-navy-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {projects.map((project) => (
-              <StaggerItem key={project.slug}>
-                <Link href={`/portfolio/${project.slug}`} className="group block h-full">
-                  <div className="h-full rounded-2xl overflow-hidden border border-slate-200 dark:border-navy-500/40 bg-white dark:bg-navy-800/30 hover:border-blue-200 dark:hover:border-blue-600/30 transition-all duration-300 shadow-sm hover:shadow-md flex flex-col">
-                    {/* Visual area */}
-                    <ProjectVisual color={project.color} title={project.title} industry={project.industry} />
+            {projects.map((project) => {
+              const light = isColorLight(project.color);
+              return (
+                <StaggerItem key={project.slug}>
+                  <Link href={`/portfolio/${project.slug}`} className="group block h-full">
+                    <div className="h-full rounded-2xl overflow-hidden border border-slate-200 dark:border-navy-500/40 bg-white dark:bg-navy-800/30 hover:border-blue-200 dark:hover:border-blue-600/30 transition-all duration-300 shadow-md hover:shadow-xl transform-gpu hover:-translate-y-1 group flex flex-col">
+                      {/* Visual area */}
+                      <ProjectVisual color={project.color} title={project.title} industry={project.industry} cover={project.cover} />
 
-                    {/* Content */}
-                    <div className="flex-1 flex flex-col p-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <Badge variant={badgeVariants[project.industry] ?? 'blue'}>{project.industry}</Badge>
-                        <span className="text-xs font-mono text-slate-400 dark:text-[#64748B]">{project.year}</span>
-                      </div>
-
-                      <h2 className="text-slate-900 dark:text-[#E8E8E8] font-semibold text-lg mb-1.5 group-hover:text-blue-600 dark:group-hover:text-white transition-colors">
-                        {project.title}
-                      </h2>
-                      <p className="text-sm text-slate-500 dark:text-[#94A3B8] mb-5 flex-1">{project.tagline}</p>
-
-                      {/* Key metrics */}
-                      <div className="grid grid-cols-2 gap-2.5 mb-5">
-                        {project.results.slice(0, 2).map((r) => (
-                          <div key={r.label} className="rounded-xl bg-slate-50 dark:bg-navy-700/60 p-3">
-                            <div className="text-lg font-bold mb-0.5" style={{ color: project.color }}>{r.metric}</div>
-                            <div className="text-[11px] text-slate-400 dark:text-[#64748B]">{r.label}</div>
-                          </div>
-                        ))}
-                      </div>
-
-                      {/* Tech + arrow */}
-                      <div className="flex items-center justify-between">
-                        <div className="flex flex-wrap gap-1.5">
-                          {project.tech.slice(0, 3).map((t) => <span key={t} className="tech-tag">{t}</span>)}
+                      {/* Content */}
+                      <div className="flex-1 flex flex-col p-6">
+                        <div className="flex items-center justify-between mb-4">
+                          <Badge variant={badgeVariants[project.industry] ?? 'blue'}>{project.industry}</Badge>
+                          <span className="text-xs font-mono text-slate-400 dark:text-[#64748B]">{project.year}</span>
                         </div>
-                        <ArrowUpRight size={15} className="text-slate-300 dark:text-[#2A3550] group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors shrink-0" />
+
+                        <h2 className={"font-bold text-base md:text-lg mb-1.5 transition-colors " + (light ? 'text-slate-900 group-hover:text-blue-600' : 'text-white group-hover:text-blue-300') }>
+                          {project.title}
+                        </h2>
+                        <p className={(light ? 'text-slate-500' : 'text-slate-200') + ' text-xs mb-5 flex-1'}>{project.tagline}</p>
+
+                        {/* Key metrics */}
+                        <div className="grid grid-cols-2 gap-2.5 mb-5">
+                          {project.results.slice(0, 2).map((r) => (
+                            <div key={r.label} className="rounded-xl bg-slate-50 dark:bg-navy-700/60 p-3">
+                              <div className="text-base font-semibold mb-0.5" style={{ color: project.color }}>{r.metric}</div>
+                              <div className="text-[11px] text-slate-400 dark:text-[#64748B]">{r.label}</div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Tech + arrow */}
+                        <div className="flex items-center justify-between">
+                          <div className="flex flex-wrap gap-2">
+                            {project.tech.slice(0, 3).map((t) => (
+                              <span key={t} style={{ background: light ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.25)', color: light ? '#0f172a' : '#e6eef8' }} className="inline-flex items-center px-2 py-0.5 text-xs rounded-full">{t}</span>
+                            ))}
+                          </div>
+                          <ArrowUpRight size={15} className="text-slate-300 dark:text-[#2A3550] group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors shrink-0" />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </StaggerItem>
-            ))}
+                  </Link>
+                </StaggerItem>
+              );
+            })}
           </StaggerContainer>
         </div>
       </section>
