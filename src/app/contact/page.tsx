@@ -1,6 +1,5 @@
 'use client';
 
-import type { Metadata } from 'next';
 import { useState } from 'react';
 import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, MessageSquare } from 'lucide-react';
 import Button from '@/components/ui/Button';
@@ -8,43 +7,40 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 
 const faqs = [
   {
-    q: 'How long does it take to get started?',
-    a: 'After an initial call, we can typically have a proposal within 3 business days and kick off within 1–2 weeks depending on your timeline.',
+    q: 'What is white-label development?',
+    a: 'We build software that you brand and deliver as your own. Your clients never know we exist — all deliverables carry your agency\'s branding, and we sign NDAs to ensure it stays that way.',
+  },
+  {
+    q: 'Who owns the code after delivery?',
+    a: 'You do. Once the project is complete, we hand over all source code, assets, and documentation. Full ownership — no licensing fees, no ongoing dependency on us.',
   },
   {
     q: 'Do you sign NDAs?',
-    a: 'Absolutely. We sign NDAs before any detailed project discussions if requested. Your ideas are safe with us.',
+    a: 'Absolutely — and we do it before any detailed discussion begins. We operate under strict NDAs to protect your client relationships. We leave no trace in our code.',
   },
   {
-    q: 'What is your minimum project size?',
-    a: 'We typically engage on projects with a minimum budget of $20K. For smaller needs, our maintenance retainers may be a better fit.',
+    q: 'What are your payment terms?',
+    a: 'Typically 50% upfront and 50% on delivery for fixed-price projects. Monthly retainer and hourly engagements are invoiced on net-30 terms.',
   },
   {
-    q: 'Can you work with our existing team?',
-    a: 'Yes. We offer staff augmentation alongside full project delivery. Many clients use us to extend internal teams during growth phases.',
+    q: 'Can I see progress before final delivery?',
+    a: 'Yes. We demo working software every sprint via staging URLs so you can review and give feedback before anything is finalised.',
   },
   {
-    q: 'How do you handle time zones?',
-    a: 'We have team members in North America, Europe, and the Middle East. We structure projects to ensure overlap hours with any timezone.',
-  },
-  {
-    q: 'What happens after the project launches?',
-    a: 'We offer structured maintenance retainers and can continue as your long-term engineering partner for feature development and scaling.',
+    q: 'Do you offer ongoing support after launch?',
+    a: 'Yes. We offer monthly maintenance retainers covering monitoring, updates, performance optimisation, and priority support — billed under your agency\'s name if needed.',
   },
 ];
 
 export default function ContactPage() {
   const [form, setForm] = useState({
-    name: '',
-    email: '',
-    company: '',
-    budget: '',
-    service: '',
-    message: '',
+    name: '', company: '', role: '', email: '', phone: '', budget: '', timeline: '', message: '',
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
@@ -55,87 +51,62 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-16 relative overflow-hidden">
-        <div className="absolute inset-0 bg-navy-950 dot-grid opacity-30" />
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="w-[600px] h-[300px] bg-blue-600/8 blur-[120px] rounded-full" />
-        </div>
+      {/* ── Hero ── */}
+      <section className="pt-36 pb-20 relative overflow-hidden bg-[var(--c-bg)]">
+        <div className="absolute inset-0 dot-grid opacity-35" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-blue-600/6 blur-[120px] rounded-full pointer-events-none" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="max-w-2xl">
-            <div className="flex items-center gap-2 mb-6">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <AnimatedSection>
+            <div className="flex items-center justify-center gap-2 mb-6">
               <span className="w-6 h-px bg-blue-500" />
-              <span className="text-blue-400 text-sm font-mono tracking-widest uppercase">
-                Contact
-              </span>
+              <span className="text-blue-600 dark:text-blue-400 text-sm font-mono tracking-widest uppercase">Start a Project</span>
+              <span className="w-6 h-px bg-blue-500" />
             </div>
-            <h1 className="text-5xl sm:text-6xl font-bold leading-tight mb-6">
-              <span className="text-[#E8E8E8]">Let&apos;s build</span>
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.06] tracking-tight mb-6">
+              <span className="text-slate-900 dark:text-[#E8E8E8]">Let&apos;s build</span>
               <br />
-              <span className="text-gradient">something great.</span>
+              <span className="text-gradient">under your brand.</span>
             </h1>
-            <p className="text-lg text-[#94A3B8]">
-              Tell us about your project. We respond within 24 hours with a thoughtful assessment
-              and a clear path forward.
+            <p className="text-lg text-slate-500 dark:text-[#94A3B8] max-w-xl mx-auto">
+              Tell us about your client&apos;s project. We respond within 24 hours with a clear
+              proposal — NDA signed upfront, no commitment required.
             </p>
           </AnimatedSection>
         </div>
       </section>
 
-      {/* Main content */}
-      <section className="pb-24 bg-navy-900">
+      {/* ── Main content ── */}
+      <section className="pb-24 bg-[var(--c-bg-alt)] dark:bg-navy-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-10">
+
             {/* Contact info sidebar */}
             <AnimatedSection direction="left" className="space-y-5">
               {/* Info card */}
-              <div className="glass rounded-2xl border border-navy-500/40 p-7">
-                <h2 className="text-xs font-mono font-semibold text-[#64748B] uppercase tracking-widest mb-6">
+              <div className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-7">
+                <h2 className="text-xs font-mono font-semibold text-slate-400 dark:text-[#64748B] uppercase tracking-widest mb-6">
                   Get in Touch
                 </h2>
                 <div className="space-y-5">
                   {[
-                    {
-                      icon: Mail,
-                      label: 'Email',
-                      value: 'hello@fuserrsolutions.com',
-                      href: 'mailto:hello@fuserrsolutions.com',
-                    },
-                    {
-                      icon: Phone,
-                      label: 'Phone',
-                      value: '+1 (555) 000-0000',
-                      href: 'tel:+15550000000',
-                    },
-                    {
-                      icon: MapPin,
-                      label: 'Offices',
-                      value: 'San Francisco · Dubai · Remote',
-                      href: null,
-                    },
-                    {
-                      icon: Clock,
-                      label: 'Response Time',
-                      value: '< 24 hours',
-                      href: null,
-                    },
+                    { icon: Mail,   label: 'Email',         value: 'hello@fuserrsolutions.com', href: 'mailto:hello@fuserrsolutions.com' },
+                    { icon: Phone,  label: 'Phone',         value: '+1 (555) 000-0000',          href: 'tel:+15550000000' },
+                    { icon: MapPin, label: 'Offices',       value: 'San Francisco · Dubai · Remote', href: null },
+                    { icon: Clock,  label: 'Response Time', value: '< 24 hours',                 href: null },
                   ].map(({ icon: Icon, label, value, href }) => (
                     <div key={label} className="flex items-start gap-4">
                       <div className="w-9 h-9 rounded-lg bg-blue-600/10 border border-blue-600/20 flex items-center justify-center shrink-0">
-                        <Icon size={14} className="text-blue-400" />
+                        <Icon size={14} className="text-blue-600 dark:text-blue-400" />
                       </div>
                       <div>
-                        <div className="text-xs text-[#64748B] mb-0.5">{label}</div>
+                        <div className="text-xs text-slate-400 dark:text-[#64748B] mb-0.5">{label}</div>
                         {href ? (
-                          <a
-                            href={href}
-                            className="text-sm text-[#E8E8E8] hover:text-blue-400 transition-colors"
-                          >
+                          <a href={href} className="text-sm text-slate-800 dark:text-[#E8E8E8] hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
                             {value}
                           </a>
                         ) : (
-                          <div className="text-sm text-[#E8E8E8]">{value}</div>
+                          <div className="text-sm text-slate-800 dark:text-[#E8E8E8]">{value}</div>
                         )}
                       </div>
                     </div>
@@ -144,31 +115,32 @@ export default function ContactPage() {
               </div>
 
               {/* Availability */}
-              <div className="glass rounded-2xl border border-navy-500/40 p-6">
+              <div className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-6">
                 <div className="flex items-center gap-2 mb-3">
                   <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-xs font-mono text-emerald-400">Currently accepting projects</span>
+                  <span className="text-xs font-mono text-emerald-600 dark:text-emerald-400">Currently accepting agency partners</span>
                 </div>
-                <p className="text-xs text-[#64748B]">
-                  Availability for Q2 2026. Limited spots — reach out early.
+                <p className="text-xs text-slate-400 dark:text-[#64748B]">
+                  Available for new projects in Q3 2026. Limited onboarding spots — reach out early.
                 </p>
               </div>
 
               {/* Trust signals */}
-              <div className="glass rounded-2xl border border-navy-500/40 p-6">
-                <h3 className="text-xs font-mono font-semibold text-[#64748B] uppercase tracking-widest mb-4">
+              <div className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-6">
+                <h3 className="text-xs font-mono font-semibold text-slate-400 dark:text-[#64748B] uppercase tracking-widest mb-4">
                   What to Expect
                 </h3>
                 <ul className="space-y-3">
                   {[
                     'Response within 24 hours',
+                    'NDA signed before any discussion',
                     'Free 30-min discovery call',
+                    'Proposal within 1 business day',
                     'No commitment required',
-                    'NDA available on request',
-                    'Fixed-price or T&M options',
+                    '100% white-label delivery',
                   ].map((item) => (
-                    <li key={item} className="flex items-center gap-2.5 text-sm text-[#94A3B8]">
-                      <CheckCircle2 size={13} className="text-emerald-400 shrink-0" />
+                    <li key={item} className="flex items-center gap-2.5 text-sm text-slate-500 dark:text-[#94A3B8]">
+                      <CheckCircle2 size={13} className="text-emerald-500 dark:text-emerald-400 shrink-0" />
                       {item}
                     </li>
                   ))}
@@ -181,116 +153,70 @@ export default function ContactPage() {
               {submitted ? (
                 <div className="glass rounded-2xl border border-emerald-500/30 p-12 text-center h-full flex flex-col items-center justify-center gap-6">
                   <div className="w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center">
-                    <CheckCircle2 size={32} className="text-emerald-400" />
+                    <CheckCircle2 size={32} className="text-emerald-500 dark:text-emerald-400" />
                   </div>
                   <div>
-                    <h2 className="text-2xl font-bold text-[#E8E8E8] mb-3">Message Received!</h2>
-                    <p className="text-[#94A3B8] max-w-sm">
+                    <h2 className="text-2xl font-bold text-slate-900 dark:text-[#E8E8E8] mb-3">Message Received!</h2>
+                    <p className="text-slate-500 dark:text-[#94A3B8] max-w-sm">
                       Thank you for reaching out. We&apos;ll review your project details and get back
-                      to you within 24 hours.
+                      to you within 24 hours — NDA first, then we talk details.
                     </p>
                   </div>
                 </div>
               ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="glass rounded-2xl border border-navy-500/40 p-8 space-y-6"
-                >
+                <form onSubmit={handleSubmit} className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-8 space-y-6">
                   <div className="flex items-center gap-3 mb-2">
-                    <MessageSquare size={18} className="text-blue-400" />
-                    <h2 className="text-lg font-semibold text-[#E8E8E8]">Tell us about your project</h2>
+                    <MessageSquare size={18} className="text-blue-600 dark:text-blue-400" />
+                    <h2 className="text-lg font-semibold text-slate-900 dark:text-[#E8E8E8]">Start a white-label project</h2>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                    {/* Name */}
                     <div>
-                      <label className="block text-xs font-mono text-[#64748B] mb-2" htmlFor="name">
-                        Full Name *
-                      </label>
+                      <label className="block text-xs font-mono text-slate-400 dark:text-[#64748B] mb-2" htmlFor="name">Full Name *</label>
                       <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        value={form.name}
-                        onChange={handleChange}
-                        placeholder="John Smith"
-                        className="w-full bg-navy-800/60 border border-navy-500/60 rounded-lg px-4 py-3 text-sm text-[#E8E8E8] placeholder:text-[#64748B] focus:outline-none focus:border-blue-600/60 transition-colors"
+                        id="name" name="name" type="text" required
+                        value={form.name} onChange={handleChange} placeholder="Jane Smith"
+                        className="w-full bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-navy-500/60 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-[#E8E8E8] placeholder:text-slate-400 dark:placeholder:text-[#64748B] focus:outline-none focus:border-blue-500 dark:focus:border-blue-600/60 transition-colors"
                       />
                     </div>
-
-                    {/* Email */}
                     <div>
-                      <label className="block text-xs font-mono text-[#64748B] mb-2" htmlFor="email">
-                        Work Email *
-                      </label>
+                      <label className="block text-xs font-mono text-slate-400 dark:text-[#64748B] mb-2" htmlFor="company">Agency / Company *</label>
                       <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder="john@company.com"
-                        className="w-full bg-navy-800/60 border border-navy-500/60 rounded-lg px-4 py-3 text-sm text-[#E8E8E8] placeholder:text-[#64748B] focus:outline-none focus:border-blue-600/60 transition-colors"
+                        id="company" name="company" type="text" required
+                        value={form.company} onChange={handleChange} placeholder="Acme Digital Agency"
+                        className="w-full bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-navy-500/60 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-[#E8E8E8] placeholder:text-slate-400 dark:placeholder:text-[#64748B] focus:outline-none focus:border-blue-500 dark:focus:border-blue-600/60 transition-colors"
                       />
                     </div>
-
-                    {/* Company */}
                     <div>
-                      <label className="block text-xs font-mono text-[#64748B] mb-2" htmlFor="company">
-                        Company
-                      </label>
+                      <label className="block text-xs font-mono text-slate-400 dark:text-[#64748B] mb-2" htmlFor="role">Your Role</label>
                       <input
-                        id="company"
-                        name="company"
-                        type="text"
-                        value={form.company}
-                        onChange={handleChange}
-                        placeholder="Acme Inc."
-                        className="w-full bg-navy-800/60 border border-navy-500/60 rounded-lg px-4 py-3 text-sm text-[#E8E8E8] placeholder:text-[#64748B] focus:outline-none focus:border-blue-600/60 transition-colors"
+                        id="role" name="role" type="text"
+                        value={form.role} onChange={handleChange} placeholder="Founder / Director / PM"
+                        className="w-full bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-navy-500/60 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-[#E8E8E8] placeholder:text-slate-400 dark:placeholder:text-[#64748B] focus:outline-none focus:border-blue-500 dark:focus:border-blue-600/60 transition-colors"
                       />
                     </div>
-
-                    {/* Service */}
                     <div>
-                      <label className="block text-xs font-mono text-[#64748B] mb-2" htmlFor="service">
-                        Service Needed
-                      </label>
-                      <select
-                        id="service"
-                        name="service"
-                        value={form.service}
-                        onChange={handleChange}
-                        className="w-full bg-navy-800/60 border border-navy-500/60 rounded-lg px-4 py-3 text-sm text-[#E8E8E8] focus:outline-none focus:border-blue-600/60 transition-colors appearance-none"
-                      >
-                        <option value="">Select a service</option>
-                        <option>AI Development</option>
-                        <option>Mobile Apps</option>
-                        <option>Web Applications</option>
-                        <option>Ecommerce</option>
-                        <option>UI/UX Design</option>
-                        <option>Maintenance & Support</option>
-                        <option>Other</option>
-                      </select>
+                      <label className="block text-xs font-mono text-slate-400 dark:text-[#64748B] mb-2" htmlFor="email">Work Email *</label>
+                      <input
+                        id="email" name="email" type="email" required
+                        value={form.email} onChange={handleChange} placeholder="jane@agency.com"
+                        className="w-full bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-navy-500/60 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-[#E8E8E8] placeholder:text-slate-400 dark:placeholder:text-[#64748B] focus:outline-none focus:border-blue-500 dark:focus:border-blue-600/60 transition-colors"
+                      />
                     </div>
                   </div>
 
                   {/* Budget */}
                   <div>
-                    <label className="block text-xs font-mono text-[#64748B] mb-2" htmlFor="budget">
-                      Estimated Budget
-                    </label>
+                    <label className="block text-xs font-mono text-slate-400 dark:text-[#64748B] mb-2" htmlFor="budget">Approximate Budget</label>
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                      {['$20K–50K', '$50K–100K', '$100K–250K', '$250K+'].map((b) => (
+                      {['Under $10K', '$10K–30K', '$30K–80K', '$80K+'].map((b) => (
                         <button
-                          key={b}
-                          type="button"
+                          key={b} type="button"
                           onClick={() => setForm((p) => ({ ...p, budget: b }))}
                           className={`px-3 py-2.5 rounded-lg text-xs font-medium transition-all duration-200 border ${
                             form.budget === b
                               ? 'bg-blue-600 border-blue-600 text-white'
-                              : 'border-navy-500/60 text-[#94A3B8] hover:border-blue-600/40 hover:text-[#E8E8E8]'
+                              : 'border-slate-200 dark:border-navy-500/60 text-slate-500 dark:text-[#94A3B8] hover:border-blue-400 dark:hover:border-blue-600/40 hover:text-slate-800 dark:hover:text-[#E8E8E8]'
                           }`}
                         >
                           {b}
@@ -299,30 +225,40 @@ export default function ContactPage() {
                     </div>
                   </div>
 
+                  {/* Timeline */}
+                  <div>
+                    <label className="block text-xs font-mono text-slate-400 dark:text-[#64748B] mb-2" htmlFor="timeline">Desired Timeline</label>
+                    <select
+                      id="timeline" name="timeline"
+                      value={form.timeline} onChange={handleChange}
+                      className="w-full bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-navy-500/60 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-[#E8E8E8] focus:outline-none focus:border-blue-500 dark:focus:border-blue-600/60 transition-colors appearance-none"
+                    >
+                      <option value="">Select a timeline</option>
+                      <option>ASAP (less than 1 month)</option>
+                      <option>1–3 months</option>
+                      <option>3–6 months</option>
+                      <option>6+ months</option>
+                    </select>
+                  </div>
+
                   {/* Message */}
                   <div>
-                    <label className="block text-xs font-mono text-[#64748B] mb-2" htmlFor="message">
-                      Project Details *
-                    </label>
+                    <label className="block text-xs font-mono text-slate-400 dark:text-[#64748B] mb-2" htmlFor="message">Project Description *</label>
                     <textarea
-                      id="message"
-                      name="message"
-                      rows={5}
-                      required
-                      value={form.message}
-                      onChange={handleChange}
-                      placeholder="Tell us about your project, goals, timeline, and any technical requirements..."
-                      className="w-full bg-navy-800/60 border border-navy-500/60 rounded-lg px-4 py-3 text-sm text-[#E8E8E8] placeholder:text-[#64748B] focus:outline-none focus:border-blue-600/60 transition-colors resize-none"
+                      id="message" name="message" rows={5} required
+                      value={form.message} onChange={handleChange}
+                      placeholder="Tell us about the project — what you're building for your client, the tech requirements, and any design files or references you have..."
+                      className="w-full bg-slate-50 dark:bg-navy-800/60 border border-slate-200 dark:border-navy-500/60 rounded-lg px-4 py-3 text-sm text-slate-900 dark:text-[#E8E8E8] placeholder:text-slate-400 dark:placeholder:text-[#64748B] focus:outline-none focus:border-blue-500 dark:focus:border-blue-600/60 transition-colors resize-none"
                     />
                   </div>
 
                   <Button type="submit" variant="primary" size="lg" className="w-full justify-center group">
-                    Send Message
+                    Start a Project
                     <Send size={15} className="group-hover:translate-x-0.5 transition-transform" />
                   </Button>
 
-                  <p className="text-xs text-center text-[#64748B]">
-                    We&apos;ll respond within 24 hours. No spam, ever.
+                  <p className="text-xs text-center text-slate-400 dark:text-[#64748B]">
+                    We respond within 24 hours. NDA signed before any detailed discussion begins.
                   </p>
                 </form>
               )}
@@ -331,24 +267,24 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-24 border-t border-navy-500/30 bg-navy-950">
+      {/* ── FAQ ── */}
+      <section className="py-24 border-t border-slate-200 dark:border-navy-500/30 bg-[var(--c-bg)] dark:bg-navy-950">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="mb-12 text-center">
             <div className="flex items-center justify-center gap-2 mb-4">
               <span className="w-6 h-px bg-blue-500" />
-              <span className="text-blue-400 text-sm font-mono tracking-widest uppercase">FAQ</span>
+              <span className="text-blue-600 dark:text-blue-400 text-sm font-mono tracking-widest uppercase">FAQ</span>
               <span className="w-6 h-px bg-blue-500" />
             </div>
-            <h2 className="text-3xl font-bold text-[#E8E8E8]">Common questions</h2>
+            <h2 className="text-3xl font-bold text-slate-900 dark:text-[#E8E8E8]">Common questions</h2>
           </AnimatedSection>
 
           <div className="space-y-4">
             {faqs.map((faq, i) => (
               <AnimatedSection key={faq.q} delay={i * 0.05}>
-                <div className="glass rounded-xl border border-navy-500/40 p-6">
-                  <h3 className="text-[#E8E8E8] font-semibold mb-3">{faq.q}</h3>
-                  <p className="text-sm text-[#94A3B8] leading-relaxed">{faq.a}</p>
+                <div className="glass rounded-xl border border-slate-200 dark:border-navy-500/40 p-6">
+                  <h3 className="text-slate-900 dark:text-[#E8E8E8] font-semibold mb-3">{faq.q}</h3>
+                  <p className="text-sm text-slate-500 dark:text-[#94A3B8] leading-relaxed">{faq.a}</p>
                 </div>
               </AnimatedSection>
             ))}

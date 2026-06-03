@@ -15,4 +15,4 @@ export function slugify(text: string): string {
 export const SITE_URL = 'https://fuserrsolutions.com';
 export const SITE_NAME = 'Fuserr Solutions';
 export const SITE_DESCRIPTION =
-  'Premium software development agency specializing in AI, mobile apps, web applications, and digital transformation.';
+  'White-label software development agency. We build web, mobile & SaaS under your brand — NDA-backed, invisible to your clients.';

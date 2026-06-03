@@ -10,7 +10,7 @@ import CTABanner from '@/components/home/CTABanner';
 import { SITE_NAME, SITE_URL, SITE_DESCRIPTION } from '@/lib/utils';
 
 export const metadata: Metadata = {
-  title: `${SITE_NAME} — Premium Software Development Agency`,
+  title: `${SITE_NAME} — White-Label Software Development Partner`,
   description: SITE_DESCRIPTION,
   alternates: { canonical: SITE_URL },
 };
