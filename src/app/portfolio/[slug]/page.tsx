@@ -20,7 +20,13 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const project = projects.find((p) => p.slug === params.slug);
+  const normalize = (s: string) => s.replace(/[-_]/g, ' ').trim().toLowerCase();
+  const project = projects.find((p) => {
+    if (p.slug === params.slug) return true;
+    if (p.slug.toLowerCase() === params.slug.toLowerCase()) return true;
+    if (normalize(p.slug) === normalize(params.slug)) return true;
+    return false;
+  });
   if (!project) return {};
   return { title: project.title, description: project.overview, alternates: { canonical: `${SITE_URL}/portfolio/${project.slug}` } };
 }
@@ -182,9 +188,15 @@ export default function ProjectDetailPage({ params }: Props) {
                 <StaggerItem key={p.slug}>
                   <Link href={`/portfolio/${p.slug}`} className="group block">
                     <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-navy-500/40 bg-white dark:bg-navy-800/30 hover:border-blue-200 dark:hover:border-blue-600/30 transition-all duration-300">
-                      <div className="relative h-28 overflow-hidden" style={{ background: `linear-gradient(135deg, ${p.color}18, ${p.color}05)` }}>
-                        <div className="absolute inset-0 dot-grid opacity-30" />
-                      </div>
+                      <div className="relative h-28 overflow-hidden bg-slate-50 dark:bg-navy-700 rounded-t-2xl">
+                          {p.cover ? (
+                            <img src={p.cover} alt={p.title} className="absolute inset-0 w-full h-full object-cover object-center block" loading="lazy" />
+                          ) : (
+                            <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${p.color}18, ${p.color}05)` }} />
+                          )}
+                          <div className="absolute inset-0 dot-grid opacity-30" />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                        </div>
                       <div className="p-5">
                         <div className="flex items-center gap-2 mb-2">
                           <Badge variant={badgeVariants[p.industry] ?? 'blue'}>{p.industry}</Badge>

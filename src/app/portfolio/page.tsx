@@ -14,44 +14,31 @@ const badgeVariants: Record<string, 'blue' | 'green' | 'amber' | 'purple' | 'cya
 };
 
 function ProjectVisual({ color, title, industry, cover }: { color: string; title: string; industry: string; cover?: string }) {
-  const [sizeClass, setSizeClass] = React.useState('h-72');
-
-  React.useEffect(() => {
-    if (!cover) {
-      setSizeClass('h-56');
-      return;
-    }
-    let mounted = true;
-    const img = new Image();
-    img.src = cover;
-    img.onload = () => {
-      if (!mounted) return;
-      const ratio = img.width / img.height;
-      // Wider images -> shorter height; taller images -> taller container
-      if (ratio > 1.8) setSizeClass('h-56');
-      else if (ratio > 1.4) setSizeClass('h-72');
-      else if (ratio > 1.0) setSizeClass('h-80');
-      else if (ratio > 0.7) setSizeClass('h-96');
-      else setSizeClass('h-[40rem]');
-    };
-    img.onerror = () => { if (mounted) setSizeClass('h-44'); };
-    return () => { mounted = false; };
-  }, [cover]);
-
   return (
-    <div className={`relative overflow-hidden rounded-t-2xl ${sizeClass}`}>
-      <div
-        className="absolute inset-0 bg-center bg-cover"
-        style={{ backgroundImage: cover ? `url(${cover})` : undefined, backgroundColor: cover ? undefined : `${color}10` }}
-      />
+    <div className="relative overflow-hidden rounded-t-2xl">
+      <div className="relative w-full pb-[56.25%] bg-slate-50 dark:bg-navy-700">
+        {cover ? (
+          (() => {
+            const name = cover.split('/').pop() || cover;
+            const styleObj: React.CSSProperties | undefined = name === 'image4.png'
+              ? { objectPosition: '30% center' }
+              : name === 'image.png'
+                ? { objectPosition: '50% 12%' }
+                : undefined;
+            return <img src={cover} alt={title} style={styleObj} className={`absolute inset-0 w-full h-full object-cover block`} loading="lazy" />;
+          })()
+        ) : (
+          <div className="absolute inset-0" style={{ backgroundColor: `${color}10` }} />
+        )}
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-      <div className="absolute bottom-4 left-5 flex items-center gap-2.5 z-10">
-        <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-base shadow" style={{ background: color }}>
-          {title[0]}
+        <div className="absolute bottom-4 left-5 flex items-center gap-2.5 z-10">
+          <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-base shadow" style={{ background: color }}>
+            {title[0]}
+          </div>
+          <span className="text-xs font-mono font-semibold text-white/95" style={{ color }}>{industry}</span>
         </div>
-        <span className="text-xs font-mono font-semibold text-white/95" style={{ color }}>{industry}</span>
       </div>
     </div>
   );
@@ -93,7 +80,7 @@ export default function PortfolioPage() {
               return (
                 <StaggerItem key={project.slug}>
                   <Link href={`/portfolio/${project.slug}`} className="group block h-full">
-                    <div className="h-full rounded-2xl overflow-hidden border border-slate-200 dark:border-navy-500/40 bg-white dark:bg-navy-800/30 hover:border-blue-200 dark:hover:border-blue-600/30 transition-all duration-300 shadow-md hover:shadow-xl transform-gpu hover:-translate-y-1 group flex flex-col">
+                    <div className="h-full rounded-3xl overflow-hidden border border-slate-100 dark:border-navy-700 bg-white/60 dark:bg-navy-800/40 backdrop-blur-sm hover:border-blue-200 dark:hover:border-blue-600/30 transition-all duration-300 shadow-lg hover:shadow-2xl transform-gpu hover:-translate-y-1 group flex flex-col">
                       {/* Visual area */}
                       <ProjectVisual color={project.color} title={project.title} industry={project.industry} cover={project.cover} />
 

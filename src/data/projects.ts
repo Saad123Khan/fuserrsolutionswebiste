@@ -19,7 +19,7 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    slug: 'TKO',
+    slug: 'tko',
     title: 'To Know OneSelf (TKO)',
     tagline: 'Intelligent patient monitoring platform',
     industry: 'TKO',
@@ -50,7 +50,7 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: 'EREBIX',
+    slug: 'erebix',
     title: 'Erebix Fitness App',
     tagline: 'Next-generation digital banking experience',
     industry: 'Erebix',
@@ -81,7 +81,7 @@ export const projects: Project[] = [
     },
   },
   {
-    slug: 'Assistify',
+    slug: 'assistify',
     title: 'Assistify web',
     tagline: 'AI-powered learning management system',
     industry: 'Assistify',
@@ -106,7 +106,7 @@ export const projects: Project[] = [
     tech: ['React', 'Node.js', 'Python', 'MongoDB', 'Redis', 'WebRTC', 'GCP'],
   },
   {
-    slug: 'Copy Smart',
+    slug: 'copy-smart',
     title: 'Copy Smart (Ecommerce)',
     tagline: 'Headless ecommerce at enterprise scale',
     industry: 'Copy Smart ',
@@ -131,7 +131,7 @@ export const projects: Project[] = [
     tech: ['Next.js', 'Shopify', 'GraphQL', 'Elasticsearch', 'Redis', 'Vercel', 'Cloudflare'],
   },
   {
-    slug: 'Scrub Art ',
+    slug: 'scrub-art',
     title: 'Scrub Art (Cleaning app)',
     tagline: 'AI-powered art restoration platform',
     industry: 'Scrub Art',
@@ -156,7 +156,7 @@ export const projects: Project[] = [
     tech: ['Python', 'OpenAI', 'LangChain', 'FastAPI', 'React', 'PostgreSQL', 'AWS'],
   },
   {
-    slug: 'Kargo Domus',
+    slug: 'kargo-domus',
     title: 'Kargo Domus (Supply Chain)',
     tagline: 'Real-time supply chain intelligence',
     industry: 'Kargo Domus',
@@ -181,7 +181,7 @@ export const projects: Project[] = [
     tech: ['Python', 'Kafka', 'Spark', 'React', 'TimescaleDB', 'Kubernetes', 'GCP'],
   },
   {
-    slug: 'FIXIE',
+    slug: 'fixie',
     title: 'FIXIE Web App',
     tagline: 'Intelligent AI assistant for customer support',
     industry: 'Fixie',
@@ -201,7 +201,7 @@ export const projects: Project[] = [
     tech: ['Next.js', 'Tailwind', 'Figma'],
   },
   {
-    slug: 'AI chatbot',
+    slug: 'ai-chatbot',
     title: 'AI Chatbot',
     tagline: 'Intelligent AI assistant for customer support',
     industry: 'AI',
