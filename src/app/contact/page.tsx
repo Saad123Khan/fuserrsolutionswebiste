@@ -118,9 +118,9 @@ export default function ContactPage() {
                 </h2>
                 <div className="space-y-5">
                   {[
-                    { icon: Mail,   label: 'Email',         value: 'hello@fuserrsolutions.com', href: 'mailto:hello@fuserrsolutions.com' },
-                    { icon: Phone,  label: 'Phone',         value: '+1 (555) 000-0000',          href: 'tel:+15550000000' },
-                    { icon: MapPin, label: 'Offices',       value: 'San Francisco · Dubai · Remote', href: null },
+                    { icon: Mail,   label: 'Email',         value: 'contact@fuserrsolutions.com', href: 'mailto:contact@fuserrsolutions.com' },
+                    { icon: Phone,  label: 'Phone',         value: '+92 333 7804685',          href: 'tel:+923337804685' },
+                    { icon: MapPin, label: 'Offices',       value: 'Ground Floor 1-H-1/22, Nazimabad no 1, Karachi, Pakistan. · Remote', href: null },
                     { icon: Clock,  label: 'Response Time', value: '< 24 hours',                 href: null },
                   ].map(({ icon: Icon, label, value, href }) => (
                     <div key={label} className="flex items-start gap-4">

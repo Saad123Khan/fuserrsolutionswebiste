@@ -57,8 +57,8 @@ const differentiators = [
 ];
 
 const stats = [
-  { value: '60+', label: 'Agency Partners', sub: 'Globally' },
-  { value: '10+', label: 'Years Experience', sub: 'Since 2014' },
+  { value: '10+', label: 'Agency Partners', sub: 'Globally' },
+  { value: '6+', label: 'Years Experience', sub: 'Since 2014' },
   { value: '99.8%', label: 'On-Time Delivery', sub: 'Across 120+ projects' },
   { value: '98%', label: 'Partner Retention', sub: 'Year over year' },
 ];
@@ -201,7 +201,7 @@ export default function AboutPage() {
               { metric: '< 1h', label: 'NDA Turnaround', detail: 'NDAs reviewed and signed within the hour' },
               { metric: '0', label: 'Client Breaches', detail: 'Zero white-label violations in our history' },
               { metric: '98%', label: 'Partner Retention', detail: 'Agencies that work with us once, stay' },
-              { metric: '10+', label: 'Years Experience', detail: 'Senior team averaging 10+ years per engineer' },
+              { metric: '6+', label: 'Years Experience', detail: 'Senior team averaging 10+ years per engineer' },
               { metric: '24h', label: 'Proposal Turnaround', detail: 'Detailed proposals within one business day' },
             ].map(({ metric, label, detail }) => (
               <AnimatedSection key={label}>

@@ -67,18 +67,17 @@ export default function ProjectDetailPage({ params }: Props) {
             <ArrowLeft size={13} /> All Projects
           </Link>
 
-          {/* Project identity at bottom of banner */}
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full pb-10">
-            <div className="flex flex-wrap items-center gap-3 mb-5">
-              <Badge variant={badgeVariants[project.industry] ?? 'blue'}>{project.industry}</Badge>
-              <Badge variant="blue">{project.service}</Badge>
-              <span className="text-xs font-mono text-slate-400 dark:text-[#64748B]">{project.year} · {project.duration}</span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-[#E8E8E8] leading-tight mb-3">
-              {project.title}
-            </h1>
-            <p className="text-lg text-slate-500 dark:text-[#94A3B8]">{project.tagline}</p>
+          {/* Project identity removed from banner to render below image for better readability */}
+        </div>
+        {/* Project identity rendered below banner image */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-10">
+          <div className="flex flex-wrap items-center gap-3 mb-5">
+            <Badge variant={badgeVariants[project.industry] ?? 'blue'}>{project.industry}</Badge>
+            <Badge variant="blue">{project.service}</Badge>
           </div>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-[#E8E8E8] leading-tight mb-3">
+            {project.title}
+          </h1>
         </div>
       </section>
 
@@ -86,25 +85,7 @@ export default function ProjectDetailPage({ params }: Props) {
       <div className="bg-[var(--c-bg-alt)] dark:bg-navy-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
 
-          {/* Results metrics */}
-          <AnimatedSection>
-            <div
-              className="rounded-2xl p-8 border mb-14"
-              style={{ background: `${project.color}07`, borderColor: `${project.color}22` }}
-            >
-              <h2 className="text-xs font-mono font-semibold text-slate-400 dark:text-[#64748B] uppercase tracking-widest mb-7">
-                Key Results
-              </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                {project.results.map((r) => (
-                  <div key={r.label}>
-                    <div className="text-3xl font-black mb-1" style={{ color: project.color }}>{r.metric}</div>
-                    <div className="text-sm text-slate-500 dark:text-[#94A3B8]">{r.label}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </AnimatedSection>
+          {/* Key Results removed per request */}
 
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Article content */}
@@ -124,6 +105,21 @@ export default function ProjectDetailPage({ params }: Props) {
                 <p className="text-slate-500 dark:text-[#94A3B8] leading-relaxed">{project.solution}</p>
               </AnimatedSection>
 
+              {project.sections && project.sections.length > 0 && (
+                <>
+                  {project.sections.map((sec, idx) => (
+                    <AnimatedSection key={sec.heading} delay={0.25 + idx * 0.05}>
+                      <h3 className="text-lg font-semibold text-slate-900 dark:text-[#E8E8E8] mb-3">{sec.heading}</h3>
+                      <ul className="list-disc pl-5 text-slate-500 dark:text-[#94A3B8] space-y-2">
+                        {sec.points.map((pt) => (
+                          <li key={pt} className="leading-relaxed">{pt}</li>
+                        ))}
+                      </ul>
+                    </AnimatedSection>
+                  ))}
+                </>
+              )}
+
               {project.testimonial && (
                 <AnimatedSection delay={0.25}>
                   <div className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-8">
@@ -133,7 +129,7 @@ export default function ProjectDetailPage({ params }: Props) {
                     </p>
                     <div className="flex items-center gap-3 pt-5 border-t border-slate-100 dark:border-navy-500/40">
                       <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white" style={{ background: project.color }}>
-                        {project.testimonial.author[0]}
+                        {project.testimonial.author.trim()[0]}
                       </div>
                       <div>
                         <div className="text-sm font-semibold text-slate-900 dark:text-[#E8E8E8]">{project.testimonial.author}</div>
@@ -163,8 +159,6 @@ export default function ProjectDetailPage({ params }: Props) {
                     { label: 'Client',   value: project.client },
                     { label: 'Industry', value: project.industry },
                     { label: 'Service',  value: project.service },
-                    { label: 'Year',     value: project.year },
-                    { label: 'Duration', value: project.duration },
                   ].map(({ label, value }) => (
                     <div key={label} className="flex justify-between items-start gap-4">
                       <dt className="text-xs text-slate-400 dark:text-[#64748B]">{label}</dt>
@@ -186,26 +180,36 @@ export default function ProjectDetailPage({ params }: Props) {
             <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {related.map((p) => (
                 <StaggerItem key={p.slug}>
-                  <Link href={`/portfolio/${p.slug}`} className="group block">
-                    <div className="rounded-2xl overflow-hidden border border-slate-200 dark:border-navy-500/40 bg-white dark:bg-navy-800/30 hover:border-blue-200 dark:hover:border-blue-600/30 transition-all duration-300">
-                      <div className="relative h-28 overflow-hidden bg-slate-50 dark:bg-navy-700 rounded-t-2xl">
-                          {p.cover ? (
-                            <img src={p.cover} alt={p.title} className="absolute inset-0 w-full h-full object-cover object-center block" loading="lazy" />
-                          ) : (
-                            <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${p.color}18, ${p.color}05)` }} />
-                          )}
-                          <div className="absolute inset-0 dot-grid opacity-30" />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+                  <Link href={`/portfolio/${p.slug}`} className="group block h-full">
+                    <div className="h-full rounded-3xl overflow-hidden border border-slate-100 dark:border-navy-700 bg-white/60 dark:bg-navy-800/40 backdrop-blur-sm hover:border-blue-200 dark:hover:border-blue-600/30 transition-all duration-300 shadow-lg hover:shadow-2xl transform-gpu hover:-translate-y-1 group flex flex-col">
+                      <div className="relative w-full pb-[56.25%] bg-slate-50 dark:bg-navy-700">
+                        {p.cover ? (
+                          <img src={p.cover} alt={p.title} className="absolute inset-0 w-full h-full object-cover block" loading="lazy" />
+                        ) : (
+                          <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${p.color}18, ${p.color}05)` }} />
+                        )}
+
+                        <div className="absolute inset-0 dot-grid opacity-30" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+
+                        <div className="absolute bottom-4 left-4 flex items-center gap-3 z-10">
+                          <div className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-900 font-bold text-base shadow" style={{ background: '#D1D5DB' }}>
+                            {p.title.trim()[0]}
+                          </div>
+                          <div>
+                            <div className="text-sm font-semibold text-white leading-tight">{p.title}</div>
+                            <div className="text-xs font-mono text-white/80">{p.industry}</div>
+                          </div>
                         </div>
-                      <div className="p-5">
-                        <div className="flex items-center gap-2 mb-2">
+                      </div>
+
+                      <div className="p-6 flex-1">
+                        <div className="flex items-center mb-4">
                           <Badge variant={badgeVariants[p.industry] ?? 'blue'}>{p.industry}</Badge>
-                          <span className="text-xs font-mono text-slate-400 dark:text-[#64748B]">{p.year}</span>
                         </div>
-                        <h3 className="font-semibold text-slate-900 dark:text-[#E8E8E8] mb-1 group-hover:text-blue-600 dark:group-hover:text-white transition-colors">
-                          {p.title}
-                        </h3>
-                        <p className="text-sm text-slate-500 dark:text-[#94A3B8]">{p.tagline}</p>
+
+                        <h3 className="font-semibold text-base mb-1.5 transition-colors text-white group-hover:text-blue-600">{p.title}</h3>
+                        <p className="text-sm text-slate-500 mb-4">{p.tagline}</p>
                       </div>
                     </div>
                   </Link>

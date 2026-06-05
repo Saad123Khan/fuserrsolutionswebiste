@@ -74,9 +74,9 @@ export default function Footer() {
 
             <div className="space-y-2.5 mb-8">
               {[
-                { icon: Mail,   val: 'hello@fuserrsolutions.com', href: 'mailto:hello@fuserrsolutions.com' },
-                { icon: Phone,  val: '+1 (555) 000-0000',         href: 'tel:+15550000000' },
-                { icon: MapPin, val: 'San Francisco · Dubai',      href: null },
+                { icon: Mail,   val: 'contact@fuserrsolutions.com', href: 'mailto:contact@fuserrsolutions.com' },
+                { icon: Phone,  val: '+92 333 7804685',         href: 'tel:+923337804685' },
+                { icon: MapPin, val: 'Ground Floor 1-H-1/22, Nazimabad no 1, Karachi, Pakistan.',      href: null },
               ].map(({ icon: Icon, val, href }) => (
                 <div key={val} className="flex items-center gap-2.5 text-sm">
                   <Icon size={13} className="text-blue-500 shrink-0" />

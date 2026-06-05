@@ -44,12 +44,12 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 group">
-            <div className="relative w-9 h-9 rounded-xl overflow-hidden shadow-sm">
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="relative w-12 h-12 rounded-xl overflow-hidden shadow-sm">
               <Image src="/logo.jpg" alt="Fuserr Solutions" fill className="object-cover" priority />
             </div>
             <div className="leading-tight">
-              <span className="text-base font-bold tracking-tight text-slate-900 dark:text-[#E8E8E8]">
+              <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-[#E8E8E8]">
                 fuserr<span className="text-blue-600 dark:text-blue-400">.</span>
               </span>
             </div>

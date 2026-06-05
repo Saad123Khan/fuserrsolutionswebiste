@@ -34,10 +34,10 @@ function ProjectVisual({ color, title, industry, cover }: { color: string; title
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
         <div className="absolute bottom-4 left-5 flex items-center gap-2.5 z-10">
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-base shadow" style={{ background: color }}>
-            {title[0]}
+          <div className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-900 font-bold text-base shadow" style={{ background: '#D1D5DB' }}>
+            {title.trim()[0]}
           </div>
-          <span className="text-xs font-mono font-semibold text-white/95" style={{ color }}>{industry}</span>
+          <span className="text-xs font-mono font-semibold text-white/95">{industry}</span>
         </div>
       </div>
     </div>
@@ -86,25 +86,16 @@ export default function PortfolioPage() {
 
                       {/* Content */}
                       <div className="flex-1 flex flex-col p-6">
-                        <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center mb-4">
                           <Badge variant={badgeVariants[project.industry] ?? 'blue'}>{project.industry}</Badge>
-                          <span className="text-xs font-mono text-slate-400 dark:text-[#64748B]">{project.year}</span>
                         </div>
 
-                        <h2 className={"font-bold text-base md:text-lg mb-1.5 transition-colors " + (light ? 'text-slate-900 group-hover:text-blue-600' : 'text-white group-hover:text-blue-300') }>
+                        <h2 className={"font-bold text-base md:text-lg mb-1.5 transition-colors text-white group-hover:text-blue-600"}>
                           {project.title}
                         </h2>
                         <p className={(light ? 'text-slate-500' : 'text-slate-200') + ' text-xs mb-5 flex-1'}>{project.tagline}</p>
 
-                        {/* Key metrics */}
-                        <div className="grid grid-cols-2 gap-2.5 mb-5">
-                          {project.results.slice(0, 2).map((r) => (
-                            <div key={r.label} className="rounded-xl bg-slate-50 dark:bg-navy-700/60 p-3">
-                              <div className="text-base font-semibold mb-0.5" style={{ color: project.color }}>{r.metric}</div>
-                              <div className="text-[11px] text-slate-400 dark:text-[#64748B]">{r.label}</div>
-                            </div>
-                          ))}
-                        </div>
+                        {/* Key metrics removed per request */}
 
                         {/* Tech + arrow */}
                         <div className="flex items-center justify-between">

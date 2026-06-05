@@ -68,9 +68,9 @@ export default function AboutStrip() {
             <div className="glass rounded-2xl border border-navy-500/40 p-8">
               <div className="grid grid-cols-2 gap-4">
                 {[
-                  { n: '60+',  l: 'Agency Partners' },
-                  { n: '10+',  l: 'Years Experience' },
-                  { n: '120+', l: 'Projects Delivered' },
+                  { n: '10+',  l: 'Agency Partners' },
+                  { n: '6+',  l: 'Years Experience' },
+                  { n: '50+', l: 'Projects Delivered' },
                   { n: '98%',  l: 'Partner Retention' },
                 ].map(({ n, l }) => (
                   <div key={l} className="bg-navy-800/60 rounded-xl p-5">
