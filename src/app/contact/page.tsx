@@ -37,6 +37,8 @@ export default function ContactPage() {
     name: '', company: '', role: '', email: '', phone: '', budget: '', timeline: '', message: '',
   });
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -44,9 +46,35 @@ export default function ContactPage() {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError('');
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY,
+          subject: `New Project Inquiry from ${form.name} — ${form.company}`,
+          from_name: 'Fuserr Solutions Contact Form',
+          name: form.name,
+          email: form.email,
+          company: form.company,
+          role: form.role,
+          budget: form.budget,
+          timeline: form.timeline,
+          message: form.message,
+        }),
+      });
+      const data = await res.json();
+      if (!data.success) throw new Error(data.message || 'Failed to send message');
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -252,9 +280,13 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <Button type="submit" variant="primary" size="lg" className="w-full justify-center group">
-                    Start a Project
-                    <Send size={15} className="group-hover:translate-x-0.5 transition-transform" />
+                  {error && (
+                    <p className="text-sm text-red-500 text-center">{error}</p>
+                  )}
+
+                  <Button type="submit" variant="primary" size="lg" className="w-full justify-center group" disabled={loading}>
+                    {loading ? 'Sending…' : 'Start a Project'}
+                    {!loading && <Send size={15} className="group-hover:translate-x-0.5 transition-transform" />}
                   </Button>
 
                   <p className="text-xs text-center text-slate-400 dark:text-[#64748B]">

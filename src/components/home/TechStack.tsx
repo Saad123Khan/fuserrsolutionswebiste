@@ -52,7 +52,7 @@ export default function TechStack() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <AnimatedSection>
           <SectionTitle
-            eyebrow="Tech Stack"
+            eyebrow="Skills and deliverables"
             title="Built with the best"
             highlight="the best"
             description="We don't chase trends — we select proven tools that solve real problems at scale."

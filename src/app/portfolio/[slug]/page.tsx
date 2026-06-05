@@ -149,7 +149,7 @@ export default function ProjectDetailPage({ params }: Props) {
             <AnimatedSection direction="right" className="space-y-5">
               {/* Tech stack */}
               <div className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-6">
-                <h3 className="text-xs font-mono font-semibold text-slate-400 dark:text-[#64748B] uppercase tracking-widest mb-5">Tech Stack</h3>
+                <h3 className="text-xs font-mono font-semibold text-slate-400 dark:text-[#64748B] uppercase tracking-widest mb-5">Skills and deliverables</h3>
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((t) => <span key={t} className="tech-tag">{t}</span>)}
                 </div>
