@@ -197,8 +197,8 @@ export default function ProjectDetailPage({ params }: Props) {
                             {p.title.trim()[0]}
                           </div>
                           <div>
-                            <div className="text-sm font-semibold text-white leading-tight">{p.title}</div>
-                            <div className="text-xs font-mono text-white/80">{p.industry}</div>
+                              <div className="text-sm font-semibold text-slate-900 dark:text-[#E8E8E8] leading-tight">{p.title}</div>
+                              <div className="text-xs font-mono text-slate-400 dark:text-[#64748B]">{p.industry}</div>
                           </div>
                         </div>
                       </div>
@@ -208,8 +208,8 @@ export default function ProjectDetailPage({ params }: Props) {
                           <Badge variant={badgeVariants[p.industry] ?? 'blue'}>{p.industry}</Badge>
                         </div>
 
-                        <h3 className="font-semibold text-base mb-1.5 transition-colors text-white group-hover:text-blue-600">{p.title}</h3>
-                        <p className="text-sm text-slate-500 mb-4">{p.tagline}</p>
+                        <h3 className="font-semibold text-base mb-1.5 transition-colors text-slate-900 dark:text-[#E8E8E8] group-hover:text-blue-600">{p.title}</h3>
+                        <p className="text-sm text-slate-900 dark:text-slate-400 mb-4">{p.tagline}</p>
                       </div>
                     </div>
                   </Link>

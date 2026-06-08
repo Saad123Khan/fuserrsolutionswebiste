@@ -20,9 +20,9 @@ const floatingBadges = [
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden pt-20">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[var(--c-bg)]" />
-      <div className="absolute inset-0 dot-grid opacity-40" />
+      {/* Background — force light background for this hero section */}
+      <div className="absolute inset-0 bg-white" />
+      <div className="absolute inset-0 dot-grid opacity-18" />
 
       {/* Gradient orbs */}
       <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] rounded-full bg-blue-600/6 dark:bg-blue-600/8 blur-[120px] pointer-events-none" />

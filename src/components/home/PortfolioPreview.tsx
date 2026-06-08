@@ -39,14 +39,14 @@ function ProjectImage({ color, title, industry, height = 'h-44', cover }: { colo
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between z-10">
+            <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between z-10">
           <div className="flex items-start gap-3">
             <div className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-900 font-bold text-base shadow-sm" style={{ background: '#D1D5DB' }}>
               {title.trim()[0]}
             </div>
             <div>
-              <div className="text-sm font-semibold text-white leading-tight">{title}</div>
-              <div className="text-xs font-mono text-white/80">{industry}</div>
+              <div className="text-sm font-semibold text-slate-900 dark:text-white leading-tight">{title}</div>
+              <div className="text-xs font-mono text-slate-400 dark:text-white/80">{industry}</div>
             </div>
           </div>
         </div>
@@ -87,7 +87,7 @@ export default function PortfolioPreview() {
 
                     <div className="p-4 flex items-center justify-between gap-4">
                       <div className="flex-1 min-w-0">
-                        <p className={(light ? 'text-[13px] text-slate-600' : 'text-[13px] text-slate-300') + ' truncate'}>{project.tagline}</p>
+                        <p className={(light ? 'text-[13px] text-slate-900' : 'text-[13px] text-slate-300') + ' dark:text-slate-300 truncate'}>{project.tagline}</p>
                       </div>
                       <ArrowUpRight size={16} className="text-slate-400 dark:text-[#2A3550] group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors shrink-0" />
                     </div>

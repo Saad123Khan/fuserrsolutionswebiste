@@ -196,3 +196,6 @@ body {
 /* ─── Page enter ─────────────────────────────────────── */
 @keyframes pageIn { from{opacity:0;transform:translateY(6px)} to{opacity:1;transform:translateY(0)} }
 .page-enter { animation: pageIn 0.4s ease-out; }
+
+/* Light-theme: make primary headings default to accent blue for better visibility */
+html:not(.dark) .text-slate-900 { color: var(--c-accent) !important; }

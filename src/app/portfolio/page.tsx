@@ -37,7 +37,7 @@ function ProjectVisual({ color, title, industry, cover }: { color: string; title
           <div className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-900 font-bold text-base shadow" style={{ background: '#D1D5DB' }}>
             {title.trim()[0]}
           </div>
-          <span className="text-xs font-mono font-semibold text-white/95">{industry}</span>
+          <span className="text-xs font-mono font-semibold text-slate-900 dark:text-white/95">{industry}</span>
         </div>
       </div>
     </div>
@@ -90,10 +90,10 @@ export default function PortfolioPage() {
                           <Badge variant={badgeVariants[project.industry] ?? 'blue'}>{project.industry}</Badge>
                         </div>
 
-                        <h2 className={"font-bold text-base md:text-lg mb-1.5 transition-colors text-white group-hover:text-blue-600"}>
+                        <h2 className={"font-bold text-base md:text-lg mb-1.5 transition-colors text-slate-900 dark:text-[#E8E8E8] group-hover:text-blue-600"}>
                           {project.title}
                         </h2>
-                        <p className={(light ? 'text-slate-500' : 'text-slate-200') + ' text-xs mb-5 flex-1'}>{project.tagline}</p>
+                        <p className={(light ? 'text-slate-900' : 'text-slate-200') + ' dark:text-slate-300 text-xs mb-5 flex-1'}>{project.tagline}</p>
 
                         {/* Key metrics removed per request */}
 

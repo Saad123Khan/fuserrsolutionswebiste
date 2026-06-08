@@ -32,16 +32,17 @@ export const metadata: Metadata = {
 
 const themeScript = `
   try {
-    var t = localStorage.getItem('theme') || 'dark';
-    document.documentElement.classList.toggle('dark', t === 'dark');
-  } catch(e) {
-    document.documentElement.classList.add('dark');
+    // Force light theme for all users (remove any dark class)
+    document.documentElement.classList.remove('dark');
+    try { localStorage.setItem('theme', 'light'); } catch {}
+  } catch (e) {
+    // ignore
   }
 `;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} dark`} suppressHydrationWarning>
+    <html lang="en" className={`${inter.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
