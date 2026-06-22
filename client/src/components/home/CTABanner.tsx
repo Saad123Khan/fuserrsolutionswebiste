@@ -4,7 +4,7 @@ import AnimatedSection from '@/components/ui/AnimatedSection';
 
 export default function CTABanner() {
   return (
-    <section className="py-24 relative overflow-hidden bg-slate-950">
+    <section className="py-24 relative overflow-hidden bg-[var(--c-bg-alt)]">
 
       {/* Glow */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -15,18 +15,18 @@ export default function CTABanner() {
 
       <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <AnimatedSection>
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-blue-500/25 mb-8">
-            <Shield size={13} className="text-blue-400" />
-            <span className="text-xs font-mono text-blue-400 tracking-wider">NDA--Backed Partnership</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/5 dark:bg-white/5 border border-blue-500/25 mb-8">
+            <Shield size={13} className="text-blue-600 dark:text-blue-400" />
+            <span className="text-xs font-mono text-blue-600 dark:text-blue-400 tracking-wider">NDA--Backed Partnership</span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            <span className="text-white">Scale your agency</span>
+            <span className="text-slate-900 dark:text-white">Scale your agency</span>
             <br />
             <span className="text-gradient">without hiring.</span>
           </h2>
 
-          <p className="text-lg text-slate-400 mb-10 max-w-xl mx-auto">
+          <p className="text-lg text-slate-500 dark:text-slate-400 mb-10 max-w-xl mx-auto">
             Tell us about your client&apos;s project. We&apos;ll respond within 24 hours
             with a clear proposal — ready to go under your brand.
           </p>
@@ -49,8 +49,8 @@ export default function CTABanner() {
               { value: '100%',   label: 'Your brand' },
             ].map(({ value, label }) => (
               <div key={label} className="text-center">
-                <div className="text-lg font-bold text-blue-400">{value}</div>
-                <div className="text-xs text-slate-500 mt-0.5">{label}</div>
+                <div className="text-lg font-bold text-blue-600 dark:text-blue-400">{value}</div>
+                <div className="text-xs text-slate-500 dark:text-slate-500 mt-0.5">{label}</div>
               </div>
             ))}
           </div>
