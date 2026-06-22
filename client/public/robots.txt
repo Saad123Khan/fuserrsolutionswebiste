@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /privacy-policy
+Disallow: /terms-of-service
+Disallow: /cookie-policy
+
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+
+Sitemap: https://fuserrsolutions.com/sitemap.xml
+Host: https://fuserrsolutions.com
