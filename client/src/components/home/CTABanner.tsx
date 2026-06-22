@@ -17,7 +17,7 @@ export default function CTABanner() {
         <AnimatedSection>
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-blue-500/25 mb-8">
             <Shield size={13} className="text-blue-400" />
-            <span className="text-xs font-mono text-blue-400 tracking-wider">NDA-Backed Partnership</span>
+            <span className="text-xs font-mono text-blue-400 tracking-wider">NDA--Backed Partnership</span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
