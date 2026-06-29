@@ -181,8 +181,8 @@ export default function ProjectDetailPage() {
                             {p.title.trim()[0]}
                           </div>
                           <div>
-                            <div className="text-sm font-semibold text-white leading-tight">{p.title}</div>
-                            <div className="text-xs font-mono text-white/80">{p.industry}</div>
+                            <div className="text-sm font-semibold text-slate-900 dark:text-white leading-tight">{p.title}</div>
+                            <div className="text-xs font-mono text-slate-700 dark:text-[#94A3B8]">{p.industry}</div>
                           </div>
                         </div>
                       </div>
@@ -192,8 +192,8 @@ export default function ProjectDetailPage() {
                           <Badge variant={badgeVariants[p.industry] ?? 'blue'}>{p.industry}</Badge>
                         </div>
 
-                        <h3 className="font-semibold text-base mb-1.5 transition-colors text-white group-hover:text-blue-600">{p.title}</h3>
-                        <p className="text-sm text-slate-500 mb-4">{p.tagline}</p>
+                        <h3 className="font-semibold text-base mb-1.5 transition-colors text-slate-900 dark:text-white group-hover:text-blue-600">{p.title}</h3>
+                        <p className="text-sm text-slate-700 mb-4">{p.tagline}</p>
                       </div>
                     </div>
                   </Link>

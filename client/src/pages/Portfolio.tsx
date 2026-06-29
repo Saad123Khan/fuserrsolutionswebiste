@@ -91,7 +91,7 @@ export default function PortfolioPage() {
                           <Badge variant={badgeVariants[project.industry] ?? 'blue'}>{project.industry}</Badge>
                         </div>
 
-                        <h2 className={"font-bold text-base md:text-lg mb-1.5 transition-colors text-white group-hover:text-blue-600"}>
+                        <h2 className={"font-bold text-base md:text-lg mb-1.5 transition-colors text-slate-900 dark:text-[#E8E8E8] group-hover:text-blue-600"}>
                           {project.title}
                         </h2>
                         <p className={(light ? 'text-slate-500' : 'text-slate-200') + ' text-xs mb-5 flex-1'}>{project.tagline}</p>
