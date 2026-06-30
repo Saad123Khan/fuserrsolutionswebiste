@@ -26,7 +26,7 @@ const cols = [
 
 const socials = [
   { icon: Linkedin, href: 'https://linkedin.com/company/fuserrsolutions', label: 'LinkedIn' },
-  { icon: Github,   href: 'https://github.com/fuserrsolutions',           label: 'GitHub' },
+  { icon: Github,   href: 'https://github.com/Saad123Khan',                label: 'GitHub' },
   { icon: Twitter,  href: 'https://twitter.com/fuserrsolutions',           label: 'Twitter' },
 ];
 
