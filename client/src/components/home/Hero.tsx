@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export default function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-28 pb-20 bg-white dark:bg-navy-950">
+    <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden pt-32 pb-20 bg-white dark:bg-navy-950">
       {/* Soft gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-blue-50/20 via-transparent to-transparent dark:from-blue-950/10 pointer-events-none" />
 

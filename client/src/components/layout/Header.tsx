@@ -30,7 +30,7 @@ export default function Header() {
     <header className="fixed top-3 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8">
       <div
         className={cn(
-          'max-w-7xl mx-auto bg-white/95 dark:bg-navy-900/90 backdrop-blur-md border rounded-2xl px-6 py-1.5 flex items-center justify-between transition-all duration-300',
+          'max-w-7xl mx-auto bg-indigo-50/95 dark:bg-navy-900/90 backdrop-blur-md border rounded-2xl px-6 py-4 flex items-center justify-between transition-all duration-300',
           scrolled
             ? 'border-slate-200/80 dark:border-navy-500/50 shadow-md shadow-slate-100/50 dark:shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
             : 'border-slate-100/40 dark:border-navy-500/20 shadow-sm'
@@ -87,7 +87,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden mt-1.5 bg-white/95 dark:bg-navy-900/95 backdrop-blur-md border border-slate-200/50 dark:border-navy-500/50 rounded-xl p-3 shadow-xl">
+        <div className="lg:hidden mt-1.5 bg-indigo-50/95 dark:bg-navy-900/95 backdrop-blur-md border border-slate-200/50 dark:border-navy-500/50 rounded-xl p-3 shadow-xl">
           <nav className="space-y-0.5">
             {navLinks.map((link) => (
               <Link

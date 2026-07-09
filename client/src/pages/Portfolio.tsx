@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 import { projects } from '@/data/projects';
 import Badge from '@/components/ui/Badge';
-import { isColorLight } from '@/lib/utils';
 import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection';
 import { useDocumentTitle } from '@/lib/useDocumentTitle';
 
@@ -32,10 +31,7 @@ function ProjectVisual({ color, title, industry, cover }: { color: string; title
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-        <div className="absolute bottom-4 left-5 flex items-center gap-2.5 z-10">
-          <div className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-900 font-bold text-base shadow" style={{ background: '#D1D5DB' }}>
-            {title.trim()[0]}
-          </div>
+        <div className="absolute bottom-4 left-5 z-10">
           <span className="text-xs font-mono font-semibold text-white/95">{industry}</span>
         </div>
       </div>
@@ -77,7 +73,6 @@ export default function PortfolioPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {projects.map((project) => {
-              const light = isColorLight(project.color);
               return (
                 <StaggerItem key={project.slug}>
                   <Link to={`/portfolio/${project.slug}`} className="group block h-full">
@@ -91,20 +86,13 @@ export default function PortfolioPage() {
                           <Badge variant={badgeVariants[project.industry] ?? 'blue'}>{project.industry}</Badge>
                         </div>
 
-                        <h2 className={"font-bold text-base md:text-lg mb-1.5 transition-colors text-slate-900 dark:text-[#E8E8E8] group-hover:text-blue-600"}>
+                        <h2 className={"font-bold text-base md:text-lg mb-1.5 transition-colors text-slate-900 dark:text-[#E8E8E8] group-hover:text-blue-600 flex-1"}>
                           {project.title}
                         </h2>
-                        <p className={(light ? 'text-slate-500' : 'text-slate-200') + ' text-xs mb-5 flex-1'}>{project.tagline}</p>
 
                         {/* Key metrics removed per request */}
 
-                        {/* Tech + arrow */}
-                        <div className="flex items-center justify-between">
-                          <div className="flex flex-wrap gap-2">
-                            {project.tech.slice(0, 3).map((t) => (
-                              <span key={t} style={{ background: light ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.25)', color: light ? '#0f172a' : '#e6eef8' }} className="inline-flex items-center px-2 py-0.5 text-xs rounded-full">{t}</span>
-                            ))}
-                          </div>
+                        <div className="flex items-center justify-end">
                           <ArrowUpRight size={15} className="text-slate-300 dark:text-[#2A3550] group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors shrink-0" />
                         </div>
                       </div>

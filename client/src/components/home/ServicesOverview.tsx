@@ -12,7 +12,6 @@ const services = [
     description: 'Responsive, SEO-friendly web apps delivered under your brand — from React/Next.js frontends to full-stack SaaS platforms.',
     href: '/services#web',
     accent: '#3B82F6',
-    tags: ['React', 'Next.js', 'Vue', 'Angular'],
   },
   {
     icon: Server,
@@ -20,7 +19,6 @@ const services = [
     description: 'Scalable, secure backends with REST/GraphQL APIs. We handle architecture so your clients get rock-solid infrastructure.',
     href: '/services#backend',
     accent: '#06B6D4',
-    tags: ['Node.js', 'Laravel', 'Python', '.NET'],
   },
   {
     icon: Smartphone,
@@ -28,7 +26,6 @@ const services = [
     description: 'White-label iOS & Android apps built cross-platform or native — delivered as your agency\'s own work.',
     href: '/services#mobile',
     accent: '#8B5CF6',
-    tags: ['React Native', 'Flutter', 'Swift', 'Kotlin'],
   },
   {
     icon: Package,
@@ -36,7 +33,6 @@ const services = [
     description: 'End-to-end SaaS builds from MVP to enterprise scale — multi-tenancy, subscription billing, and full lifecycle support.',
     href: '/services#saas',
     accent: '#F59E0B',
-    tags: ['SaaS', 'Multi-tenant', 'Stripe', 'AWS'],
   },
   {
     icon: Plug,
@@ -44,7 +40,6 @@ const services = [
     description: 'Connect systems seamlessly — CRM, payment gateways, ERP, analytics, and custom integrations your clients need.',
     href: '/services#integrations',
     accent: '#10B981',
-    tags: ['REST', 'GraphQL', 'Webhooks', 'OAuth'],
   },
   {
     icon: Layers,
@@ -52,7 +47,6 @@ const services = [
     description: 'Pixel-perfect HTML/CSS from Figma or Sketch designs. We translate your clients\' vision into flawless, production-ready UI.',
     href: '/services#ui',
     accent: '#EC4899',
-    tags: ['Figma', 'Tailwind', 'Design Systems', 'A11y'],
   },
 ];
 
@@ -103,15 +97,9 @@ export default function ServicesOverview() {
                     <h3 className="text-slate-900 dark:text-[#E8E8E8] font-semibold text-lg mb-3 group-hover:text-blue-600 dark:group-hover:text-white transition-colors">
                       {service.title}
                     </h3>
-                    <p className="text-slate-500 dark:text-[#94A3B8] text-sm leading-relaxed mb-6">
+                    <p className="text-slate-500 dark:text-[#94A3B8] text-sm leading-relaxed">
                       {service.description}
                     </p>
-
-                    <div className="flex flex-wrap gap-1.5">
-                      {service.tags.map((tag) => (
-                        <span key={tag} className="tech-tag">{tag}</span>
-                      ))}
-                    </div>
                   </div>
 
                   <ArrowUpRight

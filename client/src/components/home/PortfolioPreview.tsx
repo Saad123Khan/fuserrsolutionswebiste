@@ -38,16 +38,9 @@ function ProjectImage({ color, title, industry, height = 'h-44', cover }: { colo
 
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
 
-        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between z-10">
-          <div className="flex items-start gap-3">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center text-slate-900 font-bold text-base shadow-sm" style={{ background: '#D1D5DB' }}>
-              {title.trim()[0]}
-            </div>
-            <div>
-              <div className="text-sm font-semibold text-white leading-tight">{title}</div>
-              <div className="text-xs font-mono text-white/80">{industry}</div>
-            </div>
-          </div>
+        <div className="absolute bottom-4 left-4 right-4 z-10">
+          <div className="text-sm font-semibold text-white leading-tight">{title}</div>
+          <div className="text-xs font-mono text-white/80">{industry}</div>
         </div>
       </div>
     </div>
@@ -74,27 +67,28 @@ export default function PortfolioPreview() {
           </Link>
         </AnimatedSection>
 
-        {/* Grid: 2x2 (two cards per row) */}
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-5">
-          {preview.map((project) => {
-            const light = isColorLight(project.color);
-            return (
-              <StaggerItem key={project.slug}>
-                <Link to={`/portfolio/${project.slug}`} className="group block h-full">
-                  <div style={{ ['--accent' as any]: project.color }} className="h-full rounded-3xl overflow-hidden border border-slate-100 dark:border-navy-700 bg-white/60 dark:bg-navy-800/40 backdrop-blur-sm shadow-lg hover:shadow-2xl transform-gpu hover:-translate-y-1 transition-all duration-300 flex flex-col">
-                    <ProjectImage color={project.color} title={project.title} industry={project.industry} height="h-72" cover={project.cover} />
+        {/* Grid: 2x2 — larger, editorial cards */}
+        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {preview.map((project) => (
+            <StaggerItem key={project.slug}>
+              <Link to={`/portfolio/${project.slug}`} className="group block h-full">
+                <div style={{ ['--accent' as any]: project.color }} className="h-full rounded-2xl overflow-hidden border border-slate-100 dark:border-navy-700 bg-white/60 dark:bg-navy-800/40 backdrop-blur-sm shadow-lg hover:shadow-2xl transform-gpu hover:-translate-y-1 transition-all duration-300 flex flex-col">
+                  <ProjectImage color={project.color} title={project.title} industry={project.industry} cover={project.cover} />
 
-                    <div className="p-4 flex items-center justify-between gap-4">
-                      <div className="flex-1 min-w-0">
-                        <p className={(light ? 'text-[13px] text-slate-600' : 'text-[13px] text-slate-300') + ' truncate'}>{project.tagline}</p>
-                      </div>
-                      <ArrowUpRight size={16} className="text-slate-400 dark:text-[#2A3550] group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors shrink-0" />
+                  <div className="p-5 flex items-center justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-slate-900 dark:text-[#E8E8E8] font-medium text-sm truncate">
+                        {project.tagline}
+                      </p>
                     </div>
+                    <span className="w-8 h-8 rounded-full flex items-center justify-center bg-slate-100 dark:bg-navy-700 group-hover:bg-blue-600 transition-colors shrink-0">
+                      <ArrowUpRight size={14} className="text-slate-500 dark:text-[#94A3B8] group-hover:text-white transition-colors" />
+                    </span>
                   </div>
-                </Link>
-              </StaggerItem>
-            );
-          })}
+                </div>
+              </Link>
+            </StaggerItem>
+          ))}
         </StaggerContainer>
       </div>
     </section>

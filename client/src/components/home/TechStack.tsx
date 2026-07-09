@@ -1,45 +1,47 @@
-
+import type { IconType } from 'react-icons';
+import {
+  SiNextdotjs, SiReact, SiVuedotjs, SiTypescript, SiTailwindcss, SiFramer,
+  SiNodedotjs, SiGo, SiPython, SiFastapi, SiNestjs, SiGraphql,
+  SiPytorch, SiTensorflow, SiHuggingface,
+  SiFlutter, SiSwift, SiKotlin, SiExpo,
+  SiPostgresql, SiMongodb, SiRedis, SiElasticsearch, SiApachekafka,
+  SiGooglecloud, SiKubernetes, SiDocker, SiTerraform,
+} from 'react-icons/si';
+import { FaAws } from 'react-icons/fa6';
 import SectionTitle from '@/components/ui/SectionTitle';
-import AnimatedSection from '@/components/ui/AnimatedSection';
+import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection';
 
-const techCategories = [
-  {
-    label: 'Frontend',
-    items: ['Next.js', 'React', 'Vue.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-  },
-  {
-    label: 'Backend',
-    items: ['Node.js', 'Go', 'Python', 'FastAPI', 'NestJS', 'GraphQL'],
-  },
-  {
-    label: 'AI / ML',
-    items: ['PyTorch', 'TensorFlow', 'OpenAI', 'LangChain', 'Hugging Face', 'ONNX'],
-  },
-  {
-    label: 'Mobile',
-    items: ['React Native', 'Flutter', 'Swift', 'Kotlin', 'Expo', 'Capacitor'],
-  },
-  {
-    label: 'Data',
-    items: ['PostgreSQL', 'MongoDB', 'Redis', 'Elasticsearch', 'TimescaleDB', 'Kafka'],
-  },
-  {
-    label: 'Cloud & DevOps',
-    items: ['AWS', 'GCP', 'Azure', 'Kubernetes', 'Docker', 'Terraform'],
-  },
+const technologies: { name: string; icon: IconType }[] = [
+  { name: 'Next.js', icon: SiNextdotjs },
+  { name: 'React', icon: SiReact },
+  { name: 'Vue.js', icon: SiVuedotjs },
+  { name: 'TypeScript', icon: SiTypescript },
+  { name: 'Tailwind CSS', icon: SiTailwindcss },
+  { name: 'Framer', icon: SiFramer },
+  { name: 'Node.js', icon: SiNodedotjs },
+  { name: 'Go', icon: SiGo },
+  { name: 'Python', icon: SiPython },
+  { name: 'FastAPI', icon: SiFastapi },
+  { name: 'NestJS', icon: SiNestjs },
+  { name: 'GraphQL', icon: SiGraphql },
+  { name: 'PyTorch', icon: SiPytorch },
+  { name: 'TensorFlow', icon: SiTensorflow },
+  { name: 'Hugging Face', icon: SiHuggingface },
+  { name: 'Flutter', icon: SiFlutter },
+  { name: 'Swift', icon: SiSwift },
+  { name: 'Kotlin', icon: SiKotlin },
+  { name: 'Expo', icon: SiExpo },
+  { name: 'PostgreSQL', icon: SiPostgresql },
+  { name: 'MongoDB', icon: SiMongodb },
+  { name: 'Redis', icon: SiRedis },
+  { name: 'Elasticsearch', icon: SiElasticsearch },
+  { name: 'Kafka', icon: SiApachekafka },
+  { name: 'AWS', icon: FaAws },
+  { name: 'Google Cloud', icon: SiGooglecloud },
+  { name: 'Kubernetes', icon: SiKubernetes },
+  { name: 'Docker', icon: SiDocker },
+  { name: 'Terraform', icon: SiTerraform },
 ];
-
-const row1 = techCategories.slice(0, 3).flatMap((c) => c.items);
-const row2 = techCategories.slice(3).flatMap((c) => c.items);
-
-function TechChip({ label }: { label: string }) {
-  return (
-    <span className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-slate-200 dark:border-navy-500/50 bg-white dark:bg-navy-800/50 text-sm text-slate-500 dark:text-[#94A3B8] font-mono whitespace-nowrap hover:border-blue-400 dark:hover:border-blue-600/40 hover:text-blue-600 dark:hover:text-blue-300 transition-colors cursor-default">
-      <span className="w-1 h-1 rounded-full bg-blue-500/60" />
-      {label}
-    </span>
-  );
-}
 
 export default function TechStack() {
   return (
@@ -58,40 +60,22 @@ export default function TechStack() {
         </AnimatedSection>
       </div>
 
-      {/* Category grid */}
-      <AnimatedSection className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16" delay={0.2}>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {techCategories.map((cat) => (
-            <div key={cat.label} className="rounded-xl border border-slate-200 dark:border-navy-500/40 bg-white dark:bg-navy-800/40 p-4">
-              <div className="text-xs font-mono text-blue-600 dark:text-blue-400 tracking-wider uppercase mb-3">
-                {cat.label}
-              </div>
-              <div className="space-y-1.5">
-                {cat.items.map((item) => (
-                  <div key={item} className="text-xs text-slate-500 dark:text-[#94A3B8] flex items-center gap-1.5">
-                    <span className="w-1 h-1 rounded-full bg-slate-300 dark:bg-navy-500 shrink-0" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
+      {/* Logo grid */}
+      <AnimatedSection className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8" delay={0.15}>
+        <StaggerContainer className="flex flex-wrap justify-center gap-x-10 gap-y-10 sm:gap-x-12">
+          {technologies.map(({ name, icon: Icon }) => (
+            <StaggerItem key={name} className="flex flex-col items-center w-24">
+              <Icon
+                size={34}
+                className="text-slate-400 dark:text-[#64748B] hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-200"
+              />
+              <span className="mt-3 text-[11px] font-mono font-medium text-slate-500 dark:text-[#94A3B8] uppercase tracking-wide text-center leading-tight">
+                {name}
+              </span>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
       </AnimatedSection>
-
-      {/* Marquee rows */}
-      <div className="space-y-4 overflow-hidden">
-        <div className="flex animate-marquee gap-4 w-max">
-          {[...row1, ...row1].map((item, i) => (
-            <TechChip key={`r1-${i}`} label={item} />
-          ))}
-        </div>
-        <div className="flex animate-marquee-reverse gap-4 w-max">
-          {[...row2, ...row2].map((item, i) => (
-            <TechChip key={`r2-${i}`} label={item} />
-          ))}
-        </div>
-      </div>
     </section>
   );
 }
