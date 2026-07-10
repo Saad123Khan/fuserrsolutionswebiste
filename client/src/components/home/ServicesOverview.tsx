@@ -1,48 +1,48 @@
 
 import { Link } from 'react-router-dom';
-import { Globe, Server, Smartphone, Package, Plug, Layers, ArrowUpRight } from 'lucide-react';
+import { MonitorSmartphone, ServerCog, TabletSmartphone, Blocks, Webhook, Palette, ArrowUpRight } from 'lucide-react';
 import SectionTitle from '@/components/ui/SectionTitle';
 import { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 
 const services = [
   {
-    icon: Globe,
+    icon: MonitorSmartphone,
     title: 'Web Application Development',
     description: 'Responsive, SEO-friendly web apps delivered under your brand — from React/Next.js frontends to full-stack SaaS platforms.',
     href: '/services#web',
     accent: '#3B82F6',
   },
   {
-    icon: Server,
+    icon: ServerCog,
     title: 'Backend & API Engineering',
     description: 'Scalable, secure backends with REST/GraphQL APIs. We handle architecture so your clients get rock-solid infrastructure.',
     href: '/services#backend',
     accent: '#06B6D4',
   },
   {
-    icon: Smartphone,
+    icon: TabletSmartphone,
     title: 'Mobile App Development',
     description: 'White-label iOS & Android apps built cross-platform or native — delivered as your agency\'s own work.',
     href: '/services#mobile',
     accent: '#8B5CF6',
   },
   {
-    icon: Package,
+    icon: Blocks,
     title: 'SaaS Product Development',
     description: 'End-to-end SaaS builds from MVP to enterprise scale — multi-tenancy, subscription billing, and full lifecycle support.',
     href: '/services#saas',
     accent: '#F59E0B',
   },
   {
-    icon: Plug,
+    icon: Webhook,
     title: 'API & Third-Party Integrations',
     description: 'Connect systems seamlessly — CRM, payment gateways, ERP, analytics, and custom integrations your clients need.',
     href: '/services#integrations',
     accent: '#10B981',
   },
   {
-    icon: Layers,
+    icon: Palette,
     title: 'UI/UX Implementation',
     description: 'Pixel-perfect HTML/CSS from Figma or Sketch designs. We translate your clients\' vision into flawless, production-ready UI.',
     href: '/services#ui',

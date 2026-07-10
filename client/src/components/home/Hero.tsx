@@ -35,7 +35,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-[76px] font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight max-w-4xl mx-auto"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight max-w-4xl mx-auto"
         >
           Digital Product Agency<br/>
           <span>You Can Grow With</span>
@@ -48,7 +48,9 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="mt-8 text-lg sm:text-xl text-slate-500 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed font-medium"
         >
-          We design, build, and scale digital products by combining strong product strategy, thoughtful design, and solid engineering.
+          Your invisible engineering partner for web, mobile &amp; SaaS. Expand your agency's
+          capacity with dedicated developers — 100% under your brand, NDA-secured, zero
+          visibility to your clients.
         </motion.p>
 
         {/* Buttons */}

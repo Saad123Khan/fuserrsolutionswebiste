@@ -27,19 +27,19 @@ export default function Header() {
   }, [pathname]);
 
   return (
-    <header className="fixed top-3 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8">
-      <div
-        className={cn(
-          'max-w-7xl mx-auto bg-indigo-50/95 dark:bg-navy-900/90 backdrop-blur-md border rounded-2xl px-6 py-4 flex items-center justify-between transition-all duration-300',
-          scrolled
-            ? 'border-slate-200/80 dark:border-navy-500/50 shadow-md shadow-slate-100/50 dark:shadow-[0_4px_30px_rgba(0,0,0,0.3)]'
-            : 'border-slate-100/40 dark:border-navy-500/20 shadow-sm'
-        )}
-      >
+    <header
+      className={cn(
+        'fixed top-0 left-0 right-0 z-50 bg-white dark:bg-navy-900 border-b transition-all duration-300',
+        scrolled
+          ? 'border-slate-200 dark:border-navy-500/50 shadow-sm'
+          : 'border-slate-100 dark:border-navy-500/20'
+      )}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-3 group select-none">
-          <div className="relative w-10 h-10 rounded-xl overflow-hidden shadow-sm">
-            <img src="/logo.jpg" alt="Fuserr Solutions" className="absolute inset-0 w-full h-full object-cover" />
+        <Link to="/" className="flex items-center gap-0.5 group select-none">
+          <div className="relative w-14 h-14">
+            <img src="/favicon.png" alt="Fuserr Solutions" className="absolute inset-0 w-full h-full object-contain" />
           </div>
           <div className="leading-tight">
             <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-[#E8E8E8]">
@@ -87,7 +87,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden mt-1.5 bg-indigo-50/95 dark:bg-navy-900/95 backdrop-blur-md border border-slate-200/50 dark:border-navy-500/50 rounded-xl p-3 shadow-xl">
+        <div className="lg:hidden bg-white dark:bg-navy-900 border-t border-slate-100 dark:border-navy-500/50 px-4 py-3 shadow-sm">
           <nav className="space-y-0.5">
             {navLinks.map((link) => (
               <Link

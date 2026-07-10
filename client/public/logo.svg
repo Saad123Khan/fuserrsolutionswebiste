@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <defs>
+    <linearGradient id="fMark" x1="10" y1="8" x2="36" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1D4ED8" />
+      <stop offset="100%" stop-color="#38BDF8" />
+    </linearGradient>
+  </defs>
+  <path
+    d="M19 9 H33 L24.5 22 H15.5 L11 29 V22 L19 9 Z"
+    fill="url(#fMark)"
+  />
+  <path
+    d="M23 21 H32.5 L26.5 30.5 H19.5 L14.5 39 V31 L23 21 Z"
+    fill="url(#fMark)"
+  />
+</svg>

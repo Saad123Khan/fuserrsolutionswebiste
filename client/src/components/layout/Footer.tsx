@@ -54,8 +54,8 @@ export default function Footer() {
           {/* Brand — col 1-4 */}
           <div className="lg:col-span-4">
             <Link to="/" className="flex items-center gap-3 mb-6 w-fit">
-              <div className="relative w-11 h-11 rounded-xl overflow-hidden shadow-md">
-                <img src="/logo.jpg" alt="Fuserr Solutions" className="absolute inset-0 w-full h-full object-cover" />
+              <div className="relative w-11 h-11">
+                <img src="/favicon.png" alt="Fuserr Solutions" className="absolute inset-0 w-full h-full object-contain" />
               </div>
               <div>
                 <div className="text-xl font-black tracking-tight text-slate-900 dark:text-white">

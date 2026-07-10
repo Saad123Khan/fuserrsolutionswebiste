@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowUpRight, Shield, EyeOff, Users, Clock } from 'lucide-react';
+import { ArrowUpRight, Tag, CalendarCheck, UserCheck, FileLock2 } from 'lucide-react';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 
 const leftStats = [
@@ -30,25 +30,25 @@ const rightStats = [
 
 const pillars = [
   {
-    icon: EyeOff,
+    icon: Tag,
     title: '100% White-Label',
     description:
       'We leave no trace. All deliverables carry your brand — zero external credits, zero client-side visibility.',
   },
   {
-    icon: Clock,
+    icon: CalendarCheck,
     title: 'On-Time, Every Time',
     description:
       '99.8% on-time delivery across 120+ projects. Our planning is rigorous so your promises to clients never slip.',
   },
   {
-    icon: Users,
+    icon: UserCheck,
     title: 'Dedicated Dev Team',
     description:
       'Senior engineers matched to your stack, assigned exclusively to your projects with a dedicated PM.',
   },
   {
-    icon: Shield,
+    icon: FileLock2,
     title: 'NDA-Backed & Secure',
     description:
       'We sign NDAs before any discussion. Your client relationships and IP are legally protected, always.',
