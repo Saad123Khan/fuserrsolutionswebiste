@@ -9,6 +9,11 @@ export default function Hero() {
       {/* Soft gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-blue-50/20 via-transparent to-transparent dark:from-blue-950/10 pointer-events-none" />
 
+      {/* Grid pattern background */}
+      <div
+        className="absolute inset-0 bg-[linear-gradient(to_right,rgba(15,23,42,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.06)_1px,transparent_1px)] dark:bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)] bg-[size:44px_44px] pointer-events-none [mask-image:radial-gradient(ellipse_60%_60%_at_50%_35%,#000_10%,transparent_75%)]"
+      />
+
       {/* Decorative Orbs */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-[350px] h-[350px] rounded-full bg-purple-200/20 dark:bg-purple-900/10 blur-[80px] pointer-events-none" />
       <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[400px] h-[400px] rounded-full bg-blue-100/30 dark:bg-blue-950/10 blur-[100px] pointer-events-none" />
