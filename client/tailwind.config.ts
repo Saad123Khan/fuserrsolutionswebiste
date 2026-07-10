@@ -30,6 +30,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        montserrat: ['Montserrat', 'Arial', 'sans-serif'],
         mono: ['JetBrains Mono', 'monospace'],
       },
       backgroundImage: {

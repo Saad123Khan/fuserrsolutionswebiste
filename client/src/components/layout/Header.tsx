@@ -68,8 +68,8 @@ export default function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-4">
-          <Button href="/contact" variant="primary" size="sm" className="rounded-xl px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all shadow-md">
-            Start a Project
+          <Button href="/contact" variant="primary" size="sm" className="rounded-lg px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-montserrat font-medium transition-all shadow-md hover:shadow-lg hover:shadow-blue-500/25">
+            Let's talk
           </Button>
         </div>
 
@@ -104,8 +104,8 @@ export default function Header() {
               </Link>
             ))}
             <div className="pt-2 mt-2 border-t border-slate-200 dark:border-navy-500/50">
-              <Button href="/contact" variant="primary" size="md" className="w-full justify-center rounded-lg py-2 bg-blue-600 text-white font-bold text-sm">
-                Start a Project
+              <Button href="/contact" variant="primary" size="md" className="w-full justify-center rounded-lg py-2 bg-blue-600 text-white font-montserrat font-medium text-sm">
+                Let's talk
               </Button>
             </div>
           </nav>

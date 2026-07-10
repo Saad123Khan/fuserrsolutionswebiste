@@ -20,22 +20,25 @@ export default function Hero() {
         <motion.div
           animate={{ y: [0, -8, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute -left-6 top-1/4 w-3.5 h-3.5 bg-purple-500 rounded-full opacity-70 hidden md:block"
+          className="absolute -left-6 top-1/4 w-3.5 h-3.5 bg-purple-500 rounded-full opacity-70 shadow-[0_0_20px_6px_rgba(168,85,247,0.55)] hidden md:block"
         />
 
         {/* Cyan ring */}
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-          className="absolute -left-1 top-1/2 w-4.5 h-4.5 border-2 border-cyan-400 rounded-full opacity-70 hidden md:block"
+          className="absolute -left-1 top-1/2 w-4.5 h-4.5 border-2 border-cyan-400 rounded-full opacity-70 shadow-[0_0_18px_4px_rgba(34,211,238,0.45)] hidden md:block"
         />
+
+        {/* Soft spotlight behind headline */}
+        <div className="absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2 w-[640px] max-w-[90vw] h-[320px] bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.10),transparent_70%)] blur-2xl pointer-events-none -z-10" />
 
         {/* Main Headline */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-[64px] font-black text-slate-900 dark:text-white leading-[1.1] tracking-tight max-w-4xl mx-auto"
+          className="font-montserrat text-4xl sm:text-5xl md:text-5xl lg:text-[64px] font-extrabold text-slate-900 dark:text-white leading-[1.05] tracking-[0.02em] max-w-4xl mx-auto drop-shadow-[0_4px_18px_rgba(15,23,42,0.10)] dark:drop-shadow-[0_6px_28px_rgba(0,0,0,0.55)]"
         >
           Digital Product Agency<br/>
           <span>You Can Grow With</span>
@@ -46,7 +49,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="mt-8 text-lg sm:text-xl text-slate-500 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed font-medium"
+          className="mt-8 font-montserrat text-md sm:text-xl text-slate-500 dark:text-slate-400 max-w-3xl mx-auto leading-relaxed font-medium"
         >
           Your invisible engineering partner for web, mobile &amp; SaaS. Expand your agency's
           capacity with dedicated developers — 100% under your brand, NDA-secured, zero
@@ -64,14 +67,14 @@ export default function Hero() {
             href="/contact"
             variant="primary"
             size="lg"
-            className="w-full sm:w-auto rounded-xl px-8 py-4 font-bold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/35 transition-all hover:scale-[1.03]"
+            className="w-full sm:w-auto rounded-xl px-8 py-4 font-montserrat font-medium bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/35 transition-all hover:scale-[1.03]"
           >
             Get started
           </Button>
 
           <Link
             to="/portfolio"
-            className="group inline-flex items-center gap-2 text-base font-bold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+            className="group inline-flex items-center gap-2 text-base font-montserrat font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
           >
             View Our Work
             <ArrowRight size={18} className="group-hover:translate-x-1.5 transition-transform duration-200" />
