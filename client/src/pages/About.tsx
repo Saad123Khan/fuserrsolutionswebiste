@@ -71,7 +71,7 @@ export default function AboutPage() {
           <AnimatedSection>
             <div className="flex items-center justify-center gap-2 mb-6">
               <span className="w-6 h-px bg-blue-500" />
-              <span className="text-blue-600 dark:text-blue-400 text-sm font-mono tracking-widest uppercase">Why Us</span>
+              <span className="text-blue-600 dark:text-blue-400 text-sm font-mono tracking-widest uppercase">About</span>
               <span className="w-6 h-px bg-blue-500" />
             </div>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.06] tracking-tight mb-6">
@@ -89,7 +89,7 @@ export default function AboutPage() {
           <AnimatedSection delay={0.15}>
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-14 max-w-3xl mx-auto">
               {stats.map(({ value, label, sub }) => (
-                <div key={label} className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-5">
+                <div key={label} className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-5 hover:border-blue-500/40 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
                   <div className="text-2xl font-bold text-gradient mb-1">{value}</div>
                   <div className="text-sm font-medium text-slate-800 dark:text-[#E8E8E8] mb-0.5">{label}</div>
                   <div className="text-xs text-slate-400 dark:text-[#64748B]">{sub}</div>
@@ -161,7 +161,7 @@ export default function AboutPage() {
               const Icon = v.icon;
               return (
                 <StaggerItem key={v.title}>
-                  <div className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-7 h-full hover:border-blue-200 dark:hover:border-blue-500/40 transition-colors duration-300">
+                  <div className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-7 h-full hover:border-blue-200 dark:hover:border-blue-500/40 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
                     <div
                       className="w-11 h-11 rounded-xl flex items-center justify-center mb-5"
                       style={{ background: `${v.accent}15`, border: `1px solid ${v.accent}30` }}
@@ -201,7 +201,7 @@ export default function AboutPage() {
               { metric: '24h', label: 'Proposal Turnaround', detail: 'Detailed proposals within one business day' },
             ].map(({ metric, label, detail }) => (
               <AnimatedSection key={label}>
-                <div className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-6 text-center">
+                <div className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-6 text-center hover:border-blue-500/40 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
                   <div className="text-3xl font-bold text-gradient mb-2">{metric}</div>
                   <div className="text-slate-900 dark:text-[#E8E8E8] font-semibold mb-2">{label}</div>
                   <div className="text-xs text-slate-400 dark:text-[#64748B]">{detail}</div>

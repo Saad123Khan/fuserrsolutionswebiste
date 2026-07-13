@@ -1,4 +1,4 @@
-import { Globe, Server, Smartphone, Package, Plug, Layers, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Globe, Network, TabletSmartphone, Cloud, Workflow, PenTool, CheckCircle2, ArrowRight } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection';
 import CTABanner from '@/components/home/CTABanner';
@@ -25,7 +25,7 @@ const services = [
   },
   {
     id: 'backend',
-    icon: Server,
+    icon: Network,
     title: 'Backend & API Engineering',
     tagline: 'Scalable, secure backends your clients can rely on',
     description:
@@ -43,7 +43,7 @@ const services = [
   },
   {
     id: 'mobile',
-    icon: Smartphone,
+    icon: TabletSmartphone,
     title: 'Mobile App Development',
     tagline: 'White-label iOS & Android apps for your clients',
     description:
@@ -61,7 +61,7 @@ const services = [
   },
   {
     id: 'saas',
-    icon: Package,
+    icon: Cloud,
     title: 'SaaS Product Development',
     tagline: 'End-to-end SaaS from MVP to enterprise scale',
     description:
@@ -79,7 +79,7 @@ const services = [
   },
   {
     id: 'integrations',
-    icon: Plug,
+    icon: Workflow,
     title: 'API & Third-Party Integrations',
     tagline: 'Connect systems seamlessly for your clients',
     description:
@@ -97,7 +97,7 @@ const services = [
   },
   {
     id: 'ui',
-    icon: Layers,
+    icon: PenTool,
     title: 'UI/UX Implementation',
     tagline: 'Pixel-perfect builds from any design file',
     description:
@@ -166,9 +166,6 @@ export default function ServicesPage() {
                       <div className="text-xs font-mono text-slate-400 dark:text-[#64748B] uppercase tracking-wider mb-2">{s.tagline}</div>
                       <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 dark:text-[#E8E8E8] mb-5">{s.title}</h2>
                       <p className="text-slate-500 dark:text-[#94A3B8] leading-relaxed mb-8 max-w-md">{s.description}</p>
-                      <div className="flex flex-wrap gap-2 mb-8">
-                        {s.tech.map((t) => <span key={t} className="tech-tag">{t}</span>)}
-                      </div>
                       <div className="rounded-2xl p-5 border text-sm" style={{ background: `${s.accent}08`, borderColor: `${s.accent}22` }}>
                         <span style={{ color: s.accent }} className="font-semibold">Result: </span>
                         <span className="text-slate-500 dark:text-[#94A3B8]">{s.result}</span>
@@ -225,10 +222,6 @@ export default function ServicesPage() {
                           </li>
                         ))}
                       </ul>
-
-                      <div className="flex flex-wrap gap-1.5 mb-5">
-                        {s.tech.slice(0, 4).map((t) => <span key={t} className="tech-tag">{t}</span>)}
-                      </div>
 
                       <div className="rounded-xl p-3 border text-xs" style={{ background: `${s.accent}07`, borderColor: `${s.accent}20` }}>
                         <span style={{ color: s.accent }} className="font-semibold">Result: </span>

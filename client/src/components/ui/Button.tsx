@@ -30,7 +30,7 @@ export default function Button({
 
   const variants = {
     primary:
-      'btn-gradient text-white shadow-[0_4px_20px_rgba(37,99,235,0.35)] hover:shadow-[0_4px_30px_rgba(37,99,235,0.5)]',
+      'btn-gradient text-white shadow-[0_4px_20px_rgba(37,99,235,0.35)] hover:shadow-[0_4px_30px_rgba(37,99,235,0.5)] hover:scale-[1.02] active:scale-[0.98]',
     secondary:
       'bg-slate-100 dark:bg-navy-700 text-slate-800 dark:text-[#E8E8E8] hover:bg-slate-200 dark:hover:bg-navy-600 border border-slate-200 dark:border-navy-500 active:scale-[0.98]',
     ghost:

@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { motion, useScroll } from 'framer-motion';
 import {
   ClipboardList,
   FileText,
@@ -105,6 +107,12 @@ const tools = [
 export default function HowWeWorkPage() {
   useDocumentTitle('How It Works — 4-Step White-Label Development Process');
 
+  const roadmapRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: roadmapRef,
+    offset: ['start center', 'end center'],
+  });
+
   return (
     <>
       {/* ── Hero ── */}
@@ -143,8 +151,12 @@ export default function HowWeWorkPage() {
           </AnimatedSection>
 
           {/* Zigzag roadmap */}
-          <div className="relative">
-            <div className="absolute left-5 lg:left-1/2 lg:-translate-x-px top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/60 via-blue-500/20 to-transparent" />
+          <div ref={roadmapRef} className="relative">
+            <div className="absolute left-5 lg:left-1/2 lg:-translate-x-[1.5px] top-0 bottom-0 w-[3px] rounded-full bg-slate-200 dark:bg-navy-500/30" />
+            <motion.div
+              className="absolute left-5 lg:left-1/2 lg:-translate-x-[1.5px] top-0 bottom-0 w-[3px] rounded-full bg-blue-500 origin-top"
+              style={{ scaleY: scrollYProgress }}
+            />
 
             <div className="space-y-10 lg:space-y-12">
               {phases.map((phase, i) => {

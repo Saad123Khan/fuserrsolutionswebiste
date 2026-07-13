@@ -76,8 +76,8 @@ export default function ProcessPreview() {
               const Icon = step.icon;
               return (
                 <StaggerItem key={step.title}>
-                  <div className="flex flex-col items-center text-center">
-                    <div className="relative z-10 w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center">
+                  <div className="group flex flex-col items-center text-center">
+                    <div className="relative z-10 w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shadow-md shadow-blue-600/20 group-hover:shadow-lg group-hover:shadow-blue-600/40">
                       <Icon size={18} className="text-white" />
                     </div>
                     <h3 className="mt-5 text-lg font-bold text-slate-900">{step.title}</h3>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import Button from '@/components/ui/Button';
@@ -86,31 +87,39 @@ export default function Header() {
       </div>
 
       {/* Mobile Menu */}
-      {mobileOpen && (
-        <div className="lg:hidden bg-white dark:bg-navy-900 border-t border-slate-100 dark:border-navy-500/50 px-4 py-3 shadow-sm">
-          <nav className="space-y-0.5">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.href}
-                className={cn(
-                  'block px-3 py-2 text-sm font-medium rounded-lg transition-colors',
-                  pathname === link.href || pathname.startsWith(link.href + '/')
-                    ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-600/10'
-                    : 'text-slate-700 dark:text-[#94A3B8] hover:bg-slate-50 dark:hover:bg-navy-800'
-                )}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <div className="pt-2 mt-2 border-t border-slate-200 dark:border-navy-500/50">
-              <Button href="/contact" variant="primary" size="md" className="w-full justify-center rounded-lg py-2 bg-blue-600 text-white font-montserrat font-medium text-sm">
-                Let's talk
-              </Button>
-            </div>
-          </nav>
-        </div>
-      )}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+            className="lg:hidden bg-white dark:bg-navy-900 border-t border-slate-100 dark:border-navy-500/50 overflow-hidden"
+          >
+            <nav className="space-y-0.5 px-4 py-3 shadow-sm">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  className={cn(
+                    'block px-3 py-2 text-sm font-medium rounded-lg transition-colors',
+                    pathname === link.href || pathname.startsWith(link.href + '/')
+                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-600/10'
+                      : 'text-slate-700 dark:text-[#94A3B8] hover:bg-slate-50 dark:hover:bg-navy-800'
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="pt-2 mt-2 border-t border-slate-200 dark:border-navy-500/50">
+                <Button href="/contact" variant="primary" size="md" className="w-full justify-center rounded-lg py-2 bg-blue-600 text-white font-montserrat font-medium text-sm">
+                  Let's talk
+                </Button>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

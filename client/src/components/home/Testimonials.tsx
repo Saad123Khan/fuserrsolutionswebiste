@@ -79,13 +79,15 @@ export default function Testimonials() {
           <StaggerContainer className="grid sm:grid-cols-2 gap-x-12 gap-y-12">
             {testimonials.map((t) => (
               <StaggerItem key={t.author}>
-                <p className="text-slate-900 dark:text-[#E8E8E8] text-lg leading-relaxed mb-5">
-                  {t.quote}
-                </p>
-                <div className="text-xs font-mono tracking-wide">
-                  <div className="text-slate-900 dark:text-[#E8E8E8] font-semibold uppercase">{t.author}</div>
-                  <div className="text-slate-400 dark:text-[#64748B] uppercase mt-0.5">
-                    {t.role}, {t.company}
+                <div className="group pl-5 border-l-2 border-slate-200 dark:border-navy-500/40 hover:border-blue-500 transition-colors duration-300">
+                  <p className="text-slate-900 dark:text-[#E8E8E8] text-lg leading-relaxed mb-5 transition-transform duration-300 group-hover:translate-x-1">
+                    {t.quote}
+                  </p>
+                  <div className="text-xs font-mono tracking-wide">
+                    <div className="text-slate-900 dark:text-[#E8E8E8] font-semibold uppercase">{t.author}</div>
+                    <div className="text-slate-400 dark:text-[#64748B] uppercase mt-0.5">
+                      {t.role}, {t.company}
+                    </div>
                   </div>
                 </div>
               </StaggerItem>
