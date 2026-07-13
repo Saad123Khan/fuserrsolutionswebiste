@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 import { ArrowUpRight, ClipboardList, FileText, Code2, Rocket } from 'lucide-react';
 import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection';
 
@@ -26,6 +28,9 @@ const steps = [
 ];
 
 export default function ProcessPreview() {
+  const lineRef = useRef(null);
+  const lineInView = useInView(lineRef, { once: true, margin: '-60px' });
+
   return (
     <section className="py-24 lg:py-32 bg-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,7 +62,14 @@ export default function ProcessPreview() {
 
         {/* Desktop — timeline */}
         <div className="hidden sm:block relative">
-          <div className="absolute top-7 left-[12.5%] right-[12.5%] h-1 rounded-full bg-blue-600" aria-hidden="true" />
+          <div ref={lineRef} className="absolute top-6 left-[12.5%] right-[12.5%] h-1 rounded-full bg-blue-600/15 overflow-hidden" aria-hidden="true">
+            <motion.div
+              className="h-full rounded-full bg-blue-600 origin-left"
+              initial={{ scaleX: 0 }}
+              animate={lineInView ? { scaleX: 1 } : { scaleX: 0 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            />
+          </div>
 
           <StaggerContainer className="relative grid grid-cols-4 gap-6">
             {steps.map((step) => {
@@ -65,8 +77,8 @@ export default function ProcessPreview() {
               return (
                 <StaggerItem key={step.title}>
                   <div className="flex flex-col items-center text-center">
-                    <div className="relative z-10 w-14 h-14 rounded-full bg-blue-600 flex items-center justify-center">
-                      <Icon size={22} className="text-white" />
+                    <div className="relative z-10 w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center">
+                      <Icon size={18} className="text-white" />
                     </div>
                     <h3 className="mt-5 text-lg font-bold text-slate-900">{step.title}</h3>
                     <p className="mt-2 text-sm text-slate-500 leading-relaxed max-w-[220px]">{step.description}</p>

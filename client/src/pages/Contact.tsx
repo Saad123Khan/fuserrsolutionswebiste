@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle2, MessageSquare } from 'lucide-react';
+import { AtSign, PhoneCall, Building2, Timer, Send, CheckCircle2, MessageSquare } from 'lucide-react';
 import Button from '@/components/ui/Button';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { useDocumentTitle } from '@/lib/useDocumentTitle';
@@ -117,10 +117,10 @@ export default function ContactPage() {
                 </h2>
                 <div className="space-y-5">
                   {[
-                    { icon: Mail,   label: 'Email',         value: 'contact@fuserrsolutions.com', href: 'mailto:contact@fuserrsolutions.com' },
-                    { icon: Phone,  label: 'Phone',         value: '+92 333 7804685',          href: 'tel:+923337804685' },
-                    { icon: MapPin, label: 'Offices',       value: 'Ground Floor 1-H-1/22, Nazimabad no 1, Karachi, Pakistan. · Remote', href: null },
-                    { icon: Clock,  label: 'Response Time', value: '< 24 hours',                 href: null },
+                    { icon: AtSign,   label: 'Email',         value: 'contact@fuserrsolutions.com', href: 'mailto:contact@fuserrsolutions.com' },
+                    { icon: PhoneCall, label: 'Phone',        value: '+92 333 7804685',          href: 'tel:+923337804685' },
+                    { icon: Building2, label: 'Offices',      value: 'Ground Floor 1-H-1/22, Nazimabad no 1, Karachi, Pakistan. · Remote', href: null },
+                    { icon: Timer,    label: 'Response Time', value: '< 24 hours',                 href: null },
                   ].map(({ icon: Icon, label, value, href }) => (
                     <div key={label} className="flex items-start gap-4">
                       <div className="w-9 h-9 rounded-lg bg-blue-600/10 border border-blue-600/20 flex items-center justify-center shrink-0">
