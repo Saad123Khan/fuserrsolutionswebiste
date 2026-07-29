@@ -1,3 +1,8 @@
+<<<<<<< HEAD:client/src/components/ui/ThemeToggle.tsx
+=======
+'use client';
+
+>>>>>>> 5db3e3c943797ca8fe8cd32e36d83861a51bce17:src/components/ui/ThemeToggle.tsx
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Moon, Sun } from 'lucide-react';

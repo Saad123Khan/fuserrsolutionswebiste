@@ -129,7 +129,11 @@ export default function IndustriesPage() {
               </span>
               <span className="w-6 h-px bg-blue-500" />
             </div>
+<<<<<<< HEAD:client/src/pages/Industries.tsx
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.06] tracking-tight mb-6">
+=======
+            <h1 className="text-4xl sm:text-5xl lg:text-5xl font-black leading-[1.06] tracking-tight mb-6">
+>>>>>>> 5db3e3c943797ca8fe8cd32e36d83861a51bce17:src/app/industries/page.tsx
               <span className="text-slate-900 dark:text-[#E8E8E8]">Deep expertise</span>
               <br />
               <span className="text-gradient">across 10 sectors.</span>

@@ -41,7 +41,11 @@ export default function SectionTitle({
         </div>
       )}
       <h2
+<<<<<<< HEAD:client/src/components/ui/SectionTitle.tsx
         className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-[#E8E8E8] leading-tight"
+=======
+        className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 dark:text-[#E8E8E8] leading-tight"
+>>>>>>> 5db3e3c943797ca8fe8cd32e36d83861a51bce17:src/components/ui/SectionTitle.tsx
         dangerouslySetInnerHTML={{ __html: titleWithHighlight }}
       />
       {description && (
