@@ -5,6 +5,9 @@ node_modules/
 
 # Vite build output
 client/dist/
+client/dist.zip
+client/vite.config.js
+client/vite.config.d.ts
 
 # Production
 /build

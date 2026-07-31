@@ -49,8 +49,9 @@
 
     <script>
       try {
-        localStorage.removeItem('theme');
-        document.documentElement.classList.remove('dark');
+        if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark');
+        }
       } catch (e) {}
     </script>
   </head>

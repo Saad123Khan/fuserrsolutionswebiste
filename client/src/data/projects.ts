@@ -24,7 +24,7 @@ export const projects: Project[] = [
     industry: 'TKO',
     service: 'AI Development',
     client: 'MediCore Systems',
-    cover: '/Gemini_Generated_Image_8tgotw8tgotw8tgo.png',
+    cover: '/tko-cover.png',
     color: '#10B981',
     overview:
       'A real-time patient monitoring SaaS powered by machine learning, enabling hospitals to predict adverse events 48 hours before they occur with 94% accuracy.',
@@ -123,7 +123,7 @@ export const projects: Project[] = [
     industry: 'Health & Fitness',
     service: 'Mobile & Web Applications',
     client: 'Erebix Inc.',
-    cover: '/image2.png',
+    cover: '/erebix-cover.png',
     color: '#3B82F6',
     overview:
       'Erebix is an AI-powered fitness and nutrition platform that delivers personalized workout plans, adaptive meal programs, and intelligent coaching through a mobile-first ecosystem.',
@@ -212,7 +212,7 @@ export const projects: Project[] = [
     industry: 'Assistify',
     service: 'Web Applications',
     client: 'Luminary Education',
-    cover: '/Gemini_Generated_Image_jrdqwgjrdqwgjrdq.png',
+    cover: '/assistify-cover.png',
     color: '#8B5CF6',
     overview:
       'An adaptive LMS serving 120K students across 14 countries, with AI-driven personalized learning paths and real-time progress analytics.',
@@ -235,7 +235,7 @@ export const projects: Project[] = [
     industry: 'Copy Smart',
     service: 'Ecommerce',
     client: 'Meridian Brands',
-    cover: '/image2.jpg',
+    cover: '/copy-smart-cover.jpg',
     color: '#F59E0B',
     overview:
       'A headless commerce platform for a multi-brand retailer, processing $12M+ monthly GMV with hyper-personalized storefronts and real-time inventory.',
@@ -345,7 +345,7 @@ export const projects: Project[] = [
     industry: 'Scrub Art',
     service: 'AI Development',
     client: 'Thornton & Associates',
-    cover: '/image.png',
+    cover: '/scrub-art-cover.png',
     color: '#06B6D4',
     overview:
       'An AI-powered contract review platform that reduces legal review time by 70%, surfacing risks, obligations, and anomalies from thousands of documents.',
@@ -469,8 +469,8 @@ export const projects: Project[] = [
     tagline: 'On-demand home services marketplace',
     industry: 'Fixie',
     service: 'Home Services Marketplace',
-    client: 'Image5 Client',
-    cover: '/image5.png',
+    client: 'Fixie Inc.',
+    cover: '/fixie-cover.png',
     color: '#7C3AED',
     overview:
       'Fixie is a comprehensive home services marketplace that connects homeowners with trusted local service professionals via a mobile-first experience. It supports discovery, booking, secure payments, provider verification, and dispute resolution.',
@@ -581,7 +581,7 @@ export const projects: Project[] = [
     industry: 'Kargo Domus',
     service: 'Web Applications',
     client: 'TransGlobal Freight',
-    cover: '/image4.png',
+    cover: '/kargo-domus-cover.png',
     color: '#EF4444',
     overview:
       'Built a complete logistics marketplace that connects customers with delivery service providers through a centralized platform. The solution enables parcel booking, provider matching, real-time shipment tracking, automated payments, and operational management across web and mobile applications.',
@@ -671,8 +671,8 @@ export const projects: Project[] = [
     tagline: 'Conversational product discovery for ecommerce',
     industry: 'Ecommerce',
     service: 'AI & Product Discovery',
-    client: 'Image6 Client',
-    cover: '/image6.png',
+    client: 'Confidential Retail Client',
+    cover: '/ai-chatbot-cover.png',
     color: '#F97316',
     overview:
       'An AI-powered conversational shopping assistant that helps customers find and compare products through natural text and voice conversations, improving discovery and conversion for apparel and accessories retailers.',
