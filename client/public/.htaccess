@@ -1,0 +1,14 @@
+# SPA fallback: send any unmatched route to index.html so React Router
+# can handle client-side navigation (fixes 404s on direct links / refresh).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Let real files and directories (JS, CSS, images, etc.) be served as-is.
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # Everything else goes through index.html.
+  RewriteRule ^ index.html [L]
+</IfModule>

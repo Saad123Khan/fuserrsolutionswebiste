@@ -77,11 +77,23 @@ export default function Header() {
         {/* Mobile menu trigger */}
         <div className="lg:hidden flex items-center gap-3">
           <button
-            className="p-2 rounded-lg text-slate-500 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-[#E8E8E8] hover:bg-slate-100 dark:hover:bg-navy-800 transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
+            className="relative p-2 rounded-lg text-slate-500 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-[#E8E8E8] hover:bg-slate-100 dark:hover:bg-navy-800 transition-colors"
+            onClick={() => setMobileOpen((v) => !v)}
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
           >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.span
+                key={mobileOpen ? 'close' : 'open'}
+                initial={{ opacity: 0, rotate: -45, scale: 0.7 }}
+                animate={{ opacity: 1, rotate: 0, scale: 1 }}
+                exit={{ opacity: 0, rotate: 45, scale: 0.7 }}
+                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                className="block"
+              >
+                {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              </motion.span>
+            </AnimatePresence>
           </button>
         </div>
       </div>
@@ -90,33 +102,58 @@ export default function Header() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:hidden bg-white dark:bg-navy-900 border-t border-slate-100 dark:border-navy-500/50 overflow-hidden"
+            initial={{ opacity: 0, scaleY: 0.9 }}
+            animate={{ opacity: 1, scaleY: 1 }}
+            exit={{ opacity: 0, scaleY: 0.9 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            style={{ transformOrigin: 'top' }}
+            className="lg:hidden bg-white dark:bg-navy-900 border-t border-slate-100 dark:border-navy-500/50 overflow-hidden will-change-transform"
           >
-            <nav className="space-y-0.5 px-4 py-3 shadow-sm">
+            <motion.nav
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+              variants={{
+                hidden: {},
+                show: { transition: { staggerChildren: 0.04, delayChildren: 0.05 } },
+              }}
+              className="space-y-0.5 px-4 py-3 shadow-sm"
+            >
               {navLinks.map((link) => (
-                <Link
+                <motion.div
                   key={link.label}
-                  to={link.href}
-                  className={cn(
-                    'block px-3 py-2 text-sm font-medium rounded-lg transition-colors',
-                    pathname === link.href || pathname.startsWith(link.href + '/')
-                      ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-600/10'
-                      : 'text-slate-700 dark:text-[#94A3B8] hover:bg-slate-50 dark:hover:bg-navy-800'
-                  )}
+                  variants={{
+                    hidden: { opacity: 0, y: -6 },
+                    show: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {link.label}
-                </Link>
+                  <Link
+                    to={link.href}
+                    className={cn(
+                      'block px-3 py-2 text-sm font-medium rounded-lg transition-colors',
+                      pathname === link.href || pathname.startsWith(link.href + '/')
+                        ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-600/10'
+                        : 'text-slate-700 dark:text-[#94A3B8] hover:bg-slate-50 dark:hover:bg-navy-800'
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
-              <div className="pt-2 mt-2 border-t border-slate-200 dark:border-navy-500/50">
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: -6 },
+                  show: { opacity: 1, y: 0 },
+                }}
+                transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
+                className="pt-2 mt-2 border-t border-slate-200 dark:border-navy-500/50"
+              >
                 <Button href="/contact" variant="primary" size="md" className="w-full justify-center rounded-lg py-2 bg-blue-600 text-white font-montserrat font-medium text-sm">
                   Let's talk
                 </Button>
-              </div>
-            </nav>
+              </motion.div>
+            </motion.nav>
           </motion.div>
         )}
       </AnimatePresence>

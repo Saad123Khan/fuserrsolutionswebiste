@@ -11,6 +11,7 @@ import IndustriesPage from '@/pages/Industries';
 import PortfolioPage from '@/pages/Portfolio';
 import ProjectDetailPage from '@/pages/ProjectDetail';
 import ContactPage from '@/pages/Contact';
+import NotFoundPage from '@/pages/NotFound';
 
 export default function App() {
   const location = useLocation();
@@ -37,6 +38,7 @@ export default function App() {
               <Route path="/portfolio" element={<PortfolioPage />} />
               <Route path="/portfolio/:slug" element={<ProjectDetailPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </motion.div>
         </AnimatePresence>
