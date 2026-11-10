@@ -6,20 +6,21 @@
 
 /* ─── CSS Variables ──────────────────────────────────── */
 :root {
-  /* Light mode — Apple-inspired clean palette */
-  --c-bg:       #FFFFFF;
-  --c-bg-alt:   #F5F5F7;      /* Apple secondary surface */
+  /* Light mode — soft brand-blue tinted surfaces; cards stay white for contrast */
+  --c-bg:       #E9F0FD;      /* page background (brand-blue tint) */
+  --c-bg-alt:   #DCE6FB;      /* alternate sections, deeper */
   --c-surface:  #FFFFFF;
   --c-card:     #FFFFFF;
-  --c-text-1:   #1D1D1F;      /* Apple near-black */
-  --c-text-2:   #424245;      /* Apple secondary */
-  --c-text-3:   #86868B;      /* Apple tertiary */
-  --c-border:   rgba(0,0,0,0.07);
+  --c-text-1:   #1D1D1F;
+  --c-text-2:   #424245;
+  --c-text-3:   #86868B;
+  --c-border:   rgba(37,99,235,0.14);
   --c-accent:   #2563EB;
   --c-accent-l: #3B82F6;
 }
 
 .dark {
+  color-scheme: dark;
   --c-bg:       #080E1C;
   --c-bg-alt:   #040B18;
   --c-surface:  #0D1629;
@@ -35,7 +36,9 @@
 /* ─── Base ───────────────────────────────────────────── */
 * { box-sizing: border-box; padding: 0; margin: 0; }
 
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+/* Smooth scrolling is handled by Lenis (components/motion/SmoothScroll). */
+/* position: relative lets Framer Motion measure scroll offsets against <html> correctly */
+html { position: relative; -webkit-font-smoothing: antialiased; }
 
 body {
   background-color: var(--c-bg);
@@ -43,6 +46,48 @@ body {
   font-family: 'Inter', system-ui, sans-serif;
   overflow-x: hidden;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ─── Custom cursor: brand-gradient arrow ────────────── */
+/* Hotspot (3 3) is the arrow tip. An animated ring follows it (components/motion/CursorFollower). */
+html,
+body {
+  cursor: url('/cursors/arrow.svg') 3 3, auto;
+}
+a,
+button,
+summary,
+select,
+label[for],
+[role='button'],
+[role='tab'],
+.cursor-pointer {
+  cursor: url('/cursors/arrow-hover.svg') 3 3, pointer;
+}
+/* Keep the text caret where people type, so it's clear where input goes. */
+input:not([type='checkbox']):not([type='radio']):not([type='submit']):not([type='button']),
+textarea,
+[contenteditable='true'] {
+  cursor: text;
+}
+button:disabled,
+[aria-disabled='true'] {
+  cursor: url('/cursors/arrow.svg') 3 3, not-allowed;
+}
+
+/* ─── Native <select> dropdown options ──────────────────── */
+/* Options otherwise inherit the select's grey placeholder colour and a grey
+   system background, which made the open list unreadable. */
+select option {
+  background-color: #0B1326;
+  color: #E2E8F0;
+}
+select option:checked {
+  background-color: #2563EB;
+  color: #FFFFFF;
+}
+select option[value=''] {
+  color: #64748B;
 }
 
 /* ─── Scrollbar ──────────────────────────────────────── */
@@ -193,3 +238,97 @@ body {
 .animate-spin-slow  { animation: spin-slow 30s linear infinite; }
 .animate-spin-slow-r{ animation: spin-slow-r 20s linear infinite; }
 .animate-pulse-ring { animation: pulse-ring 2.5s ease-in-out infinite; }
+
+/* ─── Motion primitives ──────────────────────────────── */
+
+/* Marquee (components/motion/Marquee) */
+@keyframes marquee-x { from { transform: translateX(0); } to { transform: translateX(-100%); } }
+.marquee-track { animation: marquee-x 40s linear infinite; }
+
+/* Spotlight card (components/motion/SpotlightCard) */
+.spotlight-card { --spot-x: 50%; --spot-y: 50%; }
+.spotlight-card::before,
+.spotlight-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+/* Soft fill that follows the cursor */
+.spotlight-card::before {
+  background: radial-gradient(420px circle at var(--spot-x) var(--spot-y), rgba(37,99,235,0.08), transparent 45%);
+}
+.dark .spotlight-card::before {
+  background: radial-gradient(420px circle at var(--spot-x) var(--spot-y), rgba(96,165,250,0.10), transparent 45%);
+}
+/* Glowing border that follows the cursor */
+.spotlight-card::after {
+  padding: 1px;
+  background: radial-gradient(260px circle at var(--spot-x) var(--spot-y), rgba(96,165,250,0.85), transparent 45%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.spotlight-card:hover::before,
+.spotlight-card:hover::after { opacity: 1; }
+
+/* Hero (components/home/Hero) */
+@keyframes hero-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(40px, -30px) scale(1.08); }
+  66%      { transform: translate(-30px, 25px) scale(0.95); }
+}
+.hero-blob        { animation: hero-drift 18s ease-in-out infinite; }
+.hero-blob--2     { animation-duration: 22s; animation-delay: -6s; }
+.hero-blob--3     { animation-duration: 26s; animation-delay: -12s; }
+
+/* Light-mode section gradients: every surface using the page/alt background
+   variables gets a soft vertical gradient plus a corner glow. Dark mode untouched. */
+html:not(.dark) .bg-\[var\(--c-bg\)\] {
+  background-image:
+    radial-gradient(ellipse 60% 50% at 100% 0%, rgba(37,99,235,0.10), transparent 70%),
+    linear-gradient(180deg, #EEF3FE 0%, #E3ECFC 100%);
+}
+html:not(.dark) .bg-\[var\(--c-bg-alt\)\] {
+  background-image:
+    radial-gradient(ellipse 60% 55% at 0% 100%, rgba(99,102,241,0.12), transparent 70%),
+    linear-gradient(180deg, #D8E3FA 0%, #E4ECFC 100%);
+}
+html:not(.dark) body {
+  background-image: linear-gradient(180deg, #EEF3FE 0%, #DCE6FB 100%);
+  background-attachment: fixed;
+}
+
+/* Dark-mode section gradients: navy surfaces with soft blue/indigo glows. */
+.dark .bg-\[var\(--c-bg\)\] {
+  background-image:
+    radial-gradient(ellipse 55% 45% at 100% 0%, rgba(37,99,235,0.14), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 0% 100%, rgba(14,165,233,0.06), transparent 70%),
+    linear-gradient(180deg, #091124 0%, #070D1B 100%);
+}
+.dark .bg-\[var\(--c-bg-alt\)\] {
+  background-image:
+    radial-gradient(ellipse 55% 50% at 0% 100%, rgba(99,102,241,0.14), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 100% 0%, rgba(37,99,235,0.08), transparent 70%),
+    linear-gradient(180deg, #0B1530 0%, #0A1226 100%);
+}
+.dark body {
+  background-image: linear-gradient(180deg, #091124 0%, #060B17 100%);
+  background-attachment: fixed;
+}
+
+/* Tech sphere (components/home/TechSphere): labels only on front-facing logos */
+.tech-sphere__item[data-front='0'] .tech-sphere__label { opacity: 0; }
+
+/* Respect users who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

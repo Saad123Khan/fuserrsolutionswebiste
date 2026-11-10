@@ -1,249 +1,204 @@
 import { Link } from 'react-router-dom';
-import {
-  Heart,
-  DollarSign,
-  GraduationCap,
-  ShoppingBag,
-  Building,
-  Truck,
-  Clapperboard,
-  Scale,
-  Landmark,
-  Rocket,
-  ArrowUpRight,
-} from 'lucide-react';
-import SectionTitle from '@/components/ui/SectionTitle';
-import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection';
+import { motion } from 'framer-motion';
+import { useLenis } from 'lenis/react';
+import { ArrowRight, ArrowUpRight, CheckCircle2, Sparkles } from 'lucide-react';
+import { industries, type Industry } from '@/data/industries';
+import { projects, projectShortName } from '@/data/projects';
+import Magnetic from '@/components/motion/Magnetic';
+import Button from '@/components/ui/Button';
 import CTABanner from '@/components/home/CTABanner';
-import { useDocumentTitle } from '@/lib/useDocumentTitle';
+import { useDocumentTitle, useMetaDescription } from '@/lib/useDocumentTitle';
+import { cn } from '@/lib/utils';
+import PageHero from '@/components/layout/PageHero';
 
-const industries = [
-  {
-    icon: Heart,
-    name: 'Healthcare',
-    description:
-      'HIPAA-compliant systems, patient portals, clinical AI, and remote monitoring platforms that improve outcomes and reduce operational burden.',
-    projects: ['Patient monitoring AI', 'Telehealth platforms', 'EHR integrations', 'Clinical analytics'],
-    accent: '#10B981',
-    stat: '31% avg ICU readmission reduction',
-  },
-  {
-    icon: DollarSign,
-    name: 'Fintech',
-    description:
-      'Digital banking, payment infrastructure, wealth management platforms, and regulatory-compliant financial products built for scale.',
-    projects: ['Neobank platforms', 'Payment APIs', 'KYC/AML systems', 'Trading dashboards'],
-    accent: '#3B82F6',
-    stat: '99.99% uptime on payment systems',
-  },
-  {
-    icon: GraduationCap,
-    name: 'Education',
-    description:
-      'Learning management systems, adaptive education platforms, and assessment tools that improve engagement and learning outcomes.',
-    projects: ['LMS platforms', 'AI tutoring', 'Assessment tools', 'Learning analytics'],
-    accent: '#8B5CF6',
-    stat: '67% avg course completion improvement',
-  },
-  {
-    icon: ShoppingBag,
-    name: 'Ecommerce & Retail',
-    description:
-      'Headless commerce, omnichannel platforms, and inventory systems that drive conversion and customer loyalty.',
-    projects: ['Headless storefronts', 'Loyalty programs', 'PIM systems', 'AI recommendations'],
-    accent: '#F59E0B',
-    stat: '22% avg conversion rate increase',
-  },
-  {
-    icon: Building,
-    name: 'Real Estate',
-    description:
-      'Property management platforms, virtual tours, CRM systems, and transaction management tools for modern real estate.',
-    projects: ['Property portals', 'Virtual tours', 'CRM systems', 'Market analytics'],
-    accent: '#06B6D4',
-    stat: '3× faster deal closing for clients',
-  },
-  {
-    icon: Truck,
-    name: 'Logistics',
-    description:
-      'Supply chain visibility platforms, route optimization, warehouse management, and IoT-powered tracking systems.',
-    projects: ['Shipment tracking', 'Route optimization', 'WMS systems', 'IoT integration'],
-    accent: '#EF4444',
-    stat: '89% on-time delivery improvement',
-  },
-  {
-    icon: Clapperboard,
-    name: 'Media & Entertainment',
-    description:
-      'Streaming platforms, content management systems, audience analytics, and creator economy tools.',
-    projects: ['Streaming platforms', 'CMS solutions', 'Creator tools', 'Audience analytics'],
-    accent: '#EC4899',
-    stat: '4× content delivery speed improvement',
-  },
-  {
-    icon: Scale,
-    name: 'Legal Tech',
-    description:
-      'AI-powered contract analysis, case management, document automation, and compliance monitoring tools.',
-    projects: ['Contract AI', 'Case management', 'Document automation', 'Compliance tools'],
-    accent: '#A78BFA',
-    stat: '70% reduction in document review time',
-  },
-  {
-    icon: Landmark,
-    name: 'Government & Non-profit',
-    description:
-      'Citizen service portals, grant management systems, and data platforms built for public accountability and efficiency.',
-    projects: ['Citizen portals', 'Grant management', 'Public data APIs', 'Service platforms'],
-    accent: '#34D399',
-    stat: '60% reduction in processing times',
-  },
-  {
-    icon: Rocket,
-    name: 'Startups & SMBs',
-    description:
-      'MVPs, growth platforms, and technical infrastructure for early-stage and growth-stage companies that need to move fast.',
-    projects: ['MVP development', 'Growth platforms', 'Technical co-founding', 'Rapid iteration'],
-    accent: '#FBBF24',
-    stat: 'Average 3-month MVP launch',
-  },
-];
+const EASE = [0.22, 1, 0.36, 1] as const;
+const inView = { once: true, margin: '-80px' } as const;
 
 export default function IndustriesPage() {
-  useDocumentTitle('Industries');
+  useDocumentTitle('Industries We Serve');
+  useMetaDescription('Software for healthcare, logistics, ecommerce, home services, education and fitness, built by Fuserr Solutions.');
+  const lenis = useLenis();
+
+  const jump = (slug: string) => {
+    const el = document.getElementById(slug);
+    if (!el) return;
+    if (lenis) lenis.scrollTo(el, { offset: -96 });
+    else el.scrollIntoView({ behavior: 'smooth' });
+    window.history.replaceState(null, '', `#${slug}`);
+  };
 
   return (
     <>
-      {/* Hero */}
-      <section className="pt-36 pb-20 relative overflow-hidden bg-[var(--c-bg)]">
-        <div className="absolute inset-0 dot-grid opacity-35" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-blue-600/6 blur-[120px] rounded-full pointer-events-none" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <AnimatedSection>
-            <div className="flex items-center justify-center gap-2 mb-6">
-              <span className="w-6 h-px bg-blue-500" />
-              <span className="text-blue-600 dark:text-blue-400 text-sm font-mono tracking-widest uppercase">
-                Industries
-              </span>
-              <span className="w-6 h-px bg-blue-500" />
-            </div>
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black leading-[1.06] tracking-tight mb-6">
-              <span className="text-slate-900 dark:text-[#E8E8E8]">Deep expertise</span>
-              <br />
-              <span className="text-gradient">across 10 sectors.</span>
-            </h1>
-            <p className="text-lg text-slate-500 dark:text-[#94A3B8] max-w-xl mx-auto">
-              We&apos;ve built production software in industries where quality isn&apos;t optional —
-              healthcare, finance, logistics, and more.
-            </p>
-          </AnimatedSection>
-        </div>
-      </section>
-
-      {/* Industries grid — varied layout */}
-      <section className="py-16 bg-[var(--c-bg-alt)] dark:bg-navy-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {industries.map((industry, i) => {
-              const Icon = industry.icon;
-              const isFeatured = i === 0 || i === 1;
-
-              return (
-                <StaggerItem key={industry.name}>
-                  <div
-                    className={`glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-7 h-full hover:border-blue-200 dark:hover:border-blue-600/30 transition-all duration-300 group ${
-                      isFeatured ? 'relative overflow-hidden' : ''
-                    }`}
-                    style={isFeatured ? { borderColor: `${industry.accent}30` } : {}}
-                  >
-                    {isFeatured && (
-                      <div
-                        className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none"
-                        style={{ background: `radial-gradient(ellipse at 0% 0%, ${industry.accent}, transparent 70%)` }}
-                      />
-                    )}
-
-                    <div className="relative flex items-start gap-5">
-                      <div
-                        className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0"
-                        style={{ background: `${industry.accent}15`, border: `1px solid ${industry.accent}30` }}
-                      >
-                        <Icon size={20} style={{ color: industry.accent }} />
-                      </div>
-
-                      <div className="flex-1">
-                        <h2 className="text-slate-900 dark:text-[#E8E8E8] font-semibold text-lg mb-2 group-hover:text-blue-600 dark:group-hover:text-white transition-colors">
-                          {industry.name}
-                        </h2>
-                        <p className="text-sm text-slate-500 dark:text-[#94A3B8] leading-relaxed mb-5">
-                          {industry.description}
-                        </p>
-
-                        {/* Project types */}
-                        <div className="flex flex-wrap gap-2 mb-5">
-                          {industry.projects.map((p) => (
-                            <span
-                              key={p}
-                              className="text-xs px-2.5 py-1 rounded-full border"
-                              style={{
-                                background: `${industry.accent}10`,
-                                borderColor: `${industry.accent}25`,
-                                color: industry.accent,
-                              }}
-                            >
-                              {p}
-                            </span>
-                          ))}
-                        </div>
-
-                        {/* Stat */}
-                        <div className="flex items-center gap-2 text-xs font-mono text-slate-400 dark:text-[#64748B]">
-                          <span
-                            className="w-1.5 h-1.5 rounded-full"
-                            style={{ background: industry.accent }}
-                          />
-                          {industry.stat}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </StaggerItem>
-              );
-            })}
-          </StaggerContainer>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 border-t border-slate-200 dark:border-navy-500/30 bg-[var(--c-bg)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection className="text-center max-w-2xl mx-auto">
-            <SectionTitle
-              eyebrow="Let's Collaborate"
-              title="Don't see your industry?"
-              highlight="your industry?"
-              description="We adapt our process to new domains quickly. Tell us about your space and we'll show you what we can do."
-              align="center"
-            />
-            <div className="mt-10 flex justify-center">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-semibold rounded-lg transition-colors shadow-blue-sm hover:shadow-blue-md group"
+      {/* ── Hero ── */}
+      <PageHero
+        variant="hex"
+        eyebrow="Industries"
+        title={['Software built for', { text: 'how your industry works', className: 'text-gradient pb-2' }]}
+        description="We've shipped production platforms in these sectors, so we understand their workflows, users and compliance needs from day one."
+      >
+          {/* Industry chips */}
+          <motion.ul
+            initial="hidden"
+            animate="show"
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.05, delayChildren: 0.7 } } }}
+            className="flex flex-wrap justify-center gap-2"
+          >
+            {industries.map(({ slug, name, icon: Icon, accent }) => (
+              <motion.li
+                key={slug}
+                variants={{ hidden: { opacity: 0, y: 10 }, show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: EASE } } }}
               >
-                Start a Conversation
-                <ArrowUpRight
-                  size={15}
-                  className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform"
-                />
-              </Link>
+                <a
+                  href={`#${slug}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    jump(slug);
+                  }}
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-4 py-2 text-sm font-medium text-slate-600 backdrop-blur transition-all hover:-translate-y-0.5 hover:text-slate-900 dark:border-navy-500/50 dark:bg-navy-800/50 dark:text-[#94A3B8] dark:hover:text-white"
+                >
+                  <Icon size={14} style={{ color: accent }} />
+                  {name}
+                </a>
+              </motion.li>
+            ))}
+          </motion.ul>
+      </PageHero>
+
+      {/* ── Industry sections ── */}
+      <section className="relative bg-[var(--c-bg-alt)] dark:bg-navy-900">
+        <div className="mx-auto max-w-7xl divide-y divide-slate-200 px-4 dark:divide-navy-500/30 sm:px-6 lg:px-8">
+          {industries.map((ind, i) => (
+            <IndustryRow key={ind.slug} industry={ind} index={i} />
+          ))}
+        </div>
+      </section>
+
+      {/* ── Not listed ── */}
+      <section className="relative bg-[var(--c-bg)] py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={inView}
+            transition={{ duration: 0.7, ease: EASE }}
+            className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-700 p-10 text-white sm:p-14"
+          >
+            <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-white/10 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-24 left-10 h-64 w-64 rounded-full bg-cyan-400/20 blur-3xl" />
+            <div className="relative flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+              <div className="max-w-2xl">
+                <Sparkles size={22} className="mb-4 text-blue-200" />
+                <h2 className="text-3xl font-bold leading-tight sm:text-4xl">Don&apos;t see your industry?</h2>
+                <p className="mt-3 text-blue-100">
+                  Good software principles travel well. Tell us about your space and we&apos;ll show you how we&apos;d
+                  approach it.
+                </p>
+              </div>
+              <Magnetic strength={0.2}>
+                <Button href="/contact" variant="secondary" size="lg" className="group border-0 bg-white text-blue-700 hover:bg-blue-50 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50">
+                  Let&apos;s talk <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Magnetic>
             </div>
-          </AnimatedSection>
+          </motion.div>
         </div>
       </section>
 
       <CTABanner />
     </>
+  );
+}
+
+function IndustryRow({ industry: ind, index }: { industry: Industry; index: number }) {
+  const Icon = ind.icon;
+  const related = projects.filter((p) => p.industry === ind.name);
+  const flip = index % 2 === 1;
+
+  return (
+    <div id={ind.slug} className="grid scroll-mt-28 items-center gap-12 py-20 lg:grid-cols-2 lg:gap-20 lg:py-24">
+      {/* Info */}
+      <motion.div
+        initial={{ opacity: 0, x: flip ? 40 : -40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={inView}
+        transition={{ duration: 0.7, ease: EASE }}
+        className={cn(flip && 'lg:order-2')}
+      >
+        <span
+          className="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl"
+          style={{ background: `${ind.accent}15`, border: `1px solid ${ind.accent}35` }}
+        >
+          <Icon size={24} style={{ color: ind.accent }} />
+        </span>
+        <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl">{ind.name}</h2>
+        <p className="mt-3 text-lg text-slate-500 dark:text-[#94A3B8]">{ind.description}</p>
+
+        <div className="mt-7 rounded-2xl border-l-4 bg-white/60 p-5 dark:bg-navy-800/40" style={{ borderColor: ind.accent }}>
+          <div className="mb-1 text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-[#64748B]">The challenge</div>
+          <p className="text-slate-700 dark:text-[#E8E8E8]">{ind.challenge}</p>
+        </div>
+
+        <div className="mt-7">
+          <div className="mb-3 text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-[#64748B]">What we build</div>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {ind.solutions.map((s, i) => (
+              <motion.li
+                key={s}
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: 0.2 + i * 0.06, ease: EASE }}
+                className="flex items-center gap-2.5 text-sm font-medium text-slate-700 dark:text-[#E8E8E8]"
+              >
+                <CheckCircle2 size={16} className="shrink-0" style={{ color: ind.accent }} />
+                {s}
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      </motion.div>
+
+      {/* Related projects */}
+      <motion.div
+        initial={{ opacity: 0, x: flip ? -40 : 40 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={inView}
+        transition={{ duration: 0.8, delay: 0.1, ease: EASE }}
+        className={cn('space-y-4', flip && 'lg:order-1')}
+      >
+        <div className="text-xs font-mono uppercase tracking-wider text-slate-400 dark:text-[#64748B]">
+          {related.length === 1 ? 'Featured project' : 'Featured projects'}
+        </div>
+        {related.map((p) => (
+          <Link
+            key={p.slug}
+            to={`/work/${p.slug}`}
+            className="group flex items-center gap-5 overflow-hidden rounded-3xl border border-slate-200 bg-white p-3 pr-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:border-navy-500/40 dark:bg-navy-800/40"
+          >
+            <div className="relative aspect-[4/3] w-36 shrink-0 overflow-hidden rounded-2xl bg-slate-100 dark:bg-navy-800 sm:w-48">
+              <img
+                src={p.cover}
+                alt={p.title}
+                loading="lazy"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              />
+            </div>
+            <div className="min-w-0 flex-1">
+              <div className="truncate font-semibold text-slate-900 transition-colors group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+                {projectShortName[p.slug] ?? p.title}
+              </div>
+              <div className="mt-1 line-clamp-2 text-sm text-slate-500 dark:text-[#94A3B8]">{p.tagline}</div>
+              <div className="mt-2 text-xs font-mono" style={{ color: ind.accent }}>
+                {p.service}
+              </div>
+            </div>
+            <ArrowUpRight
+              size={18}
+              className="shrink-0 text-slate-300 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-blue-500 dark:text-navy-500"
+            />
+          </Link>
+        ))}
+      </motion.div>
+    </div>
   );
 }

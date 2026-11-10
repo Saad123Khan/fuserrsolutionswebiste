@@ -2,17 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://fuserrsolutions.com</loc><changefreq>weekly</changefreq><priority>1.0</priority></url>
   <url><loc>https://fuserrsolutions.com/services</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fuserrsolutions.com/portfolio</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://fuserrsolutions.com/services/web-development</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fuserrsolutions.com/services/mobile-app-development</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fuserrsolutions.com/services/saas-development</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fuserrsolutions.com/services/backend-api-development</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fuserrsolutions.com/services/ai-automation</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fuserrsolutions.com/services/api-integrations</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fuserrsolutions.com/services/ui-ux-design</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fuserrsolutions.com/services/cloud-devops</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fuserrsolutions.com/work</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
   <url><loc>https://fuserrsolutions.com/industries</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://fuserrsolutions.com/how-we-work</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://fuserrsolutions.com/process</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://fuserrsolutions.com/about</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://fuserrsolutions.com/contact</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://fuserrsolutions.com/portfolio/tko</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://fuserrsolutions.com/portfolio/erebix</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://fuserrsolutions.com/portfolio/assistify</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://fuserrsolutions.com/portfolio/copy-smart</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://fuserrsolutions.com/portfolio/scrub-art</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://fuserrsolutions.com/portfolio/fixie</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://fuserrsolutions.com/portfolio/kargo-domus</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
-  <url><loc>https://fuserrsolutions.com/portfolio/ai-chatbot</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fuserrsolutions.com/work/tko</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fuserrsolutions.com/work/erebix</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fuserrsolutions.com/work/assistify</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fuserrsolutions.com/work/copy-smart</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fuserrsolutions.com/work/scrub-art</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fuserrsolutions.com/work/fixie</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fuserrsolutions.com/work/kargo-domus</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fuserrsolutions.com/work/ai-chatbot</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fuserrsolutions.com/careers</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://fuserrsolutions.com/blog</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://fuserrsolutions.com/blog/mvp-vs-full-product</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://fuserrsolutions.com/blog/react-native-vs-flutter</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://fuserrsolutions.com/blog/adding-ai-to-your-product</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://fuserrsolutions.com/blog/prepare-for-discovery-call</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://fuserrsolutions.com/privacy-policy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://fuserrsolutions.com/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
 </urlset>
