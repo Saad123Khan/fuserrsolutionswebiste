@@ -9,6 +9,18 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // Long-lived vendor chunks: they change rarely, so browsers keep them cached
+        // across deploys while app code updates.
+        manualChunks: {
+          react: ['react', 'react-dom', 'react-router-dom'],
+          motion: ['framer-motion', 'lenis'],
+        },
+      },
+    },
+  },
   server: {
     host: true,
     proxy: {

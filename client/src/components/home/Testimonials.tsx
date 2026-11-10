@@ -1,104 +1,94 @@
-import { Star } from 'lucide-react';
-import { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection';
-import AnimatedSection from '@/components/ui/AnimatedSection';
+import { motion } from 'framer-motion';
+import { Quote, Star } from 'lucide-react';
+import { testimonials, type Testimonial } from '@/data/testimonials';
+import { company } from '@/data/company';
+import SectionHeading from '@/components/ui/SectionHeading';
+import Marquee from '@/components/motion/Marquee';
 
-const testimonials = [
-  {
-    quote: 'Their team delivered a complete SaaS platform in 10 weeks — fully under our brand. The code quality was exceptional.',
-    author: 'Marcus Webb',
-    role: 'Director',
-    company: 'Luminary Digital Agency',
-  },
-  {
-    quote: 'We went from turning down projects to confidently pitching mobile app work. Fuserr handles everything behind the scenes.',
-    author: 'Priya Nair',
-    role: 'Founder',
-    company: 'Nexus Growth Studio',
-  },
-  {
-    quote: "The NDA was signed within the hour, kickoff was the next day. They matched our client's brand guide exactly.",
-    author: 'Tom Hartley',
-    role: 'Managing Partner',
-    company: 'Hartley & Co Consulting',
-  },
-  {
-    quote: 'I was worried about losing control of my client relationships. Instead, Fuserr made me look like a rockstar.',
-    author: 'Sarah Osei',
-    role: 'CEO',
-    company: 'Osei Creative Group',
-  },
-];
+const EASE = [0.22, 1, 0.36, 1] as const;
 
-function RatingBadge() {
+export default function Testimonials() {
+  // With few reviews, a single row reads better; split into two opposing rows once there are enough.
+  const twoRows = testimonials.length >= 6;
+  const half = Math.ceil(testimonials.length / 2);
+  const rows = twoRows ? [testimonials.slice(0, half), testimonials.slice(half)] : [testimonials];
+
   return (
-    <div className="relative w-52 h-52 mx-auto">
-      {/* Scalloped starburst backing */}
-      <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-blue-400 to-blue-600 rotate-0" />
-      <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-blue-400 to-blue-600 rotate-[30deg]" />
-      <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-blue-400 to-blue-600 rotate-[60deg]" />
+    <section className="relative overflow-hidden bg-[var(--c-bg-alt)] py-24 dark:bg-navy-900 lg:py-32">
+      <div className="mx-auto mb-14 flex max-w-7xl flex-col items-center gap-10 px-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between lg:px-8">
+        <SectionHeading
+          eyebrow="Client reviews"
+          title={['What our', { text: 'clients say', className: 'text-gradient' }]}
+          description="Long-term relationships built on shipping great software, on time."
+        />
 
-      {/* Inner disc */}
-      <div className="absolute inset-5 rounded-full bg-white dark:bg-navy-900 shadow-inner flex items-center justify-center">
-        <div className="w-[86%] h-[86%] rounded-full border-[3px] border-blue-500 flex flex-col items-center justify-center bg-blue-50 dark:bg-navy-800">
-          <span className="text-2xl font-black text-blue-600 dark:text-blue-400">4.9/5</span>
-          <div className="flex gap-0.5 mt-1.5">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Star key={i} size={10} className="fill-amber-400 text-amber-400" />
-            ))}
-          </div>
-        </div>
+        {/* Rating summary */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6, ease: EASE }}
+          className="flex shrink-0 items-center gap-5 rounded-2xl border border-slate-200 bg-white px-6 py-5 shadow-sm dark:border-navy-500/40 dark:bg-navy-800/50"
+        >
+          <span className="font-montserrat text-5xl font-extrabold text-gradient">{company.rating}</span>
+          <span>
+            <span className="flex gap-0.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, scale: 0 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + i * 0.08, type: 'spring', stiffness: 400, damping: 15 }}
+                >
+                  <Star size={16} className="fill-amber-400 text-amber-400" />
+                </motion.span>
+              ))}
+            </span>
+            <span className="mt-1 block text-xs text-slate-500 dark:text-[#94A3B8]">Average client rating</span>
+          </span>
+        </motion.div>
       </div>
 
-      {/* Ribbon tail */}
-      <div
-        className="absolute left-1/2 -translate-x-1/2 -bottom-9 w-12 h-16"
-        style={{
-          background: 'linear-gradient(90deg, #2563EB 0%, #1D4ED8 100%)',
-          clipPath: 'polygon(0 0, 100% 0, 100% 100%, 50% 78%, 0 100%)',
-        }}
-      />
-
-      {/* Base shadow */}
-      <div className="absolute left-1/2 -translate-x-1/2 -bottom-11 w-32 h-4 rounded-full bg-slate-200 dark:bg-black/30 blur-[2px]" />
-    </div>
+      <div className="space-y-5">
+        {rows.map((row, i) => (
+          <Marquee key={i} duration={45} reverse={i === 1} gapClassName="gap-5 pr-5">
+            {row.map((t) => (
+              <ReviewCard key={t.author} t={t} />
+            ))}
+          </Marquee>
+        ))}
+      </div>
+    </section>
   );
 }
 
-export default function Testimonials() {
+function ReviewCard({ t }: { t: Testimonial }) {
+  const initials = t.author
+    .split(' ')
+    .map((n) => n[0])
+    .join('')
+    .slice(0, 2);
+
   return (
-    <section className="py-24 lg:py-36 relative overflow-hidden bg-white dark:bg-navy-900">
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-200 dark:via-navy-500/50 to-transparent" />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16">
-          <span className="inline-block w-10 h-1 rounded-full bg-blue-600 mb-5" />
-          <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 dark:text-[#E8E8E8]">Client Reviews</h2>
-        </AnimatedSection>
-
-        <div className="grid lg:grid-cols-[1fr_auto] gap-16 items-center">
-          <StaggerContainer className="grid sm:grid-cols-2 gap-x-12 gap-y-12">
-            {testimonials.map((t) => (
-              <StaggerItem key={t.author}>
-                <div className="group pl-5 border-l-2 border-slate-200 dark:border-navy-500/40 hover:border-blue-500 transition-colors duration-300">
-                  <p className="text-slate-900 dark:text-[#E8E8E8] text-lg leading-relaxed mb-5 transition-transform duration-300 group-hover:translate-x-1">
-                    {t.quote}
-                  </p>
-                  <div className="text-xs font-mono tracking-wide">
-                    <div className="text-slate-900 dark:text-[#E8E8E8] font-semibold uppercase">{t.author}</div>
-                    <div className="text-slate-400 dark:text-[#64748B] uppercase mt-0.5">
-                      {t.role}, {t.company}
-                    </div>
-                  </div>
-                </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-
-          <AnimatedSection delay={0.2} className="pb-8 lg:pb-0">
-            <RatingBadge />
-          </AnimatedSection>
-        </div>
-      </div>
-    </section>
+    <figure className="flex w-[22rem] shrink-0 flex-col rounded-2xl border border-slate-200 bg-white p-7 transition-colors duration-300 hover:border-blue-300 dark:border-navy-500/40 dark:bg-navy-800/50 dark:hover:border-blue-500/40 sm:w-[26rem]">
+      <Quote size={22} className="mb-4 text-blue-500/40" />
+      <blockquote className="flex-1 leading-relaxed text-slate-700 dark:text-[#E8E8E8]">{t.quote}</blockquote>
+      <figcaption className="mt-6 flex items-center gap-3 border-t border-slate-100 pt-5 dark:border-navy-500/30">
+        {t.avatar ? (
+          <img src={t.avatar} alt="" className="h-10 w-10 rounded-full object-cover" />
+        ) : (
+          <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 text-sm font-bold text-white">
+            {initials}
+          </span>
+        )}
+        <span>
+          <span className="block text-sm font-semibold text-slate-900 dark:text-white">{t.author}</span>
+          <span className="block text-xs text-slate-500 dark:text-[#94A3B8]">
+            {t.role}, {t.company}
+          </span>
+        </span>
+      </figcaption>
+    </figure>
   );
 }

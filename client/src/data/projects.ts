@@ -3,8 +3,11 @@ export interface Project {
   title: string;
   tagline: string;
   industry: string;
+  /** Human-readable project type shown in badges. */
   service: string;
-  client: string;
+  /** Service ids (see data/services.ts) — used for filtering and linking. */
+  services: string[];
+  client?: string;
   cover: string;
   color: string;
   overview: string;
@@ -20,47 +23,19 @@ export const projects: Project[] = [
   {
     slug: 'tko',
     title: 'TKO Vitality Patient Portal MVP',
-    tagline: 'Intelligent patient monitoring platform',
-    industry: 'TKO',
-    service: 'AI Development',
-    client: 'MediCore Systems',
-    cover: '/tko-cover.png',
+    tagline: 'HIPAA-compliant telehealth patient portal',
+    industry: 'Healthcare',
+    service: 'Telehealth Platform',
+    services: ['web', 'saas', 'backend', 'integrations', 'cloud'],
+    cover: '/tko-cover.webp',
     color: '#10B981',
     overview:
-      'A real-time patient monitoring SaaS powered by machine learning, enabling hospitals to predict adverse events 48 hours before they occur with 94% accuracy.',
+      'A HIPAA-compliant telehealth platform that centralises patient intake, consultations, prescriptions, lab orders and membership management for thousands of patients across dedicated Patient, Provider and Staff/Admin portals.',
     challenge:
-      'MediCore needed to reduce ICU readmission rates by identifying at-risk patients earlier. Their existing system relied on manual chart reviews, causing delays and missed signals in large patient volumes.',
+      'Patient data was fragmented across multiple systems and manual processes slowed care delivery. Membership billing, consent tracking and state licensing needed robust enforcement and auditability, and providers and staff lacked streamlined workflows for consults, prescriptions, lab results and operational visibility.',
     solution:
-      'We built an AI pipeline ingesting EHR data, vitals streams, and lab results. An LSTM-based model flags deteriorating patients on a live dashboard. Clinicians receive prioritized alerts with explainable risk factors via a mobile-first interface.',
-    results: [
-      { metric: '94%', label: 'Prediction accuracy' },
-      { metric: '48h', label: 'Early warning window' },
-      { metric: '31%', label: 'Reduction in ICU readmissions' },
-      { metric: '2.4×', label: 'Faster clinical response time' },
-    ],
+      'We built a secure, scalable telehealth ecosystem with three portals (Patient, Provider and Staff/Admin), implementing dynamic intake, membership tiers, consultation workflows, prescription management, lab integrations and consent controls.',
     sections: [
-      {
-        heading: 'TKO Vitality Patient Portal MVP — Overview',
-        points: [
-          'HIPAA-compliant patient portal centralizing intake, consultations, prescriptions, lab orders, and membership management for thousands of patients.',
-          'Supports patient onboarding, intake forms, telehealth consultations, medication ordering, lab access, and membership subscriptions from a single portal.',
-        ],
-      },
-      {
-        heading: 'The Challenge',
-        points: [
-          'Patient data was fragmented across multiple systems and manual processes slowed care delivery.',
-          'Membership billing, consent tracking, and state licensing needed robust enforcement and auditability.',
-          'Providers and staff lacked streamlined workflows for consults, prescriptions, lab results, and operational visibility.',
-        ],
-      },
-      {
-        heading: 'Our Solution',
-        points: [
-          'Built a secure, scalable telehealth ecosystem with three portals: Patient, Provider, and Staff/Admin.',
-          'Implemented dynamic intake, membership tiers, consultation workflows, prescription management, lab integrations, and consent controls.',
-        ],
-      },
       {
         heading: 'What We Built',
         points: [
@@ -109,21 +84,16 @@ export const projects: Project[] = [
       },
     ],
     tech: ['Next.js', 'Node.js', 'PostgreSQL', 'AWS Lambda', 'AWS Cognito', 'AWS', 'NMI', 'Junction API', 'VS Digital Health API', 'Partel', 'Google Meet'],
-    testimonial: {
-      quote:
-        'Fuserr delivered a system that directly saves lives. The AI predictions have transformed how our clinical teams prioritize care.',
-      author: 'Dr. Sarah Okonkwo',
-      role: 'Chief Medical Officer, MediCore Systems',
-    },
   },
   {
     slug: 'erebix',
     title: 'Erebix',
     tagline: 'AI-powered fitness & nutrition coaching',
     industry: 'Health & Fitness',
-    service: 'Mobile & Web Applications',
+    service: 'Mobile & Web Apps',
+    services: ['mobile', 'ai', 'saas', 'backend'],
     client: 'Erebix Inc.',
-    cover: '/erebix-cover.png',
+    cover: '/erebix-cover.webp',
     color: '#3B82F6',
     overview:
       'Erebix is an AI-powered fitness and nutrition platform that delivers personalized workout plans, adaptive meal programs, and intelligent coaching through a mobile-first ecosystem.',
@@ -207,70 +177,37 @@ export const projects: Project[] = [
   },
   {
     slug: 'assistify',
-    title: 'Assistify web',
+    title: 'Assistify – AI Learning Platform',
     tagline: 'AI-powered learning management system',
-    industry: 'Assistify',
-    service: 'Web Applications',
-    client: 'Luminary Education',
-    cover: '/assistify-cover.png',
+    industry: 'Education',
+    service: 'Web Application',
+    services: ['web', 'ai'],
+    cover: '/assistify-cover.webp',
     color: '#8B5CF6',
     overview:
-      'An adaptive LMS serving 120K students across 14 countries, with AI-driven personalized learning paths and real-time progress analytics.',
+      'Assistify is an AI-powered learning management web platform with personalised learning paths and real-time progress analytics for learners and instructors.',
     challenge:
-      "Luminary's previous Moodle setup couldn't handle adaptive content or provide instructors with actionable analytics. Engagement rates were declining.",
+      'Traditional LMS setups could not adapt content to each learner or give instructors actionable insight into progress and engagement.',
     solution:
-      "We designed a custom LMS with a React frontend, Node.js backend, and an AI recommendation engine that tailors content difficulty based on each learner's mastery curve.",
-    results: [
-      { metric: '120K', label: 'Active learners' },
-      { metric: '67%', label: 'Improvement in course completion' },
-      { metric: '3.2×', label: 'Increase in engagement' },
-      { metric: '14', label: 'Countries deployed' },
-    ],
+      'We designed a custom LMS with a React frontend, Node.js backend and an AI recommendation engine that tailors content difficulty to each learner.',
     tech: ['React', 'Node.js', 'Python', 'MongoDB', 'Redis', 'WebRTC', 'GCP'],
   },
   {
     slug: 'copy-smart',
-    title: 'Copy Smart (Ecommerce)',
-    tagline: 'Headless ecommerce at enterprise scale',
-    industry: 'Copy Smart',
-    service: 'Ecommerce',
-    client: 'Meridian Brands',
-    cover: '/copy-smart-cover.jpg',
+    title: 'CopySmart – Online Printing & Design Platform',
+    tagline: 'Online ordering for printing & design services',
+    industry: 'Ecommerce',
+    service: 'Ecommerce Platform',
+    services: ['web', 'integrations', 'ui', 'cloud'],
+    cover: '/copy-smart-cover.webp',
     color: '#F59E0B',
     overview:
-      'A headless commerce platform for a multi-brand retailer, processing $12M+ monthly GMV with hyper-personalized storefronts and real-time inventory.',
+      'CopySmart is a digital platform for ordering professional printing, copying, design and marketing materials online. Customers place orders, upload requirements, pay securely, track progress and receive finished products through integrated delivery.',
     challenge:
-      "Meridian operated 6 brands on a monolithic Magento setup. Performance was poor, conversion rates were below industry average, and the team couldn't iterate quickly.",
+      'The client needed customers to order printing and design services online without manual quotations, approvals, payment collection and delivery coordination, plus central management of products, orders, payments, shipping and content with full visibility into the order lifecycle.',
     solution:
-      'We migrated to a headless architecture with Next.js storefronts, Shopify Plus as the commerce engine, and a custom PIM. Personalization is handled by a ML recommendation service.',
-    results: [
-      { metric: '$12M+', label: 'Monthly GMV processed' },
-      { metric: '2.8×', label: 'Improvement in page speed' },
-      { metric: '22%', label: 'Increase in conversion rate' },
-      { metric: '6', label: 'Brands on single platform' },
-    ],
+      'We designed and built a full-featured ordering platform that digitises the entire customer journey, from order placement and payment to production tracking and delivery updates, with a CMS for products, categories, orders, content and promotions.',
     sections: [
-      {
-        heading: 'CopySmart – Online Printing & Design Services Platform — Overview',
-        points: [
-          'CopySmart is a digital platform designed to simplify ordering professional printing, copying, design, and marketing materials online. Customers can place orders, upload requirements, make secure payments, track progress, and receive completed products through integrated delivery services.',
-          'Built to replace manual order management with a streamlined digital workflow that improves operational efficiency and customer experience.',
-        ],
-      },
-      {
-        heading: 'The Challenge',
-        points: [
-          'Client required a modern web platform to allow customers to order printing and design services online without manual quotations, approvals, payment collection, and delivery coordination.',
-          'Needed centralized management for products, orders, payments, shipping, and content while providing full visibility into the order lifecycle.',
-        ],
-      },
-      {
-        heading: 'Our Solution',
-        points: [
-          'Designed and developed a full-featured printing and design services platform that digitizes the entire customer journey—from order placement and payment processing to production tracking and delivery updates.',
-          'Administrators can manage products, categories, orders, content, and promotions through a powerful CMS.',
-        ],
-      },
       {
         heading: 'Customer Experience Platform',
         points: [
@@ -327,60 +264,24 @@ export const projects: Project[] = [
         ],
       },
     ],
-    tech: [
-      'Frontend: Next.js',
-      'Backend: Node.js',
-      'CMS: Payload CMS',
-      'Payments: Stripe',
-      'Shipping: NetParcel',
-      'Email Services: Resend',
-      'Hosting & Deployment: Vercel',
-      'Database & APIs: Custom Node.js Services',
-    ],
+    tech: ['Next.js', 'Node.js', 'Payload CMS', 'Stripe', 'NetParcel', 'Resend', 'Vercel'],
   },
   {
     slug: 'scrub-art',
-    title: ' Scrub-Art On-Demand Cleaning Services Marketplace',
-    tagline: 'AI-powered art restoration platform',
-    industry: 'Scrub Art',
-    service: 'AI Development',
-    client: 'Thornton & Associates',
-    cover: '/scrub-art-cover.png',
+    title: 'Scrub-Art – On-Demand Cleaning Marketplace',
+    tagline: 'On-demand cleaning services marketplace',
+    industry: 'Home Services',
+    service: 'Mobile Marketplace',
+    services: ['mobile', 'backend', 'integrations', 'web'],
+    cover: '/scrub-art-cover.webp',
     color: '#06B6D4',
     overview:
-      'An AI-powered contract review platform that reduces legal review time by 70%, surfacing risks, obligations, and anomalies from thousands of documents.',
+      'A complete on-demand cleaning services platform connecting customers with professional cleaners through instant booking, automated job assignment, secure payments and real-time service management.',
     challenge:
-      'The firm reviewed 300+ contracts monthly using junior associates. Turnaround times were 5–10 days, and human error rates were unacceptable for a high-stakes practice.',
+      'Build a scalable marketplace that connects customers with nearby cleaning professionals while automating booking, pricing, provider assignment and payments, across multiple service categories with location-based matching, dynamic pricing and admin quality control.',
     solution:
-      'We built an LLM-based pipeline (GPT-4 + fine-tuned BERT) that extracts clauses, identifies risks, and generates review summaries. A lawyer-in-the-loop interface allows one-click annotations.',
-    results: [
-      { metric: '70%', label: 'Reduction in review time' },
-      { metric: '300+', label: 'Contracts processed monthly' },
-      { metric: '98.2%', label: 'Clause extraction accuracy' },
-      { metric: '4h→45min', label: 'Average review time' },
-    ],
+      'We developed a marketplace ecosystem with customer and provider mobile apps, an admin portal and a central backend. Customers get transparent pricing, flexible scheduling and secure payment; providers receive nearby jobs, manage bookings and track earnings.',
     sections: [
-      {
-        heading: 'On-Demand Cleaning Services Marketplace — Overview',
-        points: [
-          'A complete on-demand cleaning services platform connecting customers with professional cleaning providers through instant booking, automated job assignment, secure payments, and real-time service management.',
-          'Designed to simplify booking for customers while providing providers with tools to manage jobs, payments, and daily operations.',
-        ],
-      },
-      {
-        heading: 'The Challenge',
-        points: [
-          'Build a scalable marketplace to connect customers with nearby cleaning professionals while automating booking, pricing, provider assignment, and payment workflows.',
-          'Support multiple service categories, location-based matching, dynamic pricing, scheduling flexibility, and admin oversight for quality control.',
-        ],
-      },
-      {
-        heading: 'Our Solution',
-        points: [
-          'Developed a service marketplace ecosystem with customer and provider mobile apps, an admin portal, and centralized backend infrastructure.',
-          'Customers can request services, get transparent pricing, schedule appointments, and pay securely. Providers receive nearby job opportunities, manage bookings, and track earnings.',
-        ],
-      },
       {
         heading: 'Customer Mobile Application (React Native)',
         points: [
@@ -454,23 +355,17 @@ export const projects: Project[] = [
         ],
       },
     ],
-    tech: [
-      'Mobile: React Native',
-      'Web: React.js',
-      'Backend: Laravel / REST APIs',
-      'Database: MySQL',
-      'Payments: Stripe',
-      'Services: GPS Tracking, Push Notifications, In-App Wallet System, Dynamic Pricing Engine',
-    ],
+    tech: ['React Native', 'React', 'Laravel', 'MySQL', 'Stripe', 'GPS Tracking', 'Push Notifications'],
   },
   {
     slug: 'fixie',
     title: 'Fixie – Home Services Marketplace Platform',
     tagline: 'On-demand home services marketplace',
-    industry: 'Fixie',
-    service: 'Home Services Marketplace',
+    industry: 'Home Services',
+    service: 'Mobile Marketplace',
+    services: ['mobile', 'backend', 'ui', 'integrations'],
     client: 'Fixie Inc.',
-    cover: '/fixie-cover.png',
+    cover: '/fixie-cover.webp',
     color: '#7C3AED',
     overview:
       'Fixie is a comprehensive home services marketplace that connects homeowners with trusted local service professionals via a mobile-first experience. It supports discovery, booking, secure payments, provider verification, and dispute resolution.',
@@ -478,32 +373,7 @@ export const projects: Project[] = [
       'Finding reliable local service professionals involved fragmented communication, uncertain pricing, limited availability info, and low trust. Providers struggled to consistently acquire clients and manage schedules, payments, and reputation.',
     solution:
       'We built a two-sided marketplace with customer and provider mobile apps, a scalable backend, and an admin portal to streamline discovery, booking, payments, verification, and operations.',
-    results: [
-      { metric: '45%', label: 'Conversion uplift' },
-      { metric: '2.1×', label: 'Revenue per visitor' },
-    ],
     sections: [
-      {
-        heading: 'Overview',
-        points: [
-          'Fixie connects homeowners with trusted local service professionals through a seamless mobile-first experience.',
-          'The platform enables discovery, booking, secure payments, reviews, and provider management in a single ecosystem.',
-        ],
-      },
-      {
-        heading: 'The Challenge',
-        points: [
-          'Fragmented communication, uncertain pricing, and limited availability information made discovery and booking unreliable for homeowners.',
-          'Service professionals needed better tools for client acquisition, scheduling, payments, and reputation management.',
-        ],
-      },
-      {
-        heading: 'Our Solution',
-        points: [
-          'Delivered dedicated mobile apps for customers and providers, plus an admin portal and scalable backend.',
-          'Features include provider verification, booking workflows, secure payments, ratings, and dispute resolution.',
-        ],
-      },
       {
         heading: 'Customer Mobile Application (React Native)',
         points: [
@@ -563,35 +433,26 @@ export const projects: Project[] = [
         ],
       },
     ],
-    tech: [
-      'Mobile Applications: React Native',
-      'Backend: Spring Boot (Java)',
-      'Database & Caching: PostgreSQL, Redis',
-      'Payments: Stripe',
-      'Maps & Location Services: Mapbox',
-      'Email & Notifications: Resend',
-      'APIs: RESTful Services',
-      'Infrastructure: Cloud-based scalable architecture',
-    ],
+    tech: ['React Native', 'Spring Boot', 'PostgreSQL', 'Redis', 'Stripe', 'Mapbox', 'Resend'],
   },
   {
     slug: 'kargo-domus',
-    title: 'Kargo Domus Logistics Marketplace Platform',
-    tagline: 'Real-time supply chain intelligence',
-    industry: 'Kargo Domus',
-    service: 'Web Applications',
-    client: 'TransGlobal Freight',
-    cover: '/kargo-domus-cover.png',
+    title: 'Kargo Domus – Logistics Marketplace',
+    tagline: 'Parcel booking & delivery marketplace',
+    industry: 'Logistics',
+    service: 'Logistics Marketplace',
+    services: ['mobile', 'web', 'backend', 'integrations'],
+    cover: '/kargo-domus-cover.webp',
     color: '#EF4444',
     overview:
-      'Built a complete logistics marketplace that connects customers with delivery service providers through a centralized platform. The solution enables parcel booking, provider matching, real-time shipment tracking, automated payments, and operational management across web and mobile applications.',
+      'A complete logistics marketplace connecting customers with delivery providers on one platform, with parcel booking, provider matching, real-time tracking, automated payments and operations management across web and mobile.',
     challenge:
-      'TransGlobal managed shipments across 40 countries with no unified visibility. Delays were discovered reactively, causing $2M+ annually in penalties.',
+      'Customers needed one place to book parcels, compare delivery providers and track shipments, while providers needed tools to manage service areas, route-based pricing and incoming orders, all with reliable payments and dispute handling.',
     solution:
-      'We built a complete logistics marketplace that connects customers with delivery service providers through a centralized platform.',
+      'We built customer and provider mobile apps, an admin dashboard and a Laravel backend with intelligent provider matching, a dynamic pricing engine, real-time tracking and automated payment splits through Stripe Connect.',
     sections: [
       {
-        heading: 'Solution Delivered — Customer Mobile Application (React Native)',
+        heading: 'Customer Mobile Application (React Native)',
         points: [
           'Multi-parcel booking system',
           'Location-based pickup and delivery selection',
@@ -657,22 +518,17 @@ export const projects: Project[] = [
         ],
       },
     ],
-    tech: [
-      'Frontend: React Native, React.js',
-      'Backend: Laravel, PHP',
-      'Database: MySQL',
-      'Payments: Stripe Connect',
-      'Infrastructure: REST APIs, Real-Time Tracking Services',
-    ],
+    tech: ['React Native', 'React', 'Laravel', 'MySQL', 'Stripe Connect', 'Real-time Tracking'],
   },
   {
     slug: 'ai-chatbot',
     title: 'AI Shopping Assistant for E-Commerce',
     tagline: 'Conversational product discovery for ecommerce',
     industry: 'Ecommerce',
-    service: 'AI & Product Discovery',
+    service: 'AI Assistant',
+    services: ['ai', 'web'],
     client: 'Confidential Retail Client',
-    cover: '/ai-chatbot-cover.png',
+    cover: '/ai-chatbot-cover.webp',
     color: '#F97316',
     overview:
       'An AI-powered conversational shopping assistant that helps customers find and compare products through natural text and voice conversations, improving discovery and conversion for apparel and accessories retailers.',
@@ -724,3 +580,15 @@ export const projects: Project[] = [
     tech: ['React', 'Next.js', 'Node.js', 'OpenAI', 'D-ID', 'PostgreSQL', 'Redis', 'WebRTC'],
   },
 ];
+
+/** Short brand names for compact UI (chips, logo strip). */
+export const projectShortName: Record<string, string> = {
+  tko: 'TKO Vitality',
+  erebix: 'Erebix',
+  assistify: 'Assistify',
+  'copy-smart': 'CopySmart',
+  'scrub-art': 'Scrub-Art',
+  fixie: 'Fixie',
+  'kargo-domus': 'Kargo Domus',
+  'ai-chatbot': 'AI Shopping Assistant',
+};

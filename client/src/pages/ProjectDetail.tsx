@@ -1,208 +1,396 @@
-import { useParams, Link, Navigate } from 'react-router-dom';
-import { ArrowLeft, Quote, ArrowRight } from 'lucide-react';
-import { projects } from '@/data/projects';
-import Badge from '@/components/ui/Badge';
+import { useRef } from 'react';
+import { Link, Navigate, useParams } from 'react-router-dom';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowLeft, ArrowRight, ArrowUpRight, CheckCircle2, Quote, Target, Lightbulb, Layers } from 'lucide-react';
+import { projects, type Project } from '@/data/projects';
+import { services } from '@/data/services';
+import CountUp from '@/components/motion/CountUp';
+import Magnetic from '@/components/motion/Magnetic';
 import Button from '@/components/ui/Button';
-import AnimatedSection, { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedSection';
-import { useDocumentTitle } from '@/lib/useDocumentTitle';
+import CTABanner from '@/components/home/CTABanner';
+import ReadingProgress from '@/components/motion/ReadingProgress';
+import { useDocumentTitle, useMetaDescription } from '@/lib/useDocumentTitle';
+import PageHero from '@/components/layout/PageHero';
 
-const badgeVariants: Record<string, 'blue' | 'green' | 'amber' | 'purple' | 'cyan' | 'red'> = {
-  Healthcare: 'green', Fintech: 'blue', Education: 'purple',
-  Ecommerce: 'amber', 'Legal Tech': 'cyan', Logistics: 'red',
-};
+const EASE = [0.22, 1, 0.36, 1] as const;
+const inView = { once: true, margin: '-60px' } as const;
 
 export default function ProjectDetailPage() {
   const { slug } = useParams<{ slug: string }>();
-  const project = projects.find((p) => p.slug === slug);
+  const index = projects.findIndex((p) => p.slug === slug);
+  const project = index >= 0 ? projects[index] : undefined;
 
-  useDocumentTitle(project?.title);
+  useDocumentTitle(project ? `${project.title} — Case Study` : undefined);
+  useMetaDescription(project?.overview);
 
-  if (!project) return <Navigate to="/portfolio" replace />;
+  if (!project) return <Navigate to="/work" replace />;
 
-  const related = projects.filter((p) => p.slug !== project.slug).slice(0, 2);
+  const next = projects[(index + 1) % projects.length];
 
   return (
     <>
-      {/* ── Full-width Project Header Image ── */}
-      <section className="relative pt-20 overflow-hidden">
-        <div className="w-full h-[360px] lg:h-[440px] relative flex items-end overflow-hidden">
-          {/* Background image */}
-          {project.cover && (
-            <div
-              className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-              style={{ backgroundImage: `url(${project.cover})` }}
-            />
-          )}
+      <ReadingProgress />
+      <Hero project={project} />
+      <Story project={project} />
+      {project.sections && project.sections.length > 0 && <Sections project={project} />}
+      {project.results && project.results.length > 0 && <Results project={project} />}
+      {project.testimonial && <Testimonial project={project} />}
+      <NextProject project={next} />
+      <CTABanner />
+    </>
+  );
+}
 
-          {/* Gradient overlay to preserve brand tint and readability */}
-          <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${project.color}25 0%, ${project.color}08 60%, var(--c-bg) 100%)` }} />
+/* ─── Hero ───────────────────────────────────────────── */
 
-          {/* Abstract decoration */}
-          <div className="absolute inset-0 dot-grid opacity-40" />
-          <div className="absolute right-0 top-0 w-[500px] h-[500px] rounded-full opacity-10 blur-[80px]" style={{ background: project.color }} />
-          <div className="absolute right-[15%] top-[10%] w-48 h-48 rounded-full opacity-[0.08]" style={{ background: project.color }} />
-          <div className="absolute left-[5%] bottom-[20%] w-20 h-20 rounded-2xl opacity-[0.1] rotate-12" style={{ background: project.color }} />
+function Hero({ project: p }: { project: Project }) {
+  const coverRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: coverRef, offset: ['start end', 'end start'] });
+  const imgScale = useTransform(scrollYProgress, [0, 1], [1.15, 1]);
+  const imgY = useTransform(scrollYProgress, [0, 1], ['-6%', '6%']);
+  const linked = p.services.map((id) => services.find((s) => s.id === id)).filter(Boolean);
 
-          {/* Back link */}
+  return (
+    <>
+      <PageHero
+        variant="sparks"
+        accent={p.color}
+        align="left"
+        top={
           <Link
-            to="/portfolio"
-            className="absolute top-8 left-4 sm:left-8 lg:left-16 inline-flex items-center gap-2 text-sm font-medium text-slate-500 dark:text-[#64748B] hover:text-slate-800 dark:hover:text-[#94A3B8] transition-colors glass px-4 py-2 rounded-full border border-slate-200 dark:border-navy-500/50"
+            to="/work"
+            className="group inline-flex items-center gap-2 text-sm font-medium text-slate-400 transition-colors hover:text-white"
           >
-            <ArrowLeft size={13} /> All Projects
+            <ArrowLeft size={15} className="transition-transform group-hover:-translate-x-1" />
+            All work
           </Link>
-
-          {/* Project identity removed from banner to render below image for better readability */}
-        </div>
-        {/* Project identity rendered below banner image */}
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-10">
-          <div className="flex flex-wrap items-center gap-3 mb-5">
-            <Badge variant={badgeVariants[project.industry] ?? 'blue'}>{project.industry}</Badge>
-            <Badge variant="blue">{project.service}</Badge>
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-[#E8E8E8] leading-tight mb-3">
-            {project.title}
-          </h1>
-        </div>
-      </section>
-
-      {/* ── Main Content ── */}
-      <div className="bg-[var(--c-bg-alt)] dark:bg-navy-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-
-          {/* Key Results removed per request */}
-
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Article content */}
-            <div className="lg:col-span-2 space-y-12">
-              <AnimatedSection delay={0.1}>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-[#E8E8E8] mb-4">Project Overview</h2>
-                <p className="text-slate-500 dark:text-[#94A3B8] leading-relaxed text-lg">{project.overview}</p>
-              </AnimatedSection>
-
-              <AnimatedSection delay={0.15}>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-[#E8E8E8] mb-4">The Challenge</h2>
-                <p className="text-slate-500 dark:text-[#94A3B8] leading-relaxed">{project.challenge}</p>
-              </AnimatedSection>
-
-              <AnimatedSection delay={0.2}>
-                <h2 className="text-xl font-bold text-slate-900 dark:text-[#E8E8E8] mb-4">Our Solution</h2>
-                <p className="text-slate-500 dark:text-[#94A3B8] leading-relaxed">{project.solution}</p>
-              </AnimatedSection>
-
-              {project.sections && project.sections.length > 0 && (
-                <>
-                  {project.sections.map((sec, idx) => (
-                    <AnimatedSection key={sec.heading} delay={0.25 + idx * 0.05}>
-                      <h3 className="text-lg font-semibold text-slate-900 dark:text-[#E8E8E8] mb-3">{sec.heading}</h3>
-                      <ul className="list-disc pl-5 text-slate-500 dark:text-[#94A3B8] space-y-2">
-                        {sec.points.map((pt) => (
-                          <li key={pt} className="leading-relaxed">{pt}</li>
-                        ))}
-                      </ul>
-                    </AnimatedSection>
-                  ))}
-                </>
-              )}
-
-              {project.testimonial && (
-                <AnimatedSection delay={0.25}>
-                  <div className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-8">
-                    <Quote size={22} className="text-blue-500/50 mb-5" />
-                    <p className="text-slate-700 dark:text-[#E8E8E8] text-lg italic leading-relaxed mb-6">
-                      &ldquo;{project.testimonial.quote}&rdquo;
-                    </p>
-                    <div className="flex items-center gap-3 pt-5 border-t border-slate-100 dark:border-navy-500/40">
-                      <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white" style={{ background: project.color }}>
-                        {project.testimonial.author.trim()[0]}
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold text-slate-900 dark:text-[#E8E8E8]">{project.testimonial.author}</div>
-                        <div className="text-xs text-slate-400 dark:text-[#64748B]">{project.testimonial.role}</div>
-                      </div>
-                    </div>
-                  </div>
-                </AnimatedSection>
-              )}
-            </div>
-
-            {/* Sidebar */}
-            <AnimatedSection direction="right" className="space-y-5">
-              {/* Tech stack */}
-              <div className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-6">
-                <h3 className="text-xs font-mono font-semibold text-slate-400 dark:text-[#64748B] uppercase tracking-widest mb-5">Skills and deliverables</h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => <span key={t} className="tech-tag">{t}</span>)}
-                </div>
-              </div>
-
-              {/* Project info */}
-              <div className="glass rounded-2xl border border-slate-200 dark:border-navy-500/40 p-6">
-                <h3 className="text-xs font-mono font-semibold text-slate-400 dark:text-[#64748B] uppercase tracking-widest mb-5">Details</h3>
-                <dl className="space-y-3">
-                  {[
-                    { label: 'Client',   value: project.client },
-                    { label: 'Industry', value: project.industry },
-                    { label: 'Service',  value: project.service },
-                  ].map(({ label, value }) => (
-                    <div key={label} className="flex justify-between items-start gap-4">
-                      <dt className="text-xs text-slate-400 dark:text-[#64748B]">{label}</dt>
-                      <dd className="text-sm text-slate-800 dark:text-[#E8E8E8] font-medium text-right">{value}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-
-              <Button href="/contact" variant="primary" size="md" className="w-full justify-center">
-                Start a Similar Project <ArrowRight size={14} />
-              </Button>
-            </AnimatedSection>
-          </div>
-
-          {/* Related */}
-          <AnimatedSection delay={0.3} className="mt-20">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-[#E8E8E8] mb-8">More Projects</h2>
-            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-5">
-              {related.map((p) => (
-                <StaggerItem key={p.slug}>
-                  <Link to={`/portfolio/${p.slug}`} className="group block h-full">
-                    <div className="h-full rounded-3xl overflow-hidden border border-slate-100 dark:border-navy-700 bg-white/60 dark:bg-navy-800/40 backdrop-blur-sm hover:border-blue-200 dark:hover:border-blue-600/30 transition-all duration-300 shadow-lg hover:shadow-2xl transform-gpu hover:-translate-y-1 group flex flex-col">
-                      <div className="relative w-full pb-[56.25%] bg-slate-50 dark:bg-navy-700">
-                        {p.cover ? (
-                          <img src={p.cover} alt={p.title} className="absolute inset-0 w-full h-full object-cover block" loading="lazy" />
-                        ) : (
-                          <div className="absolute inset-0" style={{ background: `linear-gradient(135deg, ${p.color}18, ${p.color}05)` }} />
-                        )}
-
-                        <div className="absolute inset-0 dot-grid opacity-30" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-
-                        <div className="absolute bottom-4 left-4 flex items-center gap-3 z-10">
-                          <div className="w-9 h-9 rounded-xl flex items-center justify-center text-slate-900 font-bold text-base shadow" style={{ background: '#D1D5DB' }}>
-                            {p.title.trim()[0]}
-                          </div>
-                          <div>
-                            <div className="text-sm font-semibold text-slate-900 dark:text-white leading-tight">{p.title}</div>
-                            <div className="text-xs font-mono text-slate-700 dark:text-[#94A3B8]">{p.industry}</div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div className="p-6 flex-1">
-                        <div className="flex items-center mb-4">
-                          <Badge variant={badgeVariants[p.industry] ?? 'blue'}>{p.industry}</Badge>
-                        </div>
-
-                        <h3 className="font-semibold text-base mb-1.5 transition-colors text-slate-900 dark:text-white group-hover:text-blue-600">{p.title}</h3>
-                        <p className="text-sm text-slate-700 mb-4">{p.tagline}</p>
-                      </div>
-                    </div>
-                  </Link>
-                </StaggerItem>
+        }
+        eyebrow={
+          <span className="flex flex-wrap items-center gap-2">
+            <span
+              className="rounded-full border px-3 py-1 text-xs font-mono font-medium backdrop-blur-md"
+              style={{ color: p.color, borderColor: `${p.color}55`, background: `${p.color}18` }}
+            >
+              {p.industry}
+            </span>
+            <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-mono font-medium text-slate-300 backdrop-blur-md">
+              {p.service}
+            </span>
+          </span>
+        }
+        title={p.title}
+        description={p.overview}
+        titleClassName="max-w-5xl"
+      >
+        <dl className="grid max-w-4xl grid-cols-2 gap-6 border-t border-white/10 pt-8 md:grid-cols-4">
+          <Meta label="Industry" value={p.industry} />
+          <Meta label="Project type" value={p.service} />
+          {p.client && <Meta label="Client" value={p.client} />}
+          <div className={p.client ? '' : 'md:col-span-2'}>
+            <dt className="text-xs font-mono uppercase tracking-wider text-slate-400">Services</dt>
+            <dd className="mt-2 flex flex-wrap gap-x-3 gap-y-1">
+              {linked.map((s) => (
+                <Link
+                  key={s!.id}
+                  to={`/services/${s!.slug}`}
+                  className="text-sm font-semibold text-white underline decoration-white/30 underline-offset-4 transition-colors hover:text-cyan-300 hover:decoration-cyan-300"
+                >
+                  {s!.title}
+                </Link>
               ))}
-            </StaggerContainer>
-          </AnimatedSection>
+            </dd>
+          </div>
+        </dl>
+      </PageHero>
+
+      {/* Cover */}
+      <section className="relative bg-[var(--c-bg)] pt-4">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5, ease: EASE }}
+          className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8"
+        >
+          <div
+            ref={coverRef}
+            className="relative aspect-[16/9] overflow-hidden rounded-3xl border border-white/10 bg-navy-800 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.7)]"
+          >
+            <motion.img
+              src={p.cover}
+              alt={p.title}
+              style={{ scale: imgScale, y: imgY }}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          </div>
+        </motion.div>
+      </section>
+    </>
+  );
+}
+
+function Meta({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <dt className="text-xs font-mono uppercase tracking-wider text-slate-400">{label}</dt>
+      <dd className="mt-2 text-sm font-semibold text-white">{value}</dd>
+    </div>
+  );
+}
+
+/* ─── Story: challenge / solution + sticky sidebar ───── */
+
+function Story({ project: p }: { project: Project }) {
+  const blocks = [
+    { icon: Target, label: 'The challenge', text: p.challenge },
+    { icon: Lightbulb, label: 'Our solution', text: p.solution },
+  ];
+
+  return (
+    <section className="relative bg-[var(--c-bg)] py-24 lg:py-32">
+      <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+        <div className="space-y-16 lg:col-span-8">
+          {blocks.map(({ icon: Icon, label, text }) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={inView}
+              transition={{ duration: 0.6, ease: EASE }}
+              className="grid gap-6 sm:grid-cols-[auto_1fr]"
+            >
+              <span
+                className="flex h-12 w-12 items-center justify-center rounded-2xl"
+                style={{ background: `${p.color}15`, border: `1px solid ${p.color}35` }}
+              >
+                <Icon size={21} style={{ color: p.color }} />
+              </span>
+              <div>
+                <h2 className="mb-4 text-xs font-mono uppercase tracking-[0.2em] text-slate-400 dark:text-[#64748B]">{label}</h2>
+                <p className="text-xl leading-relaxed text-slate-700 dark:text-[#E8E8E8] sm:text-2xl sm:leading-relaxed">{text}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Sticky sidebar */}
+        <aside className="lg:col-span-4">
+          <div className="space-y-5 lg:sticky lg:top-28">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={inView}
+              transition={{ duration: 0.6, ease: EASE }}
+              className="rounded-3xl border border-slate-200 bg-white p-7 dark:border-navy-500/40 dark:bg-navy-800/40"
+            >
+              <h3 className="mb-5 flex items-center gap-2 text-xs font-mono uppercase tracking-[0.18em] text-slate-400 dark:text-[#64748B]">
+                <Layers size={13} /> Tech stack
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {p.tech.map((t, i) => (
+                  <motion.span
+                    key={t}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 20, delay: i * 0.04 }}
+                    className="tech-tag"
+                  >
+                    {t}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={inView}
+              transition={{ duration: 0.6, delay: 0.1, ease: EASE }}
+              className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 to-indigo-700 p-7 text-white"
+            >
+              <div className="pointer-events-none absolute -right-10 -top-10 h-40 w-40 rounded-full bg-white/10 blur-2xl" />
+              <h3 className="relative text-lg font-bold">Building something similar?</h3>
+              <p className="relative mt-2 text-sm text-blue-100">
+                Tell us about your idea and get a free consultation within 24 hours.
+              </p>
+              <Magnetic strength={0.2} className="relative mt-5 inline-block">
+                <Button href="/contact" variant="secondary" size="md" className="group border-0 bg-white text-blue-700 hover:bg-blue-50 dark:bg-white dark:text-blue-700 dark:hover:bg-blue-50">
+                  Start a project <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+                </Button>
+              </Magnetic>
+            </motion.div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Sections (what we built, features…) ────────────── */
+
+function Sections({ project: p }: { project: Project }) {
+  return (
+    <section className="relative bg-[var(--c-bg-alt)] py-24 dark:bg-navy-900 lg:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={inView}
+          transition={{ duration: 0.6, ease: EASE }}
+          className="mb-14 max-w-3xl text-3xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-4xl"
+        >
+          Inside the <span className="text-gradient">build</span>
+        </motion.h2>
+
+        <div className="grid gap-5 md:grid-cols-2">
+          {p.sections!.map((sec, i) => {
+            const chips = sec.points.length > 6 && sec.points.every((pt) => pt.length < 40);
+            const wide = chips || sec.points.some((pt) => pt.length > 140);
+            return (
+              <motion.div
+                key={sec.heading}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={inView}
+                transition={{ duration: 0.55, delay: (i % 2) * 0.08, ease: EASE }}
+                className={`rounded-3xl border border-slate-200 bg-white p-7 dark:border-navy-500/40 dark:bg-navy-800/40 sm:p-8 ${wide ? 'md:col-span-2' : ''}`}
+              >
+                <div className="mb-5 flex items-center gap-3">
+                  <span className="font-mono text-xs text-slate-400 dark:text-[#64748B]">{String(i + 1).padStart(2, '0')}</span>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">{sec.heading}</h3>
+                </div>
+
+                {chips ? (
+                  <div className="flex flex-wrap gap-2">
+                    {sec.points.map((pt) => (
+                      <span
+                        key={pt}
+                        className="rounded-xl border px-3.5 py-2 text-sm font-medium"
+                        style={{ color: p.color, borderColor: `${p.color}35`, background: `${p.color}0d` }}
+                      >
+                        {pt}
+                      </span>
+                    ))}
+                  </div>
+                ) : (
+                  <ul className="space-y-3">
+                    {sec.points.map((pt) => (
+                      <li key={pt} className="flex items-start gap-3 text-[15px] leading-relaxed text-slate-600 dark:text-[#94A3B8]">
+                        <CheckCircle2 size={17} className="mt-0.5 shrink-0" style={{ color: p.color }} />
+                        {pt}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
-    </>
+    </section>
+  );
+}
+
+/* ─── Results ────────────────────────────────────────── */
+
+function parseMetric(metric: string) {
+  const m = metric.match(/^([^\d]*)([\d.,]+)(.*)$/);
+  if (!m) return null;
+  const value = parseFloat(m[2].replace(/,/g, ''));
+  if (Number.isNaN(value)) return null;
+  const decimals = (m[2].split('.')[1] || '').length;
+  return { prefix: m[1], value, suffix: m[3], decimals };
+}
+
+function Results({ project: p }: { project: Project }) {
+  return (
+    <section className="relative overflow-hidden bg-[var(--c-bg)] py-20 lg:py-24">
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-64 w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-15 blur-[100px]" style={{ background: p.color }} />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <h2 className="mb-12 text-center text-xs font-mono uppercase tracking-[0.2em] text-slate-400 dark:text-[#64748B]">Results</h2>
+        <div className="flex flex-wrap justify-center gap-x-16 gap-y-10">
+          {p.results!.map((r) => {
+            const parsed = parseMetric(r.metric);
+            return (
+              <div key={r.label} className="text-center">
+                {parsed ? (
+                  <CountUp
+                    to={parsed.value}
+                    decimals={parsed.decimals}
+                    prefix={parsed.prefix}
+                    suffix={parsed.suffix}
+                    className="block font-montserrat text-5xl font-extrabold text-gradient sm:text-6xl"
+                  />
+                ) : (
+                  <span className="block font-montserrat text-5xl font-extrabold text-gradient sm:text-6xl">{r.metric}</span>
+                )}
+                <span className="mt-2 block text-sm text-slate-500 dark:text-[#94A3B8]">{r.label}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Testimonial ────────────────────────────────────── */
+
+function Testimonial({ project: p }: { project: Project }) {
+  const t = p.testimonial!;
+  return (
+    <section className="relative bg-[var(--c-bg-alt)] py-24 dark:bg-navy-900">
+      <motion.figure
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={inView}
+        transition={{ duration: 0.7, ease: EASE }}
+        className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8"
+      >
+        <Quote size={40} className="mx-auto mb-8" style={{ color: `${p.color}80` }} />
+        <blockquote className="text-2xl font-medium leading-relaxed text-slate-800 dark:text-[#E8E8E8] sm:text-3xl">
+          &ldquo;{t.quote}&rdquo;
+        </blockquote>
+        <figcaption className="mt-8">
+          <div className="font-semibold text-slate-900 dark:text-white">{t.author}</div>
+          <div className="text-sm text-slate-500 dark:text-[#94A3B8]">{t.role}</div>
+        </figcaption>
+      </motion.figure>
+    </section>
+  );
+}
+
+/* ─── Next project ───────────────────────────────────── */
+
+function NextProject({ project: p }: { project: Project }) {
+  return (
+    <section className="relative bg-[var(--c-bg)]">
+      <Link to={`/work/${p.slug}`} className="group relative block overflow-hidden border-t border-white/10">
+        {/* Cover is always visible; on hover it slowly zooms and darkens */}
+        <img
+          src={p.cover}
+          alt=""
+          loading="lazy"
+          className="absolute inset-0 h-full w-full object-cover opacity-60 transition-transform duration-[1200ms] ease-out group-hover:scale-110"
+        />
+        {/* Readability overlays: dark from the left (behind the text) and bottom */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#030712] via-[#030712]/80 to-[#030712]/30 transition-opacity duration-500" />
+        <div className="absolute inset-0 bg-[#030712]/0 transition-colors duration-500 group-hover:bg-[#030712]/35" />
+        <div className="absolute inset-x-0 bottom-0 h-1 origin-left scale-x-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-violet-500 transition-transform duration-700 ease-out group-hover:scale-x-100" />
+
+        <div className="relative mx-auto flex max-w-7xl flex-col gap-6 px-4 py-20 sm:px-6 md:flex-row md:items-end md:justify-between lg:px-8 lg:py-28">
+          <div className="transition-transform duration-500 ease-out group-hover:translate-x-2">
+            <div className="mb-4 text-xs font-mono uppercase tracking-[0.2em] text-slate-300">Next project</div>
+            <div className="max-w-3xl font-montserrat text-3xl font-extrabold leading-tight tracking-tight text-white drop-shadow-[0_4px_24px_rgba(0,0,0,0.6)] transition-colors duration-300 group-hover:text-blue-300 sm:text-5xl">
+              {p.title}
+            </div>
+            <div className="mt-3 text-slate-300">{p.tagline}</div>
+          </div>
+          <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/10 backdrop-blur-md transition-all duration-500 group-hover:scale-110 group-hover:border-blue-500 group-hover:bg-blue-600">
+            <ArrowUpRight size={24} className="text-white transition-transform duration-500 group-hover:rotate-45" />
+          </span>
+        </div>
+      </Link>
+    </section>
   );
 }
