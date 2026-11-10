@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Fuserr Solutions Server</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@800&display=swap" rel="stylesheet" />
+    <style>
+      :root { --bg: #030712; --card: #0a1224; --line: rgba(255, 255, 255, 0.1); --text: #e2e8f0; --muted: #94a3b8; --blue: #3b82f6; --cyan: #22d3ee; --ok: #34d399; --warn: #fbbf24; --bad: #f87171; }
+      * { box-sizing: border-box; margin: 0; }
+      body {
+        min-height: 100vh; display: grid; place-items: center; padding: 24px;
+        background: radial-gradient(ellipse 60% 50% at 20% 0%, rgba(37, 99, 235, 0.22), transparent 70%),
+                    radial-gradient(ellipse 50% 45% at 100% 100%, rgba(139, 92, 246, 0.18), transparent 70%), var(--bg);
+        color: var(--text); font: 15px/1.6 Inter, system-ui, sans-serif;
+      }
+      body::before {
+        content: ''; position: fixed; inset: 0; pointer-events: none;
+        background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+        background-size: 48px 48px; mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 75%);
+      }
+      .card { position: relative; width: 100%; max-width: 520px; padding: 40px 36px; border: 1px solid var(--line); border-radius: 24px; background: rgba(10, 18, 36, 0.85); backdrop-filter: blur(12px); box-shadow: 0 40px 100px -40px rgba(37, 99, 235, 0.55); text-align: center; }
+      .logo { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 28px; font: 800 22px Montserrat, sans-serif; letter-spacing: -0.02em; color: #fff; }
+      .logo span { color: var(--blue); }
+      .mark { width: 34px; height: 34px; border-radius: 10px; background: linear-gradient(135deg, var(--cyan), var(--blue) 55%, #6366f1); display: grid; place-items: center; font: 800 16px Montserrat, sans-serif; color: #fff; }
+      h1 { font: 800 30px/1.15 Montserrat, sans-serif; letter-spacing: -0.02em; }
+      h1 em { font-style: normal; background: linear-gradient(135deg, #60a5fa, #2563eb 55%, #818cf8); -webkit-background-clip: text; background-clip: text; color: transparent; }
+      p.sub { margin-top: 10px; color: var(--muted); }
+      .status { margin-top: 28px; display: grid; gap: 10px; text-align: left; }
+      .row { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border: 1px solid var(--line); border-radius: 14px; background: rgba(255, 255, 255, 0.03); }
+      .row b { font-weight: 500; }
+      .pill { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+      .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); }
+      .ok .dot { background: var(--ok); box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.15); animation: pulse 2s ease-in-out infinite; }
+      .ok { color: var(--ok); } .warn { color: var(--warn); } .warn .dot { background: var(--warn); } .bad { color: var(--bad); } .bad .dot { background: var(--bad); }
+      @keyframes pulse { 50% { box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); } }
+      a.btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 28px; padding: 12px 22px; border-radius: 12px; background: linear-gradient(135deg, #60a5fa, #2563eb 55%, #1d4ed8); color: #fff; font-weight: 600; text-decoration: none; box-shadow: 0 10px 30px rgba(37, 99, 235, 0.45); transition: transform 0.2s; }
+      a.btn:hover { transform: translateY(-2px); }
+      footer { margin-top: 22px; font-size: 12px; color: #64748b; }
+      @media (prefers-reduced-motion: reduce) { .ok .dot { animation: none; } }
+    </style>
+  </head>
+  <body>
+    <main class="card">
+      <div class="logo"><div class="mark">f</div>fuserr<span>.</span></div>
+      <h1>Fuserr Solutions <em>Server</em></h1>
+      <p class="sub">Backend API powering the contact forms on fuserrsolutions.com.</p>
+
+      <div class="status" aria-live="polite">
+        <div class="row"><b>API</b><span class="pill" id="api"><span class="dot"></span>Checking…</span></div>
+        <div class="row"><b>Email service</b><span class="pill" id="email"><span class="dot"></span>Checking…</span></div>
+      </div>
+
+      <a class="btn" href="https://fuserrsolutions.com">Visit fuserrsolutions.com →</a>
+      <footer>© <span id="y"></span> Fuserr Solutions</footer>
+    </main>
+
+    <script>
+      document.getElementById('y').textContent = new Date().getFullYear();
+      const set = (id, cls, text) => {
+        const el = document.getElementById(id);
+        el.className = 'pill ' + cls;
+        el.innerHTML = '<span class="dot"></span>' + text;
+      };
+      fetch('/api/health', { cache: 'no-store' })
+        .then((r) => r.json())
+        .then((d) => {
+          set('api', d.ok ? 'ok' : 'bad', d.ok ? 'Online' : 'Error');
+          set('email', d.emailConfigured ? 'ok' : 'warn', d.emailConfigured ? 'Configured' : 'Not configured');
+        })
+        .catch(() => {
+          set('api', 'bad', 'Unreachable');
+          set('email', 'warn', 'Unknown');
+        });
+    </script>
+  </body>
+</html>
