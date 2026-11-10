@@ -10,6 +10,7 @@ import {
   ArrowRight,
   Building2,
   Workflow,
+  CalendarDays,
   Briefcase,
   Newspaper,
   MessageSquare,
@@ -20,7 +21,7 @@ import {
 import { cn } from '@/lib/utils';
 import { services, serviceHref } from '@/data/services';
 import { gmailAnchor } from '@/data/company';
-import Button from '@/components/ui/Button';
+import BookCallTrigger from '@/components/ui/BookCallTrigger';
 import Magnetic from '@/components/motion/Magnetic';
 
 type MenuKey = 'services' | 'company';
@@ -202,13 +203,10 @@ export default function Header() {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center">
             <Magnetic strength={0.25}>
-              <Button href="/contact" variant="primary" size="sm" className="group rounded-lg px-5 py-2.5 font-montserrat font-medium">
-                Get a Quote
-                <ArrowUpRight
-                  size={15}
-                  className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
-              </Button>
+              <BookCallTrigger className="btn-gradient group inline-flex items-center justify-center gap-2 font-montserrat font-medium text-white shadow-[0_4px_20px_rgba(37,99,235,0.35)] transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_4px_30px_rgba(37,99,235,0.5)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg px-5 py-2.5 text-sm">
+                <CalendarDays size={15} className="transition-transform duration-200 group-hover:-rotate-6" />
+                Book a Free Call
+              </BookCallTrigger>
             </Magnetic>
           </div>
 
@@ -257,7 +255,7 @@ export default function Header() {
 
       {/* Mobile full-screen menu (outside <header> so backdrop-filter doesn't trap position:fixed) */}
       <AnimatePresence>
-        {mobileOpen && <MobileMenu pathname={pathname} />}
+        {mobileOpen && <MobileMenu pathname={pathname} onClose={() => setMobileOpen(false)} />}
       </AnimatePresence>
     </>
   );
@@ -313,13 +311,10 @@ function ServicesPanel() {
         <p className="relative mt-3 text-sm font-semibold leading-snug text-slate-900 dark:text-[#E8E8E8]">
           Book a free consultation and we&apos;ll map out the right solution for your idea.
         </p>
-        <Link
-          to="/contact"
-          className="group relative mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400"
-        >
+        <BookCallTrigger className="group relative mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400">
           Talk to an expert
           <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-        </Link>
+        </BookCallTrigger>
         <Link
           to="/services"
           className="group relative mt-auto inline-flex items-center gap-1.5 pt-6 text-xs font-medium text-slate-500 dark:text-[#94A3B8] hover:text-slate-900 dark:hover:text-white transition-colors"
@@ -361,7 +356,7 @@ function CompanyPanel() {
 
 /* ─── Mobile menu ────────────────────────────────────── */
 
-function MobileMenu({ pathname }: { pathname: string }) {
+function MobileMenu({ pathname, onClose }: { pathname: string; onClose: () => void }) {
   const [servicesOpen, setServicesOpen] = useState(false);
 
   const bigLink = (active: boolean) =>
@@ -460,9 +455,9 @@ function MobileMenu({ pathname }: { pathname: string }) {
           transition={{ duration: 0.4, delay: 0.4, ease: EASE }}
           className="mt-auto pt-10 space-y-5"
         >
-          <Button href="/contact" variant="primary" size="lg" className="w-full justify-center font-montserrat">
-            Get a Quote <ArrowUpRight size={16} />
-          </Button>
+          <BookCallTrigger onOpen={onClose} className="btn-gradient group inline-flex items-center justify-center gap-2 font-montserrat font-medium text-white shadow-[0_4px_20px_rgba(37,99,235,0.35)] transition-all duration-200 hover:scale-[1.02] hover:shadow-[0_4px_30px_rgba(37,99,235,0.5)] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 w-full rounded-xl px-8 py-4 text-base">
+            <CalendarDays size={17} /> Book a Free Call
+          </BookCallTrigger>
           <div className="flex flex-col gap-2 text-sm text-slate-500 dark:text-[#94A3B8]">
             <a {...gmailAnchor({ subject: 'Project inquiry' })} className="inline-flex items-center gap-2">
               <Mail size={14} className="text-blue-500" /> contact@fuserrsolutions.com

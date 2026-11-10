@@ -6,6 +6,7 @@ import { services, serviceHref } from '@/data/services';
 import { gmailLink } from '@/data/company';
 import Button from '@/components/ui/Button';
 import Magnetic from '@/components/motion/Magnetic';
+import BookCallTrigger from '@/components/ui/BookCallTrigger';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 
 const companyLinks = [
@@ -190,13 +191,10 @@ export default function Footer() {
               <p className="mb-3 text-xs text-slate-500 dark:text-[#94A3B8]">
                 Free consultation. Detailed proposal within 24 hours.
               </p>
-              <Link
-                to="/contact"
-                className="group inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
-              >
+              <BookCallTrigger className="group inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors">
                 Book a free call
                 <ArrowUpRight size={13} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
+              </BookCallTrigger>
             </div>
           </div>
         </div>

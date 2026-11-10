@@ -11,6 +11,8 @@ export const company = {
   phoneHref: 'tel:+923337804685',
   address: 'Ground Floor 1-H-1/22, Nazimabad No. 1, Karachi, Pakistan',
   rating: 4.9,
+  /** Public Calendly booking link used by every "Book a call" button. Leave empty to fall back to /contact. */
+  calendlyUrl: 'https://calendly.com/fahad-fuserrsolutions/30min',
 };
 
 /**
